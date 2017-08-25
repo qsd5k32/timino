@@ -32,4 +32,35 @@ use Timino\App\Core\Model;
 
 class Index extends Model
 {
+   public function test()
+   {
+      // insert
+      // echo $this->record->insert->into("users",array(
+      //    "Name"   => "bilal",
+      //    "Email"  => "bilal@gmail.com",
+      //    "Passwd" => sha1("123456")
+      // ));
+
+      // update
+      // $this->record->update->set("users", array(
+      //    "Email" => "bistish@000000000000"
+      // ), array(
+      //    "Email | = " => "bilal@",
+      //    "Name  | = " => "bilal"
+      // ));
+      
+      // delete
+      // echo $this->record->delete->from("users",array(
+      //    "Email | = " => "lotfio@gmail.com | and",
+      //    "Name  | = " => "saida" 
+      // ));
+
+      // select
+      //  $do = $this->record->select->from("users","*", "WHERE Email = ? ", ["lotfio@gmail.com"], "fetch");
+      //  if($do)
+      //  {
+      //     echo "<pre>";
+      //     print_r($do);
+      //  }
+   }
 }
