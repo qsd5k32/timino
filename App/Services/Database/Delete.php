@@ -30,6 +30,18 @@ namespace Timino\App\Services\Database;
 
 class Delete
 {
+   
+   /**
+   * @var resource
+   */
+   private $db;
+
+   public function __construct()
+   {
+      $this->db = (Connection::instantiate())->con();
+   }
+
+
    /**
     * delete from db method
     *
