@@ -93,7 +93,7 @@ class Insert
 
         $stmt = $this->db->prepare($sql);
 
-        return $stmt->execute($binds) ? true : false;
+        return $stmt->execute($binds) ? $stmt->rowCount() : false;
   }
 
 }
