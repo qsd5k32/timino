@@ -48,6 +48,17 @@ class Update
     * @param array $data data to be updated     
     * @param string $cond 
     * @return bool
+    *
+    * usage example
+    *  set("users",array(
+   
+    *     "Email" => "lotfio@admin.com"
+    *  ),array( // where condition
+
+    *     "Email | = " => "lotfio",
+    *     "name  | = "  => "smail"
+    *  ));
+    *));
     */
    public function set($tbl, $data, $cond = NULL)
    {
