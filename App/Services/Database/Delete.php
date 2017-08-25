@@ -35,12 +35,16 @@ class Delete
     *
     * @param string $tbl table name
     * @param array $cond
+
     * exemple of use cond = WHERE ....
+    * note : dont forget to use pipe.
     * array("Name | = or != or < or > or <= exetra " => "lotfio") // one condition
+
     * array(
     *   "Name  | =  " => "ahmed",
     *   "Email | != " => "admin@gmail.com" and so on
     *) // multiple conditions
+
     * @return void
     */
    public function from($tbl, $cond = NULL)
