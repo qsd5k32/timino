@@ -1,0 +1,27 @@
+{
+    "name": "timino/timino",
+    "description": "Timino is a PHP MVC S.O.L.I.D lightweight and simple framework by lotfio lakehal 2017",
+    "type": "PHP",
+    "license": "dev",
+    "authors": [
+        {
+            "name": "lotfio lakehal",
+            "email": "contact@lotfio-lakehal.com"
+        }
+    ],
+
+    "minimum-stability": "dev",
+
+    "require": {
+        
+    },
+
+    "autoload":{
+        "files": [
+            "App/Config/Main.php"
+        ],
+        "psr-4": {
+            "Timino\\App\\" : "App/"
+        }
+    }
+}
