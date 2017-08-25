@@ -32,6 +32,14 @@ class Insert
 {
    /**
     * Database connection instance
+    * exemple :
+
+    * into("users", [
+    * "Name"   => "lotfio",
+    * "Email"  => "lotfio@admin.com",
+    * "Passwd" => "qsd54qsdf3df"
+    * ]);
+    
     * @var resource
     */
    private $db;
