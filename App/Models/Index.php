@@ -56,11 +56,11 @@ class Index extends Model
       // ));
 
       // select
-      //  $do = $this->record->select->from("users","*", "WHERE Email = ? ", ["lotfio@gmail.com"], "fetch");
-      //  if($do)
-      //  {
-      //     echo "<pre>";
-      //     print_r($do);
-      //  }
+      //  $do = $this->record->select->from("users", array("Email"), array(
+      //     "Name | = " => "lotfi"
+
+      //  ), "ORDER BY ID ");
+
+      //  if($do) \print_r($do); else echo "cannot select data";
    }
 }
