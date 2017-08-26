@@ -71,11 +71,14 @@ class Select
                 $sql .= $sel[$i] .", ";
             }
 
-                $sql .= $sel[count($sel) - 1] . " FROM `$tbl` $cond2";
+                $sql .= $sel[count($sel) - 1] . " FROM `$tbl` ";
+                
+                if(!$cond) $sql . $cond2;
 
         }else{
 
-            $sql .= $sel[0] . " FROM `$tbl` $cond2";
+            $sql .= $sel[0] . " FROM `$tbl` ";
+            if(!$cond) $sql . $cond2;
         }
     
 
@@ -91,12 +94,14 @@ class Select
                 $sql .= $selection[$i] .", ";
             }
 
-            $sql .= $selection[count($selection) - 1] . " FROM `$tbl` $cond2";
+            $sql .= $selection[count($selection) - 1] . " FROM `$tbl` ";
+            if(!$cond) $sql . $cond2;
 
         }else{
 
             // only one selection 
-            $sql .= $sel . " FROM `$tbl` $cond2";
+            $sql .= $sel . " FROM `$tbl` ";
+            if(!$cond) $sql . $cond2;
 
         }
     }
@@ -168,10 +173,10 @@ class Select
     }
 
 
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute($binds);
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($binds);
 
-    return $stmt->rowCount() > 0 ? $stmt->fetchAll() : 0;
+        return $stmt->rowCount() > 0 ? $stmt->fetchAll() : 0;
 
     }
 
