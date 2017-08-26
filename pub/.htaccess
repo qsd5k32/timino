@@ -3,7 +3,7 @@ Options -Multiviews
 
 RewriteEngine on
 
-RewriteBase /fordev/pub/
+RewriteBase /Timino/pub/
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
