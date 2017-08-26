@@ -70,7 +70,7 @@ class Dispatcher
    */
   private function uri()
   {
-    $uri = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : NULL;
+    $uri = (isset($_GET["uri"])) ?  $_GET["uri"] : NULL;
     $uri = preg_replace("#[^a-zA-Z0-9\/\.\_\-\@]#", NULL, $uri);
     $uri = array_values(array_filter(explode("/", $uri)));
     return $uri;
