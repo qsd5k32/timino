@@ -1,11 +1,13 @@
 <div class="container err-page">
-   <div class="row no-gutters justify-content-md-center">
+   <div class="row no-gutters">
+       <div class="col-md-3"></div>
       <div class="col-md-6">
          <img src="<?=$uploads->IMG . '404.png'?>" class="res-img" alt="">
     </div>
    </div>
 
-   <div class="row no-gutters justify-content-md-center">
+   <div class="row no-gutters">
+   <div class="col-md-3"></div>
       <div class="col-md-6">
         <div class="panel center-txt">
             <h1>Error 404 Page not found !</h1>
