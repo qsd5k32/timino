@@ -32,7 +32,8 @@
 
 return[
 
-   "Record"     => SRV   . "Database\\Record",
+   "Record"       => SRV . "Database\\Record",
    "Connection.s" => SRV . "Database\\Connection",
+   "Form"         => SRV . "Security\\Form",
   
 ];
