@@ -53,7 +53,7 @@ class Delete
     * array("Name | = or != or < or > or <= exetra " => "lotfio") // one condition
 
     * array(
-    *   "Name  | =  " => "ahmed",
+    *   "Name  | =  " => "ahmed | and",
     *   "Email | != " => "admin@gmail.com" and so on
     *) // multiple conditions
 
