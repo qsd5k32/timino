@@ -50,113 +50,125 @@ class Update
     * @return bool
     *
     * usage example
-    *  set("users",array(
-   
-    *     "Email" => "lotfio@admin.com"
-    *  ),array( // where condition
-
-    *     "Email | = " => "lotfio",
-    *     "name  | = "  => "smail"
-    *  ));
-    *));
+    * echo update("users",[
+    *  "Name"  => "Lakehal",
+    *  "Email" => "lotfio@ouedkniss.com"
+    *  ],[
+    *     "ID      |  = " => "20 | and", // use pipes on condition
+    *     "Passwd  |  = " => "1321321",
+    *  ]); 
     */
-   public function set($tbl, $data, $cond = NULL)
+   public function set($tbl, $data, $conditions)
    {
-
-      $keys   = array_keys($data);
-      $values = array_values($data);
-      $nph    = array_map(function($elem){ return ":".$elem.rand(); }, $keys);
-
 
       $sql = "UPDATE `$tbl` SET ";
 
+      $keys          = array_keys($data);
+      $values        = array_values($data);
+      $placeholders  = array_map(function($elem){ return ":" . $elem; },$keys);
+
+
       if(is_array($data))
       {
-         if(count($data) > 1)
+         if(count($data) > 1) // array of elements
          {
-            for($i = 0; $i< count($data) -1; $i++)
+            for($i = 0; $i < count($keys) - 1; $i++)
             {
-               $sql .= "`$keys[$i]`" . " = " . $nph[$i] . " and ";
+               $sql .= $keys[$i] . " = " . $placeholders[$i] . ", ";
             }
 
-            $sql .= $keys[count($keys) -1] . " = " . $nph[count($nph) -1 ];
+            $sql .= $keys[count($keys) - 1] . " = " . $placeholders[count($placeholders) - 1];
 
-         
-         }else{
+            
+            $bind = array_combine($placeholders, $values);  
 
-            foreach($data as $key => $val)
-            {
-               $sql .= "`$keys[0]` = $nph[0] ";
-            }
+
+         }else{ // only one
+
+            $sql .= $keys[0] . " = " . $placeholders[0];
+
+            $bind = array_combine($placeholders, $values); 
 
          }
-
       }
 
-      // if is set condition
-
-      if($cond)
+      /**
+       * hundling conditions
+       */
+      if(is_array($conditions))
       {
          $sql .= " WHERE ";
 
-         $keysCond = array_keys($cond);
-         $valsCond = array_values($cond);
-         $nphCond  = array_map(function($elem)
-         {                 
-            $elem = preg_replace("/[^a-zA-Z0-9\:\@\_\-]+/", NULL, $elem);
-            return ":".$elem . rand();
-         }, $keysCond);
-
-         if(is_array($cond))
+         if(count($conditions) > 1) // array of elements
          {
-            if(count($cond) > 1) // array of conditions
-            {
+            $conKeys = array_keys($conditions);
+            $convals = array_values($conditions);
 
-            foreach($keysCond as $key)
+            foreach($conKeys as $key)
             {
-               $newKeys[] = explode("|", $key);
+               $k[] = explode("|", $key);
             }
-            
-            for($i = 0; $i < count($newKeys) - 1 ; $i++)
+            foreach($convals as $val)
             {
-               $sql .= trim($newKeys[$i][0]) . " " . trim($newKeys[$i][1])  . " " . trim($nphCond[$i]). " and ";
+               $v[] = explode("|", $val);
             }
 
-            $sql .= trim($newKeys[count($newKeys)-1][0]) . " " . trim($newKeys[count($newKeys)-1][1])  . " " . trim($nphCond[count($nphCond)-1]);
+            for($i = 0; $i < count($conKeys); $i++)
+            {
+               $ky[] = trim($k[$i][0]);
+               $vl[] = trim($v[$i][0]);
+            }
 
+            $nph = array_map(function($elm){ return ":" . $elm; }, $ky);
 
-            $condBind = array_combine($nphCond, $valsCond);
+            for($i = 0; $i < count($conKeys) -1 ; $i++)
+            {
+               $sql .= trim($k[$i][0])  . " " . trim($k[$i][1]) . " " . trim($nph[$i]) . " " . trim($v[$i][1]) ." " ;
+            }
 
+            $sql .= trim($k[count($k) -1 ][0]) . " " . trim($k[count($k) -1 ][1]) . " " . trim($nph[count($nph) -1]);
 
-            }else{ // one elem on array
+            $binds = array_combine($nph, $vl);
+
          
+         }else{ // only one element
 
-            if(preg_match("#\|#", $keysCond[0]))
+            $conKeys = array_keys($conditions);
+            $convals = array_values($conditions);
+
+            foreach($conKeys as $key)
             {
-               $do = explode("|", $keysCond[0]);
-
-               $sql .= trim($do[0]) . " " . trim($do[1]) . " " . $nphCond[0];
-
-               $condBind = array_combine($nphCond, $valsCond);
-
-            }else{
-
-               $condBind = array_combine($nphCond, $valsCond);
-               $sql .= $keysCond[0] . " = " . $nphCond[0];
-
+               $k[] = explode("|", $key);
+            }
+            foreach($convals as $val)
+            {
+               $v[] = explode("|", $val);
             }
 
-            } // one elem on array
+            for($i = 0; $i < count($conKeys); $i++)
+            {
+               $ky[] = trim($k[$i][0]);
+               $vl[] = trim($v[$i][0]);
+            }
 
-         }
+            $nph = array_map(function($elm){ return ":" . $elm; }, $ky);
+
+
+
+            $sql .= trim($k[0][0])  . " " . trim($k[0][1]) . " " . trim($nph[0]);
+
+            $binds = array_combine($nph, $vl);
+
+
+
+         }  // one element
       }
 
-      $binds = array_combine($nph, $values);
-      $binds = $binds + $condBind;
+      $bounds = $bind + $binds;
 
       $stmt = $this->db->prepare($sql);
 
-      $stmt->execute($binds);
+      $stmt->execute($bounds);
 
       return $stmt->rowCount() > 0 ? true : false;
 
