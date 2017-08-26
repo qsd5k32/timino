@@ -54,7 +54,7 @@ class Select
      *   "Name   | =  "   => "lotfi | and",
      *   "Email  | =  "   => "lokam | and",
      *   "Passwd | =  "   => "123",
-     *   ), ,NULL, "ORDER BY Email DESC LIMIT 1"); // more condition if no condition 1 use null to allow cond 2 to work
+     *   ), "ORDER BY Email DESC LIMIT 1"); // more condition if no condition 1 use null to allow cond 2 to work
     */
     public function from($tbl, $sel, $cond = null, $cond2=NULL)
     {
