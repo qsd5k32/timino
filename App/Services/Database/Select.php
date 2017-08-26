@@ -41,69 +41,138 @@ class Select
    }
 
 
-  /**
-   * Select from Database
-   * @param  string $tbl     table name
-   * @param  mixed  $sel     selection can be string comma separated or an array 
-   * @param  string $cond    selection condition
-   * @param  array  $binds   parameters to be bound
-   * @param  string $result  default return count you can use "fetch" to get an array of data
-   * @return mixed  rowcounts or array of data        
-   */
-  public function from($tbl, $sel, $cond = NULL, $binds = NULL,$result = NULL)
-  {
+    /**
+     * select from db method
+     *
+     * @param string $tbl
+     * @param array or comma separated string $sel 
+     * @param array or null $cond
+     * @param string $cond2 on no cond one use null 
+     * @return mixed
+     * 
+     *   $do = from("users","array('or string with comma')" array( // array of conditions
+     *   "Name   | =  "   => "lotfi | and",
+     *   "Email  | =  "   => "lokam | and",
+     *   "Passwd | =  "   => "123",
+     *   ), ,NULL, "ORDER BY Email DESC LIMIT 1"); // more condition if no condition 1 use null to allow cond 2 to work
+    */
+    public function from($tbl, $sel, $cond = null, $cond2=NULL)
+    {
 
-      $sql  = "SELECT ";
+    $binds = NULL;
+    $sql  = "SELECT ";
 
-      if(is_array($sel)) // an array of selection
-      {
-          if(count($sel) > 1)
-          {
-              for($i = 0; $i< count($sel) - 1; $i++)
-              {
-                  $sql .= $sel[$i] .", ";
-              }
+    if(is_array($sel)) // an array of selection
+    {
+        if(count($sel) > 1)
+        {
+            for($i = 0; $i< count($sel) - 1; $i++)
+            {
+                $sql .= $sel[$i] .", ";
+            }
 
-               $sql .= $sel[count($sel) - 1] . " FROM `$tbl` $cond";
+                $sql .= $sel[count($sel) - 1] . " FROM `$tbl` $cond2";
 
-          }else{
+        }else{
 
-              $sql .= $sel[0] . " FROM `$tbl` $cond";
-          }
-      
+            $sql .= $sel[0] . " FROM `$tbl` $cond2";
+        }
+    
 
-      }else{ // not an array
+    }else{ // not an array
 
-          // if coma separated string
-          if(preg_match("#\,#", $sel)){
+        // if coma separated string
+        if(preg_match("#\,#", $sel)){
 
-              $selection = explode(",", $sel);
+            $selection = explode(",", $sel);
 
-              for($i = 0; $i< count($selection) - 1; $i++)
-              {
-                  $sql .= $selection[$i] .", ";
-              }
+            for($i = 0; $i< count($selection) - 1; $i++)
+            {
+                $sql .= $selection[$i] .", ";
+            }
 
-              $sql .= $selection[count($selection) - 1] . " FROM `$tbl` $cond";
+            $sql .= $selection[count($selection) - 1] . " FROM `$tbl` $cond2";
 
-          }else{
+        }else{
 
-              // only one selection 
-              $sql .= $sel . " FROM `$tbl` $cond";
+            // only one selection 
+            $sql .= $sel . " FROM `$tbl` $cond2";
 
-          }
+        }
+    }
+
+    /**
+     * if is set condition
+    * else select without condition
+    */
+
+    if(isset($cond) && is_array($cond))
+    {
+        $keys   = array_keys($cond);
+        $values = array_values($cond);
+
+        $sql .= "WHERE ";
+
+        if(count($cond) > 1) // multiple conditions
+        {
+            foreach($keys as $key)
+            {
+                $k[] = explode("|", $key);
+            }
+
+            foreach($values as $value)
+            {
+                $v[] = explode("|", $value);
+            }
+            for($i = 0; $i < count($k); $i++)
+            {
+                $nph[] = trim($k[$i][0]); 
+                $val[] = trim($v[$i][0]);
+            }
+
+            $nph = array_map(function($elem){ return ":".$elem.rand();}, $nph);
 
 
-      }
+        for($i = 0; $i< count($k) - 1; $i++)
+        {
+            $sql .= trim($k[$i][0]) . " " . trim($k[$i][1]) . " " .  $nph[$i] . $v[$i][1] . " ";
+        }
 
-      $stmt = $this->db->prepare($sql);
+        $sql .= trim($k[count($k) -1][0]) . " " . trim($k[count($k) -1 ][1]) . " " . $nph[count($nph) -1] ." " . $cond2 ;
+        
+        $binds = array_combine($nph, $val);
+    
+    }else{ // one condition  one array element
 
-      if(isset($result) && $result == "fetch")
-      {
-          return $stmt->execute($binds) ? $stmt->rowCount() > 0 ? $stmt->fetchAll() : 0 : false;
-      }
+        foreach($keys as $key)
+        {
+            $k[] = explode("|", $key);
+        }
 
-      return $stmt->execute($binds) ? $stmt->rowCount() : false;
-  }
+        foreach($values as $value)
+        {
+            $v[] = explode("|", $value);
+        }
+        for($i = 0; $i < count($k); $i++)
+        {
+            $nph[] = trim($k[$i][0]); 
+            $val[] = trim($v[$i][0]);
+        }
+
+        $nph = array_map(function($elem){ return ":".$elem.rand();}, $nph);
+
+        $sql .= trim($k[0][0]) . " " . trim($k[0][1]) . " " . $nph[0] ." " . $cond2 ;
+
+        $binds = array_combine($nph, $val);
+    }
+    }
+
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute($binds);
+
+    return $stmt->rowCount() > 0 ? $stmt->fetchAll() : 0;
+
+    }
 
 }
