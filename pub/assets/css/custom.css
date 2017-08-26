@@ -18,3 +18,9 @@ body{
 .err-msg{
     color: #888;
 }
+pre{
+    border: 0!important;
+    box-shadow: none!important;
+    border: 10px solid #f7f7f7!important;
+    margin: 0;
+}
