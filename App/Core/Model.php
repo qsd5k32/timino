@@ -32,9 +32,12 @@ namespace Timino\App\Core;
 abstract class Model
 {
    protected $record;
+   protected $form;
 
+   
    public function __construct(ServiceProvider $service)
    {
-      $this->record = $service->get("record");
+      $this->record = $service->get("Record");
+      $this->form   = $service->get("Form");
    }
 }
