@@ -41,12 +41,12 @@ class Index extends Model
       //    "Passwd" => sha1("123456")
       // ));
 
-      // update
+
       // $this->record->update->set("users", array(
       //    "Email" => "bistish@000000000000"
       // ), array(
-      //    "Email | = " => "bilal@",
-      //    "Name  | = " => "bilal"
+      //    "Email | = " => "lotfio@ouedkniss.com | and",
+      //    "Name  | = " => "Lakehal"
       // ));
       
       // delete
