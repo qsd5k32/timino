@@ -65,7 +65,7 @@ class Update
 
       $keys          = array_keys($data);
       $values        = array_values($data);
-      $placeholders  = array_map(function($elem){ return ":" . $elem; },$keys);
+      $placeholders  = array_map(function($elem){ return ":" . $elem .rand() ; },$keys);
 
 
       if(is_array($data))
@@ -119,7 +119,7 @@ class Update
                $vl[] = trim($v[$i][0]);
             }
 
-            $nph = array_map(function($elm){ return ":" . $elm; }, $ky);
+            $nph = array_map(function($elm){ return ":" . $elm . rand(); }, $ky);
 
             for($i = 0; $i < count($conKeys) -1 ; $i++)
             {
