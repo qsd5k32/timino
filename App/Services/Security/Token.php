@@ -33,7 +33,7 @@ class Token
    /**
     * random string method
     *
-    * @param integer $length
+    * @param int $length
     * @return string random strin
     */
    public function randomStr($length = 10)
@@ -62,7 +62,7 @@ class Token
     * hash password method
     *
     * @param string $passwd
-    * @return boolean
+    * @return string hash
     */
    public function hashPasswd($passwd)
    {
@@ -77,7 +77,7 @@ class Token
     *
     * @param string $passwd user password
     * @param string $hash old password hashed generally from db
-    * @return void
+    * @return bool
     */
    public function verifyPasswd($passwd, $hash)
    {
