@@ -47,4 +47,40 @@ class Token
       }
       return $str;
    }
+
+   /**
+    * set CSRF token
+    *
+    * @return void
+    */
+   public function setCsrfToken()
+   {
+      return $_SESSION["CSRF"] = $this->randomStr(50);
+   }
+
+   /**
+    * hash password method
+    *
+    * @param string $passwd
+    * @return boolean
+    */
+   public function hashPasswd($passwd)
+   {
+      $options = [
+         'cost' => 12,
+     ];
+     return password_hash($passwd, PASSWORD_BCRYPT, $options);
+   }
+
+   /**
+    * verify password method
+    *
+    * @param string $passwd user password
+    * @param string $hash old password hashed generally from db
+    * @return void
+    */
+   public function verifyPasswd($passwd, $hash)
+   {
+      return password_verify($passwd, $hash);
+   }
 }
