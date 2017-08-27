@@ -25,6 +25,10 @@
  * Main Configuration file
  * 
  */
+session_start([
+   "name" => "Timino"
+]);
+
 
 defined("DS")     ||     define("DS", DIRECTORY_SEPARATOR);
 
