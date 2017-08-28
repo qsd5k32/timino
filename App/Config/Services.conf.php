@@ -43,5 +43,8 @@ return[
 
    // time services
    "TimeAgo"     => SRV . "DateTime\\TimeAgo",
+
+   // custom services
+   "Mail"        => SRV . "Custom\\Mailer",
   
 ];
