@@ -1,3 +1,4 @@
 vendor
 pub/assets/css/prism.min.css
 pub/assets/js/prism.min.js
+composer.lock
