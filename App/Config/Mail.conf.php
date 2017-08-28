@@ -27,5 +27,11 @@
  */
 
 return [
-
+   
+   "HOST"      => "smtp.gmail.com",
+   "USER"      => "lotfiolakehal@gmail.com",
+   "PASS"      => "*******",
+   "FROM"      => "lotfio-lakehal@gmail.com",
+   "FROM_NAME" => "lotfio",
+   "REPLAY_TO" => "noreplay",
 ];
