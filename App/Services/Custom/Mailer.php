@@ -33,47 +33,62 @@ use Timino\App\Core\Linker;
 
 class Mailer
 {
-   public function send()
-   {
+    /**
+     * send simple mail method
+     *
+     * @param array $data
+     * exemple:
+     * 
+     *    "to"           => "contact@lotfio-lakehal.com",
+     *    "subject"      => "test message from lotfio",
+     *    "title"        => "message title",
+     *    "header"       => "lorem header",
+     *    "msg"          => "lorem lorem lorem lorem ",
+     *    "footer"       => "23 13213213132123",
+     *    "greetings"    => "23 13213213132123",
+     *    "infoLink"     => "qlmsdkqmsldkqlmsd",
+     *    "company"      => "aza1zsa2z1a2z1"
+     * 
+     * @return bool
+     */
+    public function sendSimpleEmail($data)
+    {
 
 
-   $mail = new PHPMailer(true);
 
-   try {
-      //Server settings
-      $mail->SMTPDebug = 2;                                 // Enable verbose debug output
-      $mail->isSMTP();                                      // Set mailer to use SMTP
-      $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
-      $mail->SMTPAuth = true;                               // Enable SMTP authentication
-      $mail->Username = 'user@example.com';                 // SMTP username
-      $mail->Password = 'secret';                           // SMTP password
-      $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-      $mail->Port = 587;                                    // TCP port to connect to
+        $mail = new PHPMailer(true);
 
-      //Recipients
-      $mail->setFrom('from@example.com', 'Mailer');
-      $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-      $mail->addAddress('ellen@example.com');               // Name is optional
-      $mail->addReplyTo('info@example.com', 'Information');
-      $mail->addCC('cc@example.com');
-      $mail->addBCC('bcc@example.com');
+        $mail->IsSMTP();
+        $mail->Host = Linker::mail("HOST");
 
-      //Attachments
-      $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-      $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+        $mail->SMTPAuth = true;
+        $mail->Username = Linker::mail("USER");
+        $mail->Password = Linker::mail("PASS");
 
-      //Content
-      $mail->isHTML(true);                                  // Set email format to HTML
-      $mail->Subject = 'Here is the subject';
-      $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-      $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mail->From     = Linker::mail("FROM");
+        $mail->FromName = Linker::mail("FROM_NAME");
+        $mail->Sender   = Linker::mail("FROM");
 
-      $mail->send();
-      echo 'Message has been sent';
-   } catch (Exception $e) {
-      echo 'Message could not be sent.';
-      echo 'Mailer Error: ' . $mail->ErrorInfo;
-   }
+        //$mail->AddReplyTo(Linker::mail("REPLAY_TO"));
+        $mail->AddAddress($data["to"]);
 
-   }
+        $mail->Subject = $data["subject"];
+        $mail->IsHTML(true);
+
+        $template = file_get_contents(Linker::route("EMAIL") . "normal.html");
+
+        $template = str_replace("#title#", $data["title"], $template);
+        $template = str_replace("#header#", $data["header"], $template);
+        $template = str_replace("#msg#", $data["msg"], $template);
+        $template = str_replace("#footer#", $data["footer"], $template);
+        $template = str_replace("#greetings#", $data["greetings"], $template);
+        $template = str_replace("#infoLink#", $data["infoLink"], $template);
+        $template = str_replace("#company#", $data["company"], $template);
+
+        $mail->Body = $template;
+
+        return (!$mail->Send()) ? 0 : 1 ;
+
+    }
+
 }
