@@ -43,7 +43,7 @@ class ServiceProvider
     */
    public function __construct()
    {
-      $services = CONFIG . "Services.php";
+      $services = CONFIG . "Services" . ".conf.php";
       try{
 
         if(!file_exists($services)) throw new \Exception("Error $services file was not found ! ");

@@ -30,7 +30,12 @@ namespace Timino\App\Core;
 use Timino\App\Services\Template\ErrorTemplator;
 
 class Linker
-{
+{   
+    /**
+     * config file suffix
+     * @var string
+     */
+    const SUFFIX = ".conf.php";
 
    /**
     * routes method for all application links and paths
@@ -39,7 +44,7 @@ class Linker
     */
    public static function route($key)
    {
-      $routes = CONFIG . "Routes.php";
+      $routes = CONFIG . "Routes" . self::SUFFIX;
 
       try{
 
@@ -80,7 +85,7 @@ class Linker
     */
    public static function namespace($key)
    {
-      $namespaces = CONFIG . "Namespaces.php";
+      $namespaces = CONFIG . "Namespaces". self::SUFFIX;
 
       try{
         if(!file_exists($namespaces)) throw new \Exception("Error $namespaces file was not found");
@@ -105,7 +110,7 @@ class Linker
     */
    public static function database($key)
    {
-       $file = CONFIG . "Database.php";
+       $file = CONFIG . "Database". self::SUFFIX;
 
       try{
          if(!file_exists($file)) throw new \Exception("Error $file file was not found");
@@ -130,7 +135,7 @@ class Linker
     */
    public static function regex($key)
    {
-        $file = CONFIG . "Regex.php";
+        $file = CONFIG . "Regex". self::SUFFIX;
 
         try{
             if(!file_exists($file)) throw new \Exception("Error $file file was not found");

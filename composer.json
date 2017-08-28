@@ -18,7 +18,7 @@
 
     "autoload":{
         "files": [
-            "App/Config/Main.php"
+            "App/Config/Base.conf.php"
         ],
         "psr-4": {
             "Timino\\App\\" : "App/"
