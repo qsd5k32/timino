@@ -152,4 +152,29 @@ class Linker
         return $file[$key];
    }
 
+   /**
+    * email config linker metod
+    *
+    * @param string $key  name
+    * @return string value
+    */
+   public static function mail($key)
+   {
+        $file = CONFIG . "Mail". self::SUFFIX;
+
+        try{
+            if(!file_exists($file)) throw new \Exception("Error $file file was not found");
+
+            $file = require $file;
+
+            if(!isset($file[$key])) throw new \Exception("Error $key key was not found");
+
+        }catch(\Exception $e)
+        {
+            die(ErrorTemplator::exceptionError($e->getMessage()));
+        }
+
+        return $file[$key];
+   }
+
 }
