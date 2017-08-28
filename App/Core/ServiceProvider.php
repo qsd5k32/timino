@@ -55,7 +55,7 @@ class ServiceProvider
         // make service name and namespace always ucfirst
         foreach($services as $name => $class)
         {
-          $name  = ucfirst(strtolower($name));
+          $name  = ucfirst($name);
           $class = explode("\\", $class);
           $class = array_map("ucfirst", $class);
           $class = implode("\\", $class);
@@ -107,7 +107,7 @@ class ServiceProvider
     */
    public function get($name)
    {
-      $name  = ucfirst(strtolower($name));
+      $name  = ucfirst($name);
       return (isset($this->services[$name])) ? $this->services[$name] : die(ErrorTemplator::exceptionError("Error $name Service Was Not Found !"));
    }
 }
