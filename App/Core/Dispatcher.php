@@ -54,7 +54,7 @@ class Dispatcher
   /**
    * constructor method
    * set default controllers and actions
-   * @param Linker $linker
+   * @param Linker $linker 
    */
   public function __construct()
   {
@@ -71,7 +71,7 @@ class Dispatcher
   private function uri()
   {
     $uri = (isset($_GET["uri"])) ?  $_GET["uri"] : NULL;
-    $uri = preg_replace("#[^a-zA-Z0-9\/\.\_\-\@]#", NULL, $uri);
+    $uri = preg_replace(Linker::regex("URI"), NULL, $uri);
     $uri = array_values(array_filter(explode("/", $uri)));
     return $uri;
   }
