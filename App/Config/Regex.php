@@ -28,6 +28,16 @@
 
 return [
 
-   "URI" => "#[^a-zA-Z0-9\/\.\_\-\@]#",
+   // dispatcher uri validation
+   "URI"           => "#[^a-zA-Z0-9\/\.\_\-\@]#",
+
+    // validation service
+   "EMAIL"         => "#^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5})$#",
+
+   "STRING"        => "#[^\w\d\-\.\s+\@]#",
+
+   "ARABIC_STRING" => "#[^\w\d\-\.\s+\p{Arabic}\@]#u",
+
+   "FRENCH_STRING" => "#[^\w\d\-\.\s+À-ÿ]#",
 
 ];
