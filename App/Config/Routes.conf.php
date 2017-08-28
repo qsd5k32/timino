@@ -65,4 +65,7 @@ return[
       "IMG"    => URL . "uploads" . DS . "img"   . DS,
       "FILES"  => URL . "uploads" . DS . "files" . DS,
    ],
+
+   // libs mail routes
+   "EMAIL" => APP . "Libs" . DS . "Mail" . DS, 
 ];
