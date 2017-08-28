@@ -122,4 +122,29 @@ class Linker
       return $file[$key];
    }
 
+   /**
+    * regular expression linker metod
+    *
+    * @param string $key regex name
+    * @return string regex pattern
+    */
+   public static function regex($key)
+   {
+        $file = CONFIG . "Regex.php";
+
+        try{
+            if(!file_exists($file)) throw new \Exception("Error $file file was not found");
+
+            $file = require $file;
+
+            if(!isset($file[$key])) throw new \Exception("Error $key key was not found");
+
+        }catch(\Exception $e)
+        {
+            die(ErrorTemplator::exceptionError($e->getMessage()));
+        }
+
+        return $file[$key];
+   }
+
 }
