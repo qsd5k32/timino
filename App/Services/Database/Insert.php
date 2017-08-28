@@ -33,13 +33,11 @@ class Insert
    /**
     * Database connection instance
     * exemple :
-
     * into("users", [
     * "Name"   => "lotfio",
     * "Email"  => "lotfio@admin.com",
     * "Passwd" => "qsd54qsdf3df"
     * ]);
-    
     * @var resource
     */
    private $db;
@@ -53,13 +51,13 @@ class Insert
    * insert method
    *
    * @param string $table
-   * @param mixed $data
+   * @param mixed  $data
    * @return void
    */
   public function into($table, $data)
   {
 
-    if(!is_array($data)) die("Error : second parameter must be an array of keys and values");
+    if(!is_array($data)) die("Error : second parameter <b>$data</b> must be an array of keys and values");
 
     $keys   = array_keys($data);
     $values = array_values($data);
