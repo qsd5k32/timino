@@ -34,8 +34,14 @@
 
 return[
 
+   // db services
    "Record"       => SRV . "Database\\Record",
    "Connection.s" => SRV . "Database\\Connection",
+
+   // security services
    "Form"         => SRV . "Security\\Form",
+
+   // time services
+   "TimeAgo"     => SRV . "DateTime\\TimeAgo",
   
 ];
