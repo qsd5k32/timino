@@ -57,7 +57,7 @@ class ServiceProvider
         {
           $name  = ucfirst(strtolower($name));
           $class = explode("\\", $class);
-          $class = array_map("ucfirst", array_map("strtolower", $class));
+          $class = array_map("ucfirst", $class);
           $class = implode("\\", $class);
 
           $srv[$name] = $class;
