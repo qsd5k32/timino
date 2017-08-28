@@ -33,15 +33,28 @@ return[
    "DEFAULT_ACTION"     => "manage",
    "ERROR_ACTION"       => "errorAction",
 
-   // folders routes
+   // app folders routes
    "CORE"         => APP . "Core" . DS,
    "CONTROLLERS"  => APP . "Controllers" . DS,
    "MODELS"       => APP . "Models" . DS,
    "SERVICES"     => APP . "Services" . DS,
    "VIEWS"        => APP . "Views" . DS,
 
+   // public folders routes for php check and validation
+   "PHP_PUBLIC" =>[
+
+      "ASSETS" =>[
+         "IMG" => PUB . "assets" . DS . "img" .DS,
+      ],
+
+      "UPLOADS" =>[
+         "IMG"    => PUB . "uploads" . DS . "img"   .DS,
+         "FILES"  => PUB . "uploads" . DS . "files" .DS,
+      ]
+   ],   
+
    // public folders
-   "ASSETS"  => [
+   "ASSETS"   => [
       "CSS"   => URL . "assets" . DS . "css"   .DS, 
       "IMG"   => URL . "assets" . DS . "img"   .DS, 
       "JS"    => URL . "assets" . DS . "js"    .DS, 
