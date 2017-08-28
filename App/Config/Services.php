@@ -28,6 +28,8 @@
  * each class (service) must be loaded here to be accecible from the service provider object later
  * single tone classes must end with .s notation exm "Database.s" => SRV . "Database\Database"
  * to load services use $service->get("service name");
+ * 
+ * single tone classes must use instantiate() as the default instancition method 
  */
 
 return[
