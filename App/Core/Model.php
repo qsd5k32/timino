@@ -34,12 +34,13 @@ abstract class Model
    protected $record;
    protected $form;
    protected $timeAgo;
-
+   protected $mail;
    
    public function __construct(ServiceProvider $service)
    {
       $this->record  = $service->get("Record");
       $this->form    = $service->get("Form");
       $this->timeAgo = $service->get("TimeAgo");
+      $this->mail    = $service->get("Mail");
    }
 }
