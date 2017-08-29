@@ -40,7 +40,7 @@ class Loader
     */  
    public function model($model)
    {
-      $model = ucfirst(strtolower($model));
+      $model = ucfirst($model);
 
       $model = Linker::namespace("MODELS") . $model;
 
