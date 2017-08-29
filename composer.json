@@ -10,7 +10,7 @@
         }
     ],
 
-    "minimum-stability": "dev",
+    "minimum-stability": "1.0 Alpha",
 
     "require": {
         "phpmailer/phpmailer": "^6.0"
