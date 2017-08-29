@@ -73,12 +73,12 @@ class Select
 
                 $sql .= $sel[count($sel) - 1] . " FROM `$tbl` ";
                 
-                if(!$cond) $sql . $cond2;
+                if(!$cond) $sql .= $cond2;
 
         }else{
 
             $sql .= $sel[0] . " FROM `$tbl` ";
-            if(!$cond) $sql . $cond2;
+            if(!$cond) $sql .= $cond2;
         }
     
 
@@ -95,13 +95,13 @@ class Select
             }
 
             $sql .= $selection[count($selection) - 1] . " FROM `$tbl` ";
-            if(!$cond) $sql . $cond2;
+            if(!$cond) $sql .= $cond2;
 
         }else{
 
             // only one selection 
             $sql .= $sel . " FROM `$tbl` ";
-            if(!$cond) $sql . $cond2;
+            if(!$cond) $sql .= $cond2;
 
         }
     }
