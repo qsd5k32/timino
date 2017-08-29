@@ -24,3 +24,27 @@ pre{
     border: 10px solid #f7f7f7!important;
     margin: 0;
 }
+/** index page **/
+.index *{
+    color: #999;
+}
+.logo{
+    height: 200px;
+    filter: grayscale(1);
+}
+.nav{
+    padding: 0;
+    width: 60%;
+    min-height: 300px;
+    margin: auto;
+}
+.nav li{
+    float: left;
+}
+.nav li a{
+    display: block;
+    padding: 25px 40px
+}
+.nav li a:hover{
+    color: #333;
+}
