@@ -69,12 +69,11 @@ class Loader
     * @param array $modelData
     * @return void
     */
-   public function view(string $folder, array $files, string $title = NULL, array $modelData = NULL)
+   public function view(string $folder, array $files, string $pageTitle = NULL, array $modelData = NULL)
 	{
       $folder = ucfirst($folder);
       $files  = array_map("ucfirst", $files);
       
-		$pageTitle = $title;
       $modelData = (object) $modelData;
       
 		$assets  = (object) Linker::route("ASSETS");
