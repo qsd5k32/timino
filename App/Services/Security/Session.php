@@ -30,5 +30,61 @@ namespace Timino\App\Services\Security;
 
 class Session
 {
-   
+   /**
+    * start session method
+    *
+    * @return void
+    */
+   public function init()
+   {
+      if(!isset($_SESSION))
+      {
+         session_start();
+      }
+   }
+
+   /**
+    * set session method
+    *
+    * @param string $name session name
+    * @param string $val  session value
+    * @return void
+    */
+   public function set($name, $val)
+   {
+      $_SESSION[$name] = $val;
+   }
+
+   /**
+    * get session method
+    *
+    * @param string $name session name
+    * @return void
+    */
+   public function get($name)
+   {
+      return (isset($_SESSION[$name]) )? $_SESSION[$name] : false;
+   }
+
+   /**
+    * unset session method
+    *
+    * @param string $name session name
+    * @return void
+    */
+   public function remove($name)
+   {
+      if(isset($_SESSION[$name]))  unset($_SESSION[$name]);
+      return false;
+   }
+
+   /**
+    * destroy the whole session method
+    *
+    * @return void
+    */
+   public function destroy()
+   {
+      session_destroy();
+   }
 }
