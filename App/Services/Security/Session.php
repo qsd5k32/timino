@@ -37,10 +37,17 @@ class Session
     */
    public function init()
    {
-      if(!isset($_SESSION))
-      {
-         session_start();
-      }
+      if(!isset($_SESSION)) session_start();
+   }
+
+   /**
+    * change session id
+    *
+    * @return void
+    */
+   public function regenerate()
+   {
+      session_regenerate_id();
    }
 
    /**
