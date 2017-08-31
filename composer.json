@@ -1,19 +1,21 @@
 {
     "name": "timino/timino",
-    "description": "timino is a  S.O.L.I.D lightweight and simple PHP MVC framework by lotfio lakehal 2018",
     "type": "PHP",
-    "license": "MIT",
+    "description": "timino is a  S.O.L.I.D lightweight and simple PHP MVC framework by lotfio lakehal 2018",
+    "keywords": ["timino","tim"],
+    "homepage": "https://github.com/lotfio-lakehal/Timino",
     "version": "1.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "lotfio lakehal",
-            "email": "contact@lotfio-lakehal.com"
+            "email": "contact@lotfio-lakehal.com",
+            "role": "Developer"
         }
     ],
 
-    "minimum-stability": "stable",
-
     "require": {
+        "php": ">=^7.0",
         "phpmailer/phpmailer": "^6.0"
     },
 
