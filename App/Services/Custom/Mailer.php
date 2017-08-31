@@ -51,7 +51,7 @@ class Mailer
      * 
      * @return bool
      */
-    public function sendSimpleEmail($data)
+    public function sendSimpleMail($data)
     {
 
 
@@ -80,6 +80,66 @@ class Mailer
         $template = str_replace("#title#", $data["title"], $template);
         $template = str_replace("#header#", $data["header"], $template);
         $template = str_replace("#msg#", $data["msg"], $template);
+        $template = str_replace("#footer#", $data["footer"], $template);
+        $template = str_replace("#greetings#", $data["greetings"], $template);
+        $template = str_replace("#infoLink#", $data["infoLink"], $template);
+        $template = str_replace("#company#", $data["company"], $template);
+
+        $mail->Body = $template;
+
+        return (!$mail->Send()) ? 0 : 1 ;
+
+    }
+
+    /**
+     * send call to acction mail mail with button as a link
+     *
+     * @param array $data
+     * exemple:
+     * 
+     *    "to"           => "contact@lotfio-lakehal.com",
+     *    "subject"      => "test message from lotfio",
+     *    "title"        => "message title",
+     *    "header"       => "lorem header",
+     *    "btn"          => "button description",
+     *    "btnLink"      => "Link of the button",
+     *    "footer"       => "23 13213213132123",
+     *    "greetings"    => "23 13213213132123",
+     *    "infoLink"     => "qlmsdkqmsldkqlmsd",
+     *    "company"      => "aza1zsa2z1a2z1"
+     * 
+     * @return bool
+     */
+    public function sendLinkMail($data)
+    {
+
+
+
+        $mail = new PHPMailer(true);
+
+        $mail->IsSMTP();
+        $mail->Host = Linker::mail("HOST");
+
+        $mail->SMTPAuth = true;
+        $mail->Username = Linker::mail("USER");
+        $mail->Password = Linker::mail("PASS");
+
+        $mail->From     = Linker::mail("FROM");
+        $mail->FromName = Linker::mail("FROM_NAME");
+        $mail->Sender   = Linker::mail("FROM");
+
+        $mail->AddAddress($data["to"]);
+
+        $mail->Subject = $data["subject"];
+        $mail->IsHTML(true);
+
+        $template = file_get_contents(Linker::route("EMAIL") . "calltoaction.html");
+
+        $template = str_replace("#title#", $data["title"], $template);
+        $template = str_replace("#hello#", "Hi there ! ", $template);
+        $template = str_replace("#header#", $data["header"], $template);
+        $template = str_replace("#btnLink#", $data["btnLink"], $template);
+        $template = str_replace("#btn#", $data["btn"], $template);
         $template = str_replace("#footer#", $data["footer"], $template);
         $template = str_replace("#greetings#", $data["greetings"], $template);
         $template = str_replace("#infoLink#", $data["infoLink"], $template);
