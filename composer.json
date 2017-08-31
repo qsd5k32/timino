@@ -3,6 +3,7 @@
     "description": "timino is a  S.O.L.I.D lightweight and simple PHP MVC framework by lotfio lakehal 2018",
     "type": "PHP",
     "license": "MIT",
+    "version": "1.0",
     "authors": [
         {
             "name": "lotfio lakehal",
