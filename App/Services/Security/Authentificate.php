@@ -28,7 +28,7 @@
 
 namespace Timino\App\Services\Security;
 
-class Authentificate
+class Authentification
 {
    
 }

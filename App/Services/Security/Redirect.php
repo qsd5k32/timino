@@ -28,6 +28,6 @@
 
 namespace Timino\App\Services\Security;
 
-class Redirect
+class Redirection
 {
 }
