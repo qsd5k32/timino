@@ -53,7 +53,7 @@ abstract class Controller
       public function manage()
       {     
             $method = Linker::route('DEFAULT_ACTION'); // default action
-            $controller = get_called_class(); // get called controller class not this one
+            $controller = static::class;
             die(ErrorTemplator::exceptionError("Error <b>$controller Controller</b> needs a <b>$method</b> Method"));
       }
 
