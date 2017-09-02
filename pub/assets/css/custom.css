@@ -30,7 +30,6 @@ pre{
 }
 .logo{
     height: 200px;
-    filter: grayscale(1);
 }
 .nav{
     padding: 0;
