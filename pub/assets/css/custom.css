@@ -31,19 +31,3 @@ pre{
 .logo{
     height: 200px;
 }
-.nav{
-    padding: 0;
-    width: 60%;
-    min-height: 300px;
-    margin: auto;
-}
-.nav li{
-    float: left;
-}
-.nav li a{
-    display: block;
-    padding: 25px 40px
-}
-.nav li a:hover{
-    color: #333;
-}
