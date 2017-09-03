@@ -1,5 +1,5 @@
 # Timino PHP S.O.L.I.D MVC framework 
-#Note : Under Development Not ready for use
+# Note : Under Development Not ready for use
 ### Introduction :
 Timino is a simple and lightweight PHP MVC framework practical and easy to understand and suitable for small projects, Timino is not very complicated so you dont need to be an advanced php developer just some solid basic knowledge and you are ready to go 
 . Timino is simple framework you dont need to learn a very complicated docummentation Besides it is customizable so you can customize and add diffrenct functionality and services
