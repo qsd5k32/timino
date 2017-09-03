@@ -30,4 +30,20 @@ namespace Timino\App\Services\Security;
 
 class Redirection
 {
+    /**
+     * @param string $path path to redirect to
+     */
+    public function to($path)
+    {
+        header("location:".$path);
+    }
+
+    /**
+     * @param string $path path to redirect to
+     * @param int $delay
+     */
+    public function toWithDelay($path, $delay = 1)
+    {
+        header( "Refresh:".$delay."; url=".$path, true, 303);
+    }
 }
