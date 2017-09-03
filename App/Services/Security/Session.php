@@ -66,13 +66,30 @@ class Session
     * get session method
     *
     * @param string $name session name
-    * @return void
+    * @return mixed
     */
    public function get($name)
    {
-      return (isset($_SESSION[$name]) )? $_SESSION[$name] : false;
+      return (isset($_SESSION[$name])) ? $_SESSION[$name] : false;
    }
 
+    /**
+     * @param string $name session name
+     * @param string $val session value
+     */
+    public function serialize($name, $val)
+   {
+       $_SESSION[$name] = \serialize($val);
+   }
+
+    /**
+     * @param  string $name session name
+     * @return bool|mixed
+     */
+    public function unserialize($name)
+   {
+       return isset($_SESSION[$name]) ? \unserialize($_SESSION[$name]) : false;
+   }
    /**
     * unset session method
     *
@@ -82,7 +99,6 @@ class Session
    public function remove($name)
    {
       if(isset($_SESSION[$name]))  unset($_SESSION[$name]);
-      return false;
    }
 
    /**
