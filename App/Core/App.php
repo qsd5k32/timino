@@ -52,7 +52,7 @@ class App
 
 
   /**
-   * instanciate application
+   * instantiate application
    *
    * @param Dispatcher $dispatcher
    */

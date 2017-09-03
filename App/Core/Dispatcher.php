@@ -97,7 +97,7 @@ class Dispatcher
 
   /**
    *default controller
-   * @return void
+   * @return string
    */
   public function defaultController()
   {
@@ -106,7 +106,7 @@ class Dispatcher
 
  /**
   * default action
-  * @return void
+  * @return string
   */
   public function defaultAction()
   {
@@ -115,7 +115,7 @@ class Dispatcher
 
   /**
   * error controller
-  * @return void
+  * @return string
   */
   public function errController()
   {
@@ -124,7 +124,7 @@ class Dispatcher
 
   /**
   * error action
-  * @return void
+  * @return string
   */
   public function errAction()
   {
