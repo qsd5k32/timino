@@ -69,9 +69,12 @@ class Loader
     * @param array $modelData
     * @return void
     */
-   public function view(string $folder, array $files, string $pageTitle = NULL, array $modelData = NULL)
+   public function view($folder, $files, string $pageTitle = NULL, $modelData = [])
 	{
       $folder = ucfirst($folder);
+
+      if(is_string($files)) $files = explode(",", $files);
+
       $files  = array_map("ucfirst", $files);
       
       $modelData = (object) $modelData;
