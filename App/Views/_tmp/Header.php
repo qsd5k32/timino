@@ -9,7 +9,6 @@
 
     <!-- Bootstrap -->
     <link href="<?=$assets->CSS.'timino.min.css'?>" rel="stylesheet">
-    <link href="<?=$assets->CSS.'prism.min.css'?>" rel="stylesheet">
     <link href="<?=$assets->CSS.'custom.css'?>" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
