@@ -75,7 +75,7 @@ class Upload
     /**
      * @param $newExt string allowed extensions
      */
-    public function addExtensions($newExt)
+    public function addExtension($newExt)
     {
         $this->extensions[] = $newExt;
     }
