@@ -27,5 +27,9 @@
         "psr-4": {
             "Timino\\App\\" : "App/"
         }
+    },
+
+    "config": {
+        "vendor-dir": "."
     }
 }
