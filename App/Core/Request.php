@@ -37,7 +37,7 @@ class Request implements RequestInterface
      */
     public function uri()
     {
-        $uri = preg_replace(Linker::regex("URI"), NULL, trim($_SERVER['REQUEST_URI'], "/"));
+        $uri = preg_replace(Linker::regex("URI"), NULL, trim($_GET['uri'], "/"));
         return array_values(array_filter(explode("/", $uri)));
     }
 
