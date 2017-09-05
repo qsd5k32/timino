@@ -27,7 +27,6 @@ commented code
 - Via composer :
 ````
 composer require timino/timino
-
 ````
 - Manulally:
 - clone from github vias SSH or HTTPS
