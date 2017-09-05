@@ -30,9 +30,8 @@
 require_once "../vendor/autoload.php";
 
 
-use Timino\App\Core\{Dispatcher, App};
+use Timino\App\Core\{Request, App};
 
+$request = new Request;
 
-$dispatcher = new Dispatcher;
-
-new App($dispatcher);
+new App($request);
