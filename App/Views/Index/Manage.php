@@ -4,7 +4,7 @@
 
             <div class="col-md-6 center-txt">
 
-                  <h1 class="center-txt">Timino PHP MVC v1.0 beta</h1>
+                  <h1 class="center-txt">Timino PHP MVC v1.0 alpha</h1>
                   <img src="<?=$uploads->IMG . 'logo.png'?>" alt="logo" title="Timino" class="logo">
                   <div class="mg-top-50"></div>
       
