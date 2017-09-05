@@ -22,7 +22,7 @@
  * GNU General Public License for more details.
  *
  * INFO :
- * App class
+ * Request Interface
  * 
  */
 
