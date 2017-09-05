@@ -28,92 +28,67 @@
 
 namespace Timino\App\Core;
 
+use Timino\App\Core\Abstraction\RequestInterface;
 use Timino\App\Services\Template\ErrorTemplator;
 
 class App
 {
-   /**
-    * controller
-    * @var string
-    */
-   private $controller;
+    /**
+     * @var default controller
+     */
+    private $controller;
 
-   /**
-    * action
-    * @var string
-    */
-   private $action;
+    /**
+     * @var default action
+     */
+    private $action;
 
-   /**
-    * parameters
-    * @var array
-    */
-   private $params;
+    /**
+     * @var array params
+     */
+    private $params;
 
+    /**
+     * set default controller and method function
+     */
+    public function setDefault()
+    {
+        $this->controller   = Linker::route("DEFAULT_CONTROLLER");
+        $this->action       = Linker::route("DEFAULT_ACTION");
+    }
 
-  /**
-   * instantiate application
-   *
-   * @param Dispatcher $dispatcher
-   */
-   public function __construct(Dispatcher $dispatcher)
-   {
-      // set default controller
-      $this->controller = $dispatcher->defaultController();
-      // set default action
-      $this->action     = $dispatcher->defaultAction();
-      //set default params
-      $this->params     = $dispatcher->params();
+    /**
+     * App constructor.
+     * @param Request $request
+     */
+    public function __construct(RequestInterface $request)
+    {
+        $this->setDefault();
+        $this->params = $request->params();
 
+        /**
+         * check for Requested controller
+         */
+        if($request->controller())
+        {
+            $controller = Linker::namespace("CONTROLLERS") .  ucfirst($request->controller());
+            $this->controller = (class_exists($controller)) ?  $request->controller() : Linker::route("ERROR_CONTROLLER");
+        }
 
-      // check if isset controller else use default
-      if($dispatcher->controller())
-      {
-         if(class_exists(Linker::namespace("CONTROLLERS") . $dispatcher->controller()))
-         {
-           $this->controller = $dispatcher->controller();
+        $controller = Linker::namespace("CONTROLLERS") . ucfirst($this->controller);
+        $this->controller = new $controller(new ServiceProvider, new Loader);
 
-         }else{
+        /**
+         * check for requested method
+         */
+        if($request->action())
+        {
+            $this->action = (method_exists($this->controller, $request->action())) ?  $request->action() : Linker::route("ERROR_ACTION");
+        }
 
-            $this->controller = $dispatcher->errController();
-         }
-
-      }
-
-      /**
-       * instanciate controller
-       */
-      
-
-      try{
-
-        $controller = Linker::namespace("CONTROLLERS") . $this->controller;
-
-        if(!class_exists($controller)) throw new \Exception("Error <b> $controller Controller</b> Does not exists");
-
-        $this->controller = new  $controller(new ServiceProvider, new Loader);
-
-      }catch(\Exception $e)
-      {
-        die(ErrorTemplator::exceptionError($e->getMessage()));
-      }
-
-
-      // check if isset method else use default method
-      if($dispatcher->action())
-      {
-         if(method_exists($this->controller, $dispatcher->action()))
-         {
-            $this->action = $dispatcher->action();
-
-         }else{
-
-            $this->action = $dispatcher->errAction();
-         }
-      }
-
-      // call methods with parameters from controller
-      call_user_func_array([$this->controller, $this->action], $this->params);
-
-   }   
+        /**
+         * call controller method with parameters
+         */
+        call_user_func_array([$this->controller, $this->action,], $this->params);
+    }
 }
