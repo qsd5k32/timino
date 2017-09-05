@@ -34,7 +34,7 @@ class Request implements RequestInterface
 {
     /**
      * requested uri
-     * @return array
+     * @return array|void
      */
     public function uri()
     {
