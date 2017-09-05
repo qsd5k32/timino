@@ -75,9 +75,21 @@ class App
             $this->controller = (class_exists($controller)) ?  $request->controller() : Linker::route("ERROR_CONTROLLER");
         }
 
-        $controller = Linker::namespace("CONTROLLERS") . ucfirst($this->controller);
-        $this->controller = new $controller(new ServiceProvider, new Loader);
+        /**
+         * call controller
+         */
+        try{
 
+            $controller = Linker::namespace("CONTROLLERS") . ucfirst($this->controller);
+            if(!class_exists($controller)) throw new \Exception("Error controller <b>$controller</b> Doesn't exists");
+
+            $this->controller = new $controller(new ServiceProvider, new Loader);
+
+        }catch(\Exception $e)
+        {
+            die(ErrorTemplator::exceptionError($e->getMessage()));
+        }
+        
         /**
          * check for requested method
          */
