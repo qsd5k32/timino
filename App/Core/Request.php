@@ -33,6 +33,7 @@ use Timino\App\Core\Abstraction\RequestInterface;
 class Request implements RequestInterface
 {
     /**
+     * requested uri
      * @return array
      */
     public function uri()
@@ -44,6 +45,7 @@ class Request implements RequestInterface
     }
 
     /**
+     * requested controller
      * @return mixed|null
      */
     public function controller()
@@ -52,6 +54,7 @@ class Request implements RequestInterface
     }
 
     /**
+     * requested class
      * @return mixed|null
      */
     public function action()
@@ -60,6 +63,7 @@ class Request implements RequestInterface
     }
 
     /**
+     * requested parameters
      * @return array
      */
     public function params()
