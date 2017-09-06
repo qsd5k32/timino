@@ -25,7 +25,7 @@ class ServicesAutoLoader implements ServicesLoadersInterface
     /**
      * @return array scan services directory
      */
-    private function scanServices()
+    private function scan()
     {
         $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(APP . "Services" . DS));
 
@@ -34,6 +34,45 @@ class ServicesAutoLoader implements ServicesLoadersInterface
             if (!$file->isDir())
                 $files[] = $file->getPathname();
         return $files;
+    }
+
+    /**
+     * generate services method
+     * @return array service name => service class
+     */
+    private function generate()
+    {
+        // remove php extension
+        $services = array_map(function ($elem) {
+            return preg_replace("/\.php$/", NULL, $elem);
+        }, $this->scan());
+
+        // explode services to an array and remove base directories /var/www
+        for ($i = 0; $i < sizeof($services); $i++) {
+            $explodeServices[] = explode("/", $services[$i]);
+            // unset var & www
+            unset($explodeServices[$i][0], $explodeServices[$i][1], $explodeServices[$i][2]);
+        }
+
+        // set each service with name and
+        // replace directory separator with namespace separator
+        foreach ($explodeServices as $service) {
+            // make first service letter upper case
+            $ucfirstServices = array_map(function ($elem) {
+                return ucfirst($elem);
+            }, array_values($service));
+
+            $servicesNames[] = $ucfirstServices[count($ucfirstServices) - 1];
+
+            $srv[] = implode("/", $ucfirstServices);
+            $servicesNamespaces = array_map(function ($elem) {
+                $elem = preg_replace("#\/#", "\\", $elem);
+                return "\\" . $elem;
+            }, $srv);
+        }
+
+        // each service with name as key and namespace as value
+        return array_combine($servicesNames, $servicesNamespaces);
     }
 
 
@@ -45,64 +84,29 @@ class ServicesAutoLoader implements ServicesLoadersInterface
      */
     public function set()
     {
-        // remove php extension
-        $services = array_map(function($elem){
-            return preg_replace("/\.php$/", NULL, $elem);
-        }, $this->scanServices());
-
-        // explode services to an array and remove base directories /var/www
-        for($i = 0; $i < sizeof($services); $i++)
-        {
-            $explodeServices[] = explode("/", $services[$i]);
-            // unset var & www
-            unset($explodeServices[$i][0],$explodeServices[$i][1],$explodeServices[$i][2]);
-        }
-
-        // set each service with name and
-        // replace directory separator with namespace separator
-        foreach($explodeServices as $service)
-        {
-            $ucfirstServices = array_map( function($elem){ return ucfirst($elem); } ,array_values($service));
-
-            $servicesNames[]   = $ucfirstServices[count($ucfirstServices) -1];
-
-            $srv[] =  implode("/",$ucfirstServices);
-            $servicesNamespaces = array_map(function($elem){
-                $elem = preg_replace("#\/#", "\\", $elem);
-                return "\\".$elem;
-            }, $srv);
-        }
-
-        // each service with name as key and namespace as value
-        $services = array_combine($servicesNames, $servicesNamespaces);
-
-
         /**
          * check for single tone classes and normal classes with reflection class
          * set instantiate single tone with ::instantiate() and normal with new
          * and save services to $this->services array;
          */
-        foreach($services as $srvName => $service)
-        {
-            try{
+        foreach ($this->generate() as $srvName => $service) {
+            try {
 
-                if(!class_exists($service)) throw new  \Exception("Error <b>$service</b> Service <b>class</b> doesn't exists !");
+                if (!class_exists($service)) throw new  \Exception("Error <b>$service</b> Service <b>class</b> doesn't exists !");
 
                 $class = new \ReflectionClass($service);
 
-                 if($class->hasMethod("instantiate"))
-                 {
-                     $this->services[$srvName] = (!isset($this->services[$srvName])) ? $this->services[$srvName] = $service::instantiate
-                     () : NULL;
+                if ($class->hasMethod("instantiate")) {
+                    $this->services[$srvName] = (!isset($this->services[$srvName])) ? $this->services[$srvName] = $service::instantiate
+                    () : NULL;
 
-                 }else{
+                } else {
 
-                     $this->services[$srvName] = (!isset($this->services[$srvName])) ? $this->services[$srvName] = new $service() : NULL;
-                 }
+                    $this->services[$srvName] = (!isset($this->services[$srvName])) ? $this->services[$srvName] = new $service() : NULL;
+                }
 
 
-            }catch(\Exception $e)
-            {
+            } catch (\Exception $e) {
                 die(ErrorTemplator::exceptionError($e->getMessage()));
             }
 
@@ -116,11 +120,11 @@ class ServicesAutoLoader implements ServicesLoadersInterface
      */
     public function get($serviceName)
     {
-        try{
+        try {
             $serviceName = ucfirst($serviceName);
-            if(!isset($this->services[$serviceName]))  throw new Exception("Error service <b>$serviceName</b> Doesn't exists !");
+            if (!isset($this->services[$serviceName])) throw new Exception("Error service <b>$serviceName</b> Doesn't exists !");
             return $this->services[$serviceName];
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
 
             die(ErrorTemplator::exceptionError($e->getMessage()));
         }
