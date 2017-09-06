@@ -48,7 +48,7 @@ class Loader
 
          if(!class_exists($model)) throw new \Exception("Error <b> $model Model </b> was not found !");
 
-         return new $model(new ServiceProvider);
+         return new $model(new ServicesAutoLoader());
 
       }catch(\Exception $e)
       {
