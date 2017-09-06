@@ -28,7 +28,7 @@
 
 namespace Timino\App\Core\Abstraction;
 
-interface ServiceProviderInterface
+interface ServicesLoadersInterface
 {
     public function set();
     public function get($serviceName);
