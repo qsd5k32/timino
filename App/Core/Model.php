@@ -48,7 +48,7 @@ abstract class Model
         $this->record       = $service->get("Record");
         $this->form         = $service->get("Form");
         $this->mail         = $service->get("Mailer");
-        $this->auth         = $service->get("Authentification");
+        $this->auth         = $service->get("Authentication");
         $this->cookie       = $service->get("Cookie");
         $this->session      = $service->get("Session");
         $this->token        = $service->get("Token");
