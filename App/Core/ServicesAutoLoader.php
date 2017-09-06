@@ -3,10 +3,10 @@
 namespace Timino\App\Core;
 
 use PHPMailer\PHPMailer\Exception;
-use Timino\App\Core\Abstraction\ServiceProviderInterface;
+use Timino\App\Core\Abstraction\ServicesLoadersInterface;
 use Timino\App\Services\Template\ErrorTemplator;
 
-class ServicesAutoLoader implements ServiceProviderInterface
+class ServicesAutoLoader implements ServicesLoadersInterface
 {
     /**
      * @var array services to be registered
