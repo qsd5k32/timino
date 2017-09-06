@@ -28,19 +28,14 @@
 
 namespace Timino\App\Core;
 
+use Timino\App\Core\Abstraction\ServicesLoadersInterface;
 
 abstract class Model
 {
-   protected $record;
-   protected $form;
-   protected $timeAgo;
-   protected $mail;
+
    
-   public function __construct(ServiceProvider $service)
+   public function __construct(ServicesLoadersInterface $service)
    {
-      $this->record  = $service->get("Record");
-      $this->form    = $service->get("Form");
-      $this->timeAgo = $service->get("TimeAgo");
-      $this->mail    = $service->get("Mail");
+
    }
 }

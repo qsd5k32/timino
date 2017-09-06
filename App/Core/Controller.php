@@ -28,6 +28,7 @@
 
 namespace Timino\App\Core;
 
+use Timino\App\Core\Abstraction\ServicesLoadersInterface;
 use Timino\App\Services\Template\ErrorTemplator;
 
 abstract class Controller
@@ -40,7 +41,7 @@ abstract class Controller
 
       // services goes down here
 
-      public function __construct(ServiceProvider $service,Loader $loader)
+      public function __construct(ServicesLoadersInterface $service,Loader $loader)
       {
          $this->load = $loader;
       }
