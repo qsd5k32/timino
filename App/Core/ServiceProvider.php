@@ -27,9 +27,10 @@
  */
 namespace Timino\App\Core;
 
+use Timino\App\Core\Abstraction\ServiceProviderInterface;
 use Timino\App\Services\Template\ErrorTemplator;
         
-class ServiceProvider
+class ServiceProvider implements ServiceProviderInterface
 {
    /**
     * Store services
@@ -37,67 +38,75 @@ class ServiceProvider
     */
    private $services = array();
 
+    /**
+     * ServiceProvider constructor.
+     * register services
+     */
+    public function __construct()
+    {
+        $this->set();
+    }
+
    /**
     * set services names and namespaces always to ucfirst 
     * and load them to the services array
     */
-   public function __construct()
+   public function set()
    {
-      $services = CONFIG . "Services" . ".conf.php";
-      try{
+       $services = CONFIG . "Services" . ".conf.php";
+       try{
 
-        if(!file_exists($services)) throw new \Exception("Error $services file was not found ! ");
+           if(!file_exists($services)) throw new \Exception("Error $services file was not found ! ");
 
-        $services = require $services;
-        
-        if(!is_array($services) OR count($services) < 1) throw new \Exception("Error Servicess confing file should be an array of keys services names and values services classes");
+           $services = require $services;
 
-        // make service name and namespace always ucfirst
-        foreach($services as $name => $class)
-        {
-          $name  = ucfirst($name);
-          $class = explode("\\", $class);
-          $class = array_map("ucfirst", $class);
-          $class = implode("\\", $class);
+           if(!is_array($services) OR count($services) < 1) throw new \Exception("Error Servicess confing file should be an array of keys services names and values services classes");
 
-          $srv[$name] = $class;
-        }
+           // make service name and namespace always ucfirst
+           foreach($services as $name => $class)
+           {
+               $name  = ucfirst($name);
+               $class = explode("\\", $class);
+               $class = array_map("ucfirst", $class);
+               $class = implode("\\", $class);
 
-        // load services to the services array;
-        // instanciate boath single tone and normale classes
-        foreach($srv as $name => $class)
-        {
-          if(preg_match("+\.s$+", $name))
-          {
-              $name = explode(".", $name)[0];
+               $srv[$name] = $class;
+           }
 
-            (!isset($this->services[$name])) ? $this->services[$name] = $class::instantiate() : false;
-          
-          }else{
+           // load services to the services array;
+           // instanciate boath single tone and normale classes
+           foreach($srv as $name => $class)
+           {
+               if(preg_match("+\.s$+", $name))
+               {
+                   $name = explode(".", $name)[0];
 
-            try{
+                   (!isset($this->services[$name])) ? $this->services[$name] = $class::instantiate() : false;
 
-              if(!class_exists($class)) throw new \Exception("Error class $class was not found ! ");
-              (!isset($this->services[$name])) ? $this->services[$name] = new $class()  : false;
+               }else{
 
-            }catch(\Exception $e)
-            {
-              die(ErrorTemplator::exceptionError($e->getMessage()));
-            }
+                   try{
 
-              
-          }
+                       if(!class_exists($class)) throw new \Exception("Error class $class was not found ! ");
+                       (!isset($this->services[$name])) ? $this->services[$name] = new $class()  : false;
 
-        }
+                   }catch(\Exception $e)
+                   {
+                       die(ErrorTemplator::exceptionError($e->getMessage()));
+                   }
 
 
-      }catch(\Exception $e)
-      {
-        die(ErrorTemplator::exceptionError($e->getMessage()));
-      }
+               }
+
+           }
+
+
+       }catch(\Exception $e)
+       {
+           die(ErrorTemplator::exceptionError($e->getMessage()));
+       }
    }
 
-   
 
    /**
     * get services method
@@ -105,9 +114,9 @@ class ServiceProvider
     * @param string $name service name
     * @return void
     */
-   public function get($name)
+   public function get($serviceName)
    {
-      $name  = ucfirst($name);
-      return (isset($this->services[$name])) ? $this->services[$name] : die(ErrorTemplator::exceptionError("Error $name Service Was Not Found !"));
+       $serviceName  = ucfirst($serviceName);
+       return (isset($this->services[$serviceName])) ? $this->services[$serviceName] : die(ErrorTemplator::exceptionError("Error $serviceName Service Was Not Found !"));
    }
 }
