@@ -32,124 +32,120 @@ use Timino\App\Services\Template\ErrorTemplator;
 
 class Loader
 {
-   /**
-    * load model method
-    *
-    * @param string $model
-    * @return void
-    */  
-   public function model($model)
-   {
-      $model = ucfirst($model);
+    /**
+     * load model method
+     *
+     * @param string $model
+     * @return void
+     */
+    public function model($model)
+    {
+        $model = ucfirst($model);
 
-      $model = Linker::namespace("MODELS") . $model;
+        $model = Linker::namespace("MODELS") . $model;
 
-      try{
+        try {
 
-         if(!class_exists($model)) throw new \Exception("Error <b> $model Model </b> was not found !");
+            if (!class_exists($model)) throw new \Exception("Error <b> $model Model </b> was not found !");
 
-         return new $model(new ServicesAutoLoader());
+            return new $model(new ServicesAutoLoader());
 
-      }catch(\Exception $e)
-      {
-         die(ErrorTemplator::exceptionError($e->getMessage()));
-      }
+        } catch (\Exception $e) {
+            die(ErrorTemplator::exceptionError($e->getMessage()));
+        }
 
-   }
+    }
 
-   /**
-    * view method
-    * load views with header and footer 
-    * load views from _tmp directory dynamicaly 
-    * load views from given folder
-    *
-    * @param string $folder
-    * @param array $files
-    * @param string $title
-    * @param array $modelData
-    * @return void
-    */
-   public function view($folder, $files, string $pageTitle = NULL, $modelData = [])
-	{
-      $folder = ucfirst($folder);
+    /**
+     * view method
+     * load views with header and footer
+     * load views from _tmp directory dynamicaly
+     * load views from given folder
+     *
+     * @param string $folder
+     * @param array $files
+     * @param string $pageTitle
+     * @param array $modelData
+     * @return void
+     */
+    public function view($folder, $files, $pageTitle = NULL, $modelData = [])
+    {
+        $folder = ucfirst($folder);
 
-      if(is_string($files)) $files = explode(",", $files);
+        if (is_string($files)) $files = explode(",", $files);
 
-      $files  = array_map("ucfirst", $files);
-      
-      $modelData = (object) $modelData;
-      
-		$assets  = (object) Linker::route("ASSETS");
-		$uploads = (object) Linker::route("UPLOADS");
-		
-		try{
+        $files = array_map("ucfirst", $files);
 
-			if(!is_dir(Linker::route("VIEWS") . $folder)) throw new \Exception("Requested Folder <b>$folder</b> does not exists");
-			/**
-			* Merge the two directories as one array
-			* @var array
-			*/
-			$availableFiles = array_merge(
-				scandir(Linker::route("VIEWS") . '_tmp'),
-				scandir(Linker::route("VIEWS") . $folder)
-			);
-			/**
-			 * Remove Default header and footer
-			 * remove hidden file . and default dirs
-			 * @var array
-			 */
-			$availableFiles  = array_filter($availableFiles, function ($elem){
-				return !preg_match("/(^\.{1,})|(Header)|(Footer)/",$elem);
-				});
-			/**
-			* Remove .php extention 
-			* @var array
-			*/
-			$availableFiles  = array_map(function ($elem){
-				return  trim($elem, '.php');
-			}, $availableFiles); 
-			
-			/**
-			* Sort and orgnise files in the array
-			*/
-         sort($availableFiles);
+        $modelData = (object)$modelData;
 
-		}catch(\Exception $e)
-		{
-			die(ErrorTemplator::exceptionError($e->getMessage()));
-		}
-		
-			/**
-			* 
-			*/
-		require_once Linker::route("VIEWS") . "_tmp" . DS . "Header.php";
-			/**
-			* if requested files exists on the given folder require them 
-			*  else require them from _tmp directory (default dir)
-			*  else throw an error
-			*/
-			foreach ($files as $file) {
+        $assets = (object)Linker::route("ASSETS");
+        $uploads = (object)Linker::route("UPLOADS");
 
-				if(in_array($file, $availableFiles))
-				{
-					if(file_exists(Linker::route("VIEWS") . $folder . DS . $file . ".php"))
-					{
-						require Linker::route("VIEWS")	. $folder . DS . $file . ".php";	
-					}else{
-						require Linker::route("VIEWS")	. "_tmp"  . DS . $file . ".php";	
-					}
-										
-				}
-         }
-         
-			$notFound = array_diff($files, $availableFiles);
-			
-			foreach ($notFound as $file) {
+        try {
 
-				die(ErrorTemplator::exceptionError("file <b>$file.php</b> was not found on the views folder <b> $folder </b> "));
-         }
-         
-		require_once Linker::route("VIEWS") . "_tmp" . DS . "Footer.php";
-	}
+            if (!is_dir(Linker::route("VIEWS") . $folder)) throw new \Exception("Requested Folder <b>$folder</b> does not exists");
+            /**
+             * Merge the two directories as one array
+             * @var array
+             */
+            $availableFiles = array_merge(
+                scandir(Linker::route("VIEWS") . '_tmp'),
+                scandir(Linker::route("VIEWS") . $folder)
+            );
+            /**
+             * Remove Default header and footer
+             * remove hidden file . and default dirs
+             * @var array
+             */
+            $availableFiles = array_filter($availableFiles, function ($elem) {
+                return !preg_match("/(^\.{1,})|(Header)|(Footer)/", $elem);
+            });
+            /**
+             * Remove .php extention
+             * @var array
+             */
+            $availableFiles = array_map(function ($elem) {
+                return trim($elem, '.php');
+            }, $availableFiles);
+
+            /**
+             * Sort and orgnise files in the array
+             */
+            sort($availableFiles);
+
+        } catch (\Exception $e) {
+            die(ErrorTemplator::exceptionError($e->getMessage()));
+        }
+
+        /**
+         *
+         */
+        require_once Linker::route("VIEWS") . "_tmp" . DS . "Header.php";
+        /**
+         * if requested files exists on the given folder require them
+         *  else require them from _tmp directory (default dir)
+         *  else throw an error
+         */
+        foreach ($files as $file) {
+
+            if (in_array($file, $availableFiles)) {
+                if (file_exists(Linker::route("VIEWS") . $folder . DS . $file . ".php")) {
+                    require Linker::route("VIEWS") . $folder . DS . $file . ".php";
+                } else {
+                    require Linker::route("VIEWS") . "_tmp" . DS . $file . ".php";
+                }
+
+            }
+        }
+
+        $notFound = array_diff($files, $availableFiles);
+
+        foreach ($notFound as $file) {
+
+            die(ErrorTemplator::exceptionError("file <b>$file.php</b> was not found on the views folder <b> $folder </b> "));
+        }
+
+        require_once Linker::route("VIEWS") . "_tmp" . DS . "Footer.php";
+    }
 
 }
