@@ -32,10 +32,28 @@ use Timino\App\Core\Abstraction\ServicesLoadersInterface;
 
 abstract class Model
 {
+    protected $record;
+    protected $form;
+    protected $mail;
+    protected $auth;
+    protected $cookie;
+    protected $session;
+    protected $token;
+    protected $validate;
+    protected $redirect;
+    protected $upload;
 
-   
    public function __construct(ServicesLoadersInterface $service)
    {
-
+        $this->record       = $service->get("Record");
+        $this->form         = $service->get("Form");
+        $this->mail         = $service->get("Mailer");
+        $this->auth         = $service->get("Authentification");
+        $this->cookie       = $service->get("Cookie");
+        $this->session      = $service->get("Session");
+        $this->token        = $service->get("Token");
+        $this->validate     = $service->get("Validation");
+        $this->redirect     = $service->get("redirection");
+        $this->upload       = $service->get("Upload");
    }
 }
