@@ -1,8 +1,33 @@
 <?php
 
+/**
+ * Timino - PHP MVC framework
+ *
+ * @package     Timino
+ * @author      Lotfio Lakehal <contact@lotfio-lakehal.com>
+ * @copyright   2017 Lotfio Lakehal
+ * @license     MIT
+ * @link        https://github.com/lotfio-lakehal/timino
+ *
+ * Copyright (C) 2018
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * INFO :
+ * Services Autoloader class
+ *
+ */
+
 namespace Timino\App\Core;
 
-use PHPMailer\PHPMailer\Exception;
 use Timino\App\Core\Abstraction\ServicesLoadersInterface;
 use Timino\App\Services\Template\ErrorTemplator;
 
@@ -15,11 +40,11 @@ class ServicesAutoLoader implements ServicesLoadersInterface
 
     /**
      * ServiceLoader constructor.
-     * start the Service aoto loader
+     * start the Service autoloader
      */
     public function __construct()
     {
-        $this->set();
+        $this->register();
     }
 
     /**
@@ -82,7 +107,7 @@ class ServicesAutoLoader implements ServicesLoadersInterface
      * single tone with instantiate()
      * simple services with the new keyword
      */
-    public function set()
+    public function register()
     {
         /**
          * check for single tone classes and normal classes with reflection class
@@ -115,6 +140,7 @@ class ServicesAutoLoader implements ServicesLoadersInterface
     }
 
     /**
+     * get services method
      * @param $serviceName
      * @return mixed
      */
@@ -122,7 +148,7 @@ class ServicesAutoLoader implements ServicesLoadersInterface
     {
         try {
             $serviceName = ucfirst($serviceName);
-            if (!isset($this->services[$serviceName])) throw new Exception("Error service <b>$serviceName</b> Doesn't exists !");
+            if (!isset($this->services[$serviceName])) throw new \Exception("Error service <b>$serviceName</b> Doesn't exists !");
             return $this->services[$serviceName];
         } catch (\Exception $e) {
 
