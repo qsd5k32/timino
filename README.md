@@ -14,7 +14,7 @@ Timino is a simple and lightweight PHP MVC framework practical and easy to under
 - Uses PDO for any database requests, comes with an additional PDO debug tool to emulate your SQL statements
 commented code
 - Uses only native PHP code, so people don't have to learn a framework
-- Uses Services to perform diffrent tasks 
+- Uses Services to perform different tasks 
 - Ability to create own services
 
 ### Requirements :
@@ -25,22 +25,22 @@ commented code
 
 ### Instalation :
 - Via composer :
-````
+```
 composer require timino/timino
-````
+```
 - Manually:
 - Clone from github via SSH or HTTPS
  
-````
+```
 SSH  : git clone git@github.com:lotfio-lakehal/timino.git
 HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
-````
+```
 - Or download it directly from github as a compressed file
 
 ### Configuration :
 
 - After downloading the package with composer you will get something structured like this
-````
+```
  Your project
  └── vendor
      ├── composer
@@ -49,11 +49,11 @@ HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
              ├── App
              │ 
              └── pub
- ````
+ ```
  - Move App and pub and composer.json from timino to your base folder your project folder
  
  - *It should look like this* :
- ````
+ ```
  Your project 
  ├── App
  │   
@@ -61,19 +61,19 @@ HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
  │ --- composer.json 
  │ --- composer.lock
  └── vendor
- ````
+ ```
  - now run 
- 
- ````
+
+ ```
  composer dump-autoload 
- ````
+ ```
   - to generate the autoloading files .
   
   ### Web server configuration 
   #### Apache
   * Apache rewrite module must be activated
   * Your apache config file for this application should look something like this :
-  ````
+  ```
 <VirtualHost *:80>
     
     ServerAdmin  webmaster@localhost
@@ -91,10 +91,10 @@ HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
     
 
 </VirtualHost>
-  ````
+  ```
   #### Nginx 
   * If you are using nginx you config file should look like this
-  ```` 
+```
 server{
     
     listen       80 default_server;
@@ -120,4 +120,4 @@ server{
     }
 
 }
-
+```
