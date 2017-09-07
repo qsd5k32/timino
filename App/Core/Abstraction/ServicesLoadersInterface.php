@@ -30,6 +30,6 @@ namespace Timino\App\Core\Abstraction;
 
 interface ServicesLoadersInterface
 {
-    public function set();
+    public function register();
     public function get($serviceName);
 }
