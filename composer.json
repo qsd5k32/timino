@@ -24,7 +24,7 @@
             "App/Config/Base.conf.php"
         ],
         "psr-4": {
-            "Timino\\App\\" : "App/"
+            "App\\" : "App/"
         }
     }
 }

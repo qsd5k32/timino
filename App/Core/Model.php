@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,12 +23,12 @@
  *
  * INFO :
  * Base Model class
- * 
+ *
  */
 
-namespace Timino\App\Core;
+namespace App\Core;
 
-use Timino\App\Core\Abstraction\ServicesLoadersInterface;
+use App\Core\Abstraction\ServicesLoadersInterface;
 
 abstract class Model
 {
@@ -43,17 +43,17 @@ abstract class Model
     protected $redirect;
     protected $upload;
 
-   public function __construct(ServicesLoadersInterface $service)
-   {
-        $this->record       = $service->get("Record");
-        $this->form         = $service->get("Form");
-        $this->mail         = $service->get("Mailer");
-        $this->auth         = $service->get("Authentication");
-        $this->cookie       = $service->get("Cookie");
-        $this->session      = $service->get("Session");
-        $this->token        = $service->get("Token");
-        $this->validate     = $service->get("Validation");
-        $this->redirect     = $service->get("redirection");
-        $this->upload       = $service->get("Upload");
-   }
+    public function __construct(ServicesLoadersInterface $service)
+    {
+        $this->record = $service->get("Record");
+        $this->form = $service->get("Form");
+        $this->mail = $service->get("Mailer");
+        $this->auth = $service->get("Authentication");
+        $this->cookie = $service->get("Cookie");
+        $this->session = $service->get("Session");
+        $this->token = $service->get("Token");
+        $this->validate = $service->get("Validation");
+        $this->redirect = $service->get("redirection");
+        $this->upload = $service->get("Upload");
+    }
 }

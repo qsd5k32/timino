@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,13 +23,14 @@
  *
  * INFO :
  * Mailer service class
- * 
+ *
  */
-namespace Timino\App\Services\Custom;
+
+namespace App\Services\Custom;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use Timino\App\Core\Linker;
+use App\Core\Linker;
 
 class Mailer
 {
@@ -38,7 +39,7 @@ class Mailer
      *
      * @param array $data
      * exemple:
-     * 
+     *
      *    "to"           => "contact@lotfio-lakehal.com",
      *    "subject"      => "test message from lotfio",
      *    "title"        => "message title",
@@ -48,12 +49,11 @@ class Mailer
      *    "greetings"    => "23 13213213132123",
      *    "infoLink"     => "qlmsdkqmsldkqlmsd",
      *    "company"      => "aza1zsa2z1a2z1"
-     * 
+     *
      * @return bool
      */
     public function sendSimpleMail($data)
     {
-
 
 
         $mail = new PHPMailer(true);
@@ -65,9 +65,9 @@ class Mailer
         $mail->Username = Linker::mail("USER");
         $mail->Password = Linker::mail("PASS");
 
-        $mail->From     = Linker::mail("FROM");
+        $mail->From = Linker::mail("FROM");
         $mail->FromName = Linker::mail("FROM_NAME");
-        $mail->Sender   = Linker::mail("FROM");
+        $mail->Sender = Linker::mail("FROM");
 
         //$mail->AddReplyTo(Linker::mail("REPLAY_TO"));
         $mail->AddAddress($data["to"]);
@@ -87,7 +87,7 @@ class Mailer
 
         $mail->Body = $template;
 
-        return (!$mail->Send()) ? 0 : 1 ;
+        return (!$mail->Send()) ? 0 : 1;
 
     }
 
@@ -96,7 +96,7 @@ class Mailer
      *
      * @param array $data
      * exemple:
-     * 
+     *
      *    "to"           => "contact@lotfio-lakehal.com",
      *    "subject"      => "test message from lotfio",
      *    "title"        => "message title",
@@ -107,12 +107,11 @@ class Mailer
      *    "greetings"    => "23 13213213132123",
      *    "infoLink"     => "qlmsdkqmsldkqlmsd",
      *    "company"      => "aza1zsa2z1a2z1"
-     * 
+     *
      * @return bool
      */
     public function sendLinkMail($data)
     {
-
 
 
         $mail = new PHPMailer(true);
@@ -124,9 +123,9 @@ class Mailer
         $mail->Username = Linker::mail("USER");
         $mail->Password = Linker::mail("PASS");
 
-        $mail->From     = Linker::mail("FROM");
+        $mail->From = Linker::mail("FROM");
         $mail->FromName = Linker::mail("FROM_NAME");
-        $mail->Sender   = Linker::mail("FROM");
+        $mail->Sender = Linker::mail("FROM");
 
         $mail->AddAddress($data["to"]);
 
@@ -147,7 +146,7 @@ class Mailer
 
         $mail->Body = $template;
 
-        return (!$mail->Send()) ? 0 : 1 ;
+        return (!$mail->Send()) ? 0 : 1;
 
     }
 

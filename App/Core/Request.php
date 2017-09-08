@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,12 +23,12 @@
  *
  * INFO :
  * Request class
- * 
+ *
  */
 
-namespace Timino\App\Core;
+namespace App\Core;
 
-use Timino\App\Core\Abstraction\RequestInterface;
+use App\Core\Abstraction\RequestInterface;
 
 class Request implements RequestInterface
 {
@@ -38,7 +38,7 @@ class Request implements RequestInterface
      */
     public function uri()
     {
-        if(isset($_GET['uri'])){
+        if (isset($_GET['uri'])) {
             $uri = preg_replace(Linker::regex("URI"), NULL, trim($_GET['uri'], "/"));
             return array_values(array_filter(explode("/", $uri)));
         }
@@ -68,9 +68,10 @@ class Request implements RequestInterface
      */
     public function params()
     {
-        if(count($this->uri()) > 2)
-        {
-            $uri = $this->uri(); unset($uri[0], $uri[1]); return array_values($uri);
+        if (count($this->uri()) > 2) {
+            $uri = $this->uri();
+            unset($uri[0], $uri[1]);
+            return array_values($uri);
         }
         return array();
     }

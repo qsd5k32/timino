@@ -26,10 +26,10 @@
  *
  */
 
-namespace Timino\App\Core;
+namespace App\Core;
 
-use Timino\App\Core\Abstraction\ServicesLoadersInterface;
-use Timino\App\Services\Template\ErrorTemplator;
+use App\Core\Abstraction\ServicesLoadersInterface;
+use App\Services\Template\ErrorTemplator;
 
 class ServicesAutoLoader implements ServicesLoadersInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,51 +23,51 @@
  *
  * INFO :
  * DB connection class
- * 
+ *
  */
-namespace Timino\App\Services\Database;
+
+namespace App\Services\Database;
 
 
-use Timino\App\Core\Linker;
-use Timino\App\Services\Template\ErrorTemplator;
+use App\Core\Linker;
+use App\Services\Template\ErrorTemplator;
 
 class Connection
 {
-   // single instance
-   private static $instance;
-   
-   //connection var
-   private $_con;
-   
-	private function __construct(){
-		try{
-			$this->_con = new \PDO(
-				Linker::database('DRIVER').":host=".Linker::database('HOST').";dbname=".Linker::database('NAME'),
-				Linker::database('USER'),
-				Linker::database('PASS'),
-				Linker::database('OPTIONS')
-			);
-		}catch(\PDOException $e)
-		{
-			die(ErrorTemplator::exceptionError($e->getMessage()));
-		}
-   }
-   
-	public static function instantiate()
-	{
-		if(!isset(self::$instance))
-		{
-			self::$instance = new self;
-		}
-		return self::$instance;
-   }
-   
-	/**
-	 * Get Connection
-	 * @return db connection Object
-	 */
-	public function con()
-	{
-		return $this->_con;
-	}
+    // single instance
+    private static $instance;
+
+    //connection var
+    private $_con;
+
+    private function __construct()
+    {
+        try {
+            $this->_con = new \PDO(
+                Linker::database('DRIVER') . ":host=" . Linker::database('HOST') . ";dbname=" . Linker::database('NAME'),
+                Linker::database('USER'),
+                Linker::database('PASS'),
+                Linker::database('OPTIONS')
+            );
+        } catch (\PDOException $e) {
+            die(ErrorTemplator::exceptionError($e->getMessage()));
+        }
+    }
+
+    public static function instantiate()
+    {
+        if (!isset(self::$instance)) {
+            self::$instance = new self;
+        }
+        return self::$instance;
+    }
+
+    /**
+     * Get Connection
+     * @return db connection Object
+     */
+    public function con()
+    {
+        return $this->_con;
+    }
 }

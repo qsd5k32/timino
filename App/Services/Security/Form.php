@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,32 +23,32 @@
  *
  * INFO :
  *  Form service class
- * 
+ *
  */
 
-namespace Timino\App\Services\Security;
+namespace App\Services\Security;
 
 class Form
 {
-   /**
-    * catch post method with key
-    *
-    * @param string $post
-    * @return void
-    */
-   public function post($post)
-   {
-      return (($_SERVER['REQUEST_METHOD'] === "POST") && (isset($_POST[$post]))) ? true : false;
-   }
+    /**
+     * catch post method with key
+     *
+     * @param string $post
+     * @return void
+     */
+    public function post($post)
+    {
+        return (($_SERVER['REQUEST_METHOD'] === "POST") && (isset($_POST[$post]))) ? true : false;
+    }
 
-   /**
-    * catch get method with key
-    *
-    * @param string $get
-    * @return void
-    */
-   public function get($get)
-   {
-      return (($_SERVER['REQUEST_METHOD'] === "GET") && (isset($_GET[$get]))) ? true : false;
-   }
+    /**
+     * catch get method with key
+     *
+     * @param string $get
+     * @return void
+     */
+    public function get($get)
+    {
+        return (($_SERVER['REQUEST_METHOD'] === "GET") && (isset($_GET[$get]))) ? true : false;
+    }
 }

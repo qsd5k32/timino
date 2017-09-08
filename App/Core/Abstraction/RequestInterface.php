@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,15 +23,18 @@
  *
  * INFO :
  * Request Interface
- * 
+ *
  */
 
-namespace Timino\App\Core\Abstraction;
+namespace App\Core\Abstraction;
 
 interface RequestInterface
 {
-   public function uri();
-   public function controller();
-   public function action();
-   public function params();
+    public function uri();
+
+    public function controller();
+
+    public function action();
+
+    public function params();
 }

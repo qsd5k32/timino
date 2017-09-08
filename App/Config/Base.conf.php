@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Tinimo - PHP MVC framework
  *
  * @package     Tinimo
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,25 +23,25 @@
  *
  * INFO :
  * Main Configuration file
- * 
+ *
  */
 session_start([
-   "name" => "Timino"
+    "name" => "Timino"
 ]);
 
 
-defined("DS")     ||     define("DS", DIRECTORY_SEPARATOR);
+defined("DS") || define("DS", DIRECTORY_SEPARATOR);
 
-defined("ROOT")   ||     define('ROOT', dirname(dirname(__DIR__)) .DS);
+defined("ROOT") || define('ROOT', dirname(dirname(__DIR__)) . DS);
 
-defined("APP")    ||     define('APP', ROOT . "App" .DS);
+defined("APP") || define('APP', ROOT . "App" . DS);
 
-defined("PUB")    ||     define('PUB', ROOT . "pub" .DS);
+defined("PUB") || define('PUB', ROOT . "pub" . DS);
 
-defined("URL")    ||     define('URL',htmlspecialchars($_SERVER["REQUEST_SCHEME"], ENT_QUOTES, "UTF-8") . "://".htmlspecialchars($_SERVER["HTTP_HOST"], ENT_QUOTES, "UTF-8"). DS);
+defined("URL") || define('URL', htmlspecialchars($_SERVER["REQUEST_SCHEME"], ENT_QUOTES, "UTF-8") . "://" . htmlspecialchars($_SERVER["HTTP_HOST"], ENT_QUOTES, "UTF-8") . DS);
 
-defined("CONFIG") ||     define("CONFIG", APP . "Config".DS);
+defined("CONFIG") || define("CONFIG", APP . "Config" . DS);
 
-defined("BNS")    ||     define('BNS', "Timino\\App\\");
+defined("BNS") || define('BNS', "App\\");
 
-defined("SRV")    ||     define("SRV", BNS . "Services\\");
+defined("SRV") || define("SRV", BNS . "Services\\");

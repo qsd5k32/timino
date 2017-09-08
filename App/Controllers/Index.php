@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,20 +23,20 @@
  *
  * INFO :
  * Index controller class
- *  
+ *
  */
 
-namespace Timino\App\Controllers;
+namespace App\Controllers;
 
-use Timino\App\Core\Controller;
+use App\Core\Controller;
 
 class Index extends Controller
 {
 
-   public function manage($name = NULL, $email = NULL, $pass = NULL)
-   {
-     $this->load->model("index")->test();
-     $this->load->view("index", array("manage"),"Index");
-   }
+    public function manage($name = NULL, $email = NULL, $pass = NULL)
+    {
+        $this->load->model("index")->test();
+        $this->load->view("index", array("manage"), "Index");
+    }
 
 }

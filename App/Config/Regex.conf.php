@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Tinimo - PHP MVC framework
  *
  * @package     Tinimo
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,21 +23,21 @@
  *
  * INFO :
  * Regular Expressions Configuration file
- * 
+ *
  */
 
 return [
 
-   // dispatcher uri validation
-   "URI"           => "#[^\d\w\/\.\@\-]#",
+    // dispatcher uri validation
+    "URI" => "#[^\d\w\/\.\@\-]#",
 
     // validation service
-   "EMAIL"         => "#^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5})$#",
+    "EMAIL" => "#^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5})$#",
 
-   "STRING"        => "#[^\w\d\-\.\s+\@]#",
+    "STRING" => "#[^\w\d\-\.\s+\@]#",
 
-   "ARABIC_STRING" => "#[^\w\d\-\.\s+\p{Arabic}\@]#u",
+    "ARABIC_STRING" => "#[^\w\d\-\.\s+\p{Arabic}\@]#u",
 
-   "FRENCH_STRING" => "#[^\w\d\-\.\s+À-ÿ]#",
+    "FRENCH_STRING" => "#[^\w\d\-\.\s+À-ÿ]#",
 
 ];

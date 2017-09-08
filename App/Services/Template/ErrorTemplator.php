@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,24 +23,24 @@
  *
  * INFO :
  *  Error templator class
- * 
+ *
  */
 
-namespace Timino\App\Services\Template;
+namespace App\Services\Template;
 
 class ErrorTemplator
 {
-   public static function exceptionError($err)
-   {
-      $tmp  = "<div style=';
+    public static function exceptionError($err)
+    {
+        $tmp = "<div style=';
       color: #F44336;
       padding: 30px;
       background: #f7f7f7;
       width: 70%;
       margin: auto;
       border: 1px dashed #cac6c6;'>";
-      $tmp .= $err;
-      $tmp .= "</div>";
-      return $tmp;
-   }
+        $tmp .= $err;
+        $tmp .= "</div>";
+        return $tmp;
+    }
 }

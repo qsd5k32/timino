@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,13 +23,13 @@
  *
  * INFO :
  * App class
- * 
+ *
  */
 
-namespace Timino\App\Core;
+namespace App\Core;
 
-use Timino\App\Core\Abstraction\RequestInterface;
-use Timino\App\Services\Template\ErrorTemplator;
+use App\Core\Abstraction\RequestInterface;
+use App\Services\Template\ErrorTemplator;
 
 class App
 {
@@ -53,8 +53,8 @@ class App
      */
     public function setDefault()
     {
-        $this->controller   = Linker::route("DEFAULT_CONTROLLER");
-        $this->action       = Linker::route("DEFAULT_ACTION");
+        $this->controller = Linker::route("DEFAULT_CONTROLLER");
+        $this->action = Linker::route("DEFAULT_ACTION");
     }
 
     /**
@@ -69,33 +69,30 @@ class App
         /**
          * check for Requested controller
          */
-        if($request->controller())
-        {
-            $controller = Linker::namespace("CONTROLLERS") .  ucfirst($request->controller());
-            $this->controller = (class_exists($controller)) ?  $request->controller() : Linker::route("ERROR_CONTROLLER");
+        if ($request->controller()) {
+            $controller = Linker::namespace("CONTROLLERS") . ucfirst($request->controller());
+            $this->controller = (class_exists($controller)) ? $request->controller() : Linker::route("ERROR_CONTROLLER");
         }
 
         /**
          * call controller
          */
-        try{
+        try {
 
             $controller = Linker::namespace("CONTROLLERS") . ucfirst($this->controller);
-            if(!class_exists($controller)) throw new \Exception("Error controller <b>$controller</b> Doesn't exists");
+            if (!class_exists($controller)) throw new \Exception("Error controller <b>$controller</b> Doesn't exists");
 
             $this->controller = new $controller(new ServicesAutoLoader, new Loader);
 
-        }catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             die(ErrorTemplator::exceptionError($e->getMessage()));
         }
-        
+
         /**
          * check for requested method
          */
-        if($request->action())
-        {
-            $this->action = (method_exists($this->controller, $request->action())) ?  $request->action() : Linker::route("ERROR_ACTION");
+        if ($request->action()) {
+            $this->action = (method_exists($this->controller, $request->action())) ? $request->action() : Linker::route("ERROR_ACTION");
         }
 
         /**

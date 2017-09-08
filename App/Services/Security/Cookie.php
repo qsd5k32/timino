@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,10 +23,10 @@
  *
  * INFO :
  *  Cookie service class
- * 
+ *
  */
 
-namespace Timino\App\Services\Security;
+namespace App\Services\Security;
 
 class Cookie
 {
@@ -37,7 +37,7 @@ class Cookie
      */
     public function set($name, $value, $exp)
     {
-       setcookie($name, $value, $exp, "/");
+        setcookie($name, $value, $exp, "/");
     }
 
     /**
@@ -65,18 +65,18 @@ class Cookie
      */
     public function unserialize($name)
     {
-        if(isset($_COOKIE[$name]))
-        {
+        if (isset($_COOKIE[$name])) {
             return \unserialize($_COOKIE[$name]);
         }
         return false;
     }
+
     /**
      * @param $name cookie name
      */
     public function remove($name)
     {
-        if(isset($_COOKIE[$name])) $this->set($name, NULL , time() - 100000);
+        if (isset($_COOKIE[$name])) $this->set($name, NULL, time() - 100000);
     }
 
 }

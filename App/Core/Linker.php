@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,158 +23,153 @@
  *
  * INFO :
  * Linker class
- * 
+ *
  */
-namespace Timino\App\Core;
 
-use Timino\App\Services\Template\ErrorTemplator;
+namespace App\Core;
+
+use App\Services\Template\ErrorTemplator;
 
 class Linker
-{   
+{
     /**
      * config file suffix
      * @var string
      */
     const SUFFIX = ".conf.php";
 
-   /**
-    * routes method for all application links and paths
-    * @param string $key
-    * @return string path to
-    */
-   public static function route($key)
-   {
-      $routes = CONFIG . "Routes" . self::SUFFIX;
+    /**
+     * routes method for all application links and paths
+     * @param string $key
+     * @return string path to
+     */
+    public static function route($key)
+    {
+        $routes = CONFIG . "Routes" . self::SUFFIX;
 
-      try{
+        try {
 
-        if(!file_exists($routes)) throw new \Exception("Error $routes file was not found");
+            if (!file_exists($routes)) throw new \Exception("Error $routes file was not found");
 
-        $routes = require $routes;
-        
-        // if dot access notation 
-        if(preg_match("#\.+#", $key))
-        {
-           $keys = explode(".", $key);
-     
-           $temp = &$routes;
-           
-           foreach($keys as $key) {
+            $routes = require $routes;
 
-            if(!isset($temp[$key]))  throw new \Exception("Error $key key was not found");
-             
-            $temp =& $temp[$key];
-           }
-           return $temp;
+            // if dot access notation
+            if (preg_match("#\.+#", $key)) {
+                $keys = explode(".", $key);
+
+                $temp = &$routes;
+
+                foreach ($keys as $key) {
+
+                    if (!isset($temp[$key])) throw new \Exception("Error $key key was not found");
+
+                    $temp =& $temp[$key];
+                }
+                return $temp;
+            }
+
+            if (!isset($routes[$key])) throw new \Exception("Error $key key was not found");
+
+        } catch (\Exception $e) {
+            die(ErrorTemplator::exceptionError($e->getMessage()));
         }
 
-        if(!isset($routes[$key]))  throw new \Exception("Error $key key was not found");
+        return $routes[$key];
+    }
 
-     }catch(\Exception $e)
-     {
-         die(ErrorTemplator::exceptionError($e->getMessage()));
-     }
+    /**
+     * routes method for all application links and paths
+     * @param string $key
+     * @return string path to
+     */
+    public static function namespace($key)
+    {
+        $namespaces = CONFIG . "Namespaces" . self::SUFFIX;
 
-      return $routes[$key];
-   }
+        try {
+            if (!file_exists($namespaces)) throw new \Exception("Error $namespaces file was not found");
 
-   /**
-    * routes method for all application links and paths
-    * @param string $key
-    * @return string path to
-    */
-   public static function namespace($key)
-   {
-      $namespaces = CONFIG . "Namespaces". self::SUFFIX;
+            $namespaces = require $namespaces;
 
-      try{
-        if(!file_exists($namespaces)) throw new \Exception("Error $namespaces file was not found");
+            if (!isset($namespaces[$key])) throw new \Exception("Error $key key was not found");
 
-        $namespaces = require $namespaces;
+        } catch (\Exception $e) {
+            die(ErrorTemplator::exceptionError($e->getMessage()));
+        }
 
-        if(!isset($namespaces[$key])) throw new \Exception("Error $key key was not found");
+        return $namespaces[$key];
+    }
 
-     }catch(\Exception $e)
-     {
-        die(ErrorTemplator::exceptionError($e->getMessage()));
-     }
+    /**
+     * load database configuration
+     *
+     * @param [type] $key
+     * @return void
+     */
+    public static function database($key)
+    {
+        $file = CONFIG . "Database" . self::SUFFIX;
 
-      return $namespaces[$key];
-   }
-
-   /**
-    * load database configuration
-    *
-    * @param [type] $key
-    * @return void
-    */
-   public static function database($key)
-   {
-       $file = CONFIG . "Database". self::SUFFIX;
-
-      try{
-         if(!file_exists($file)) throw new \Exception("Error $file file was not found");
-
-         $file = require $file;
-
-         if(!isset($file[$key])) throw new \Exception("Error $key key was not found");
-
-      }catch(\Exception $e)
-      {
-         die(ErrorTemplator::exceptionError($e->getMessage()));
-      }
-
-      return $file[$key];
-   }
-
-   /**
-    * regular expression linker metod
-    *
-    * @param string $key regex name
-    * @return string regex pattern
-    */
-   public static function regex($key)
-   {
-        $file = CONFIG . "Regex". self::SUFFIX;
-
-        try{
-            if(!file_exists($file)) throw new \Exception("Error $file file was not found");
+        try {
+            if (!file_exists($file)) throw new \Exception("Error $file file was not found");
 
             $file = require $file;
 
-            if(!isset($file[$key])) throw new \Exception("Error $key key was not found");
+            if (!isset($file[$key])) throw new \Exception("Error $key key was not found");
 
-        }catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             die(ErrorTemplator::exceptionError($e->getMessage()));
         }
 
         return $file[$key];
-   }
+    }
 
-   /**
-    * email config linker metod
-    *
-    * @param string $key  name
-    * @return string value
-    */
-   public static function mail($key)
-   {
-        $file = CONFIG . "Mail". self::SUFFIX;
+    /**
+     * regular expression linker metod
+     *
+     * @param string $key regex name
+     * @return string regex pattern
+     */
+    public static function regex($key)
+    {
+        $file = CONFIG . "Regex" . self::SUFFIX;
 
-        try{
-            if(!file_exists($file)) throw new \Exception("Error $file file was not found");
+        try {
+            if (!file_exists($file)) throw new \Exception("Error $file file was not found");
 
             $file = require $file;
 
-            if(!isset($file[$key])) throw new \Exception("Error $key key was not found");
+            if (!isset($file[$key])) throw new \Exception("Error $key key was not found");
 
-        }catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             die(ErrorTemplator::exceptionError($e->getMessage()));
         }
 
         return $file[$key];
-   }
+    }
+
+    /**
+     * email config linker metod
+     *
+     * @param string $key name
+     * @return string value
+     */
+    public static function mail($key)
+    {
+        $file = CONFIG . "Mail" . self::SUFFIX;
+
+        try {
+            if (!file_exists($file)) throw new \Exception("Error $file file was not found");
+
+            $file = require $file;
+
+            if (!isset($file[$key])) throw new \Exception("Error $key key was not found");
+
+        } catch (\Exception $e) {
+            die(ErrorTemplator::exceptionError($e->getMessage()));
+        }
+
+        return $file[$key];
+    }
 
 }

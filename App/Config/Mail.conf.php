@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Tinimo - PHP MVC framework
  *
  * @package     Tinimo
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,15 +23,15 @@
  *
  * INFO :
  * mail Configuration file
- * 
+ *
  */
 
 return [
-   
-   "HOST"      => "smtp.gmail.com",
-   "USER"      => "lotfiolakehal@gmail.com",
-   "PASS"      => "*******",
-   "FROM"      => "lotfio-lakehal@gmail.com",
-   "FROM_NAME" => "lotfio",
-   "REPLAY_TO" => "noreplay",
+
+    "HOST" => "smtp.gmail.com",
+    "USER" => "lotfiolakehal@gmail.com",
+    "PASS" => "*******",
+    "FROM" => "lotfio-lakehal@gmail.com",
+    "FROM_NAME" => "lotfio",
+    "REPLAY_TO" => "noreplay",
 ];

@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,64 +23,63 @@
  *
  * INFO :
  *  Token class
- * 
+ *
  */
 
-namespace Timino\App\Services\Security;
+namespace App\Services\Security;
 
 class Token
 {
-   /**
-    * random string method
-    *
-    * @param int $length
-    * @return string random strin
-    */
-   public function randomStr($length = 10)
-   {
-      $chars = "azertyuiopqsdfghjklmwxcvbn0123654789AZERTYUIOPQSDFGHJKLMWXCVBN";
-      $str   = "";
+    /**
+     * random string method
+     *
+     * @param int $length
+     * @return string random strin
+     */
+    public function randomStr($length = 10)
+    {
+        $chars = "azertyuiopqsdfghjklmwxcvbn0123654789AZERTYUIOPQSDFGHJKLMWXCVBN";
+        $str = "";
 
-      for($i = 0; $i <= $length; $i++)
-      {
-         $str .= $chars[rand(0, strlen($chars) - 1)];
-      }
-      return $str;
-   }
+        for ($i = 0; $i <= $length; $i++) {
+            $str .= $chars[rand(0, strlen($chars) - 1)];
+        }
+        return $str;
+    }
 
-   /**
-    * set CSRF token
-    *
-    * @return void
-    */
-   public function setCsrfToken()
-   {
-      return $_SESSION["CSRF"] = $this->randomStr(50);
-   }
+    /**
+     * set CSRF token
+     *
+     * @return void
+     */
+    public function setCsrfToken()
+    {
+        return $_SESSION["CSRF"] = $this->randomStr(50);
+    }
 
-   /**
-    * hash password method
-    *
-    * @param string $passwd
-    * @return string hash
-    */
-   public function hashPasswd($passwd)
-   {
-      $options = [
-         'cost' => 12,
-     ];
-     return password_hash($passwd, PASSWORD_BCRYPT, $options);
-   }
+    /**
+     * hash password method
+     *
+     * @param string $passwd
+     * @return string hash
+     */
+    public function hashPasswd($passwd)
+    {
+        $options = [
+            'cost' => 12,
+        ];
+        return password_hash($passwd, PASSWORD_BCRYPT, $options);
+    }
 
-   /**
-    * verify password method
-    *
-    * @param string $passwd user password
-    * @param string $hash old password hashed generally from db
-    * @return bool
-    */
-   public function verifyPasswd($passwd, $hash)
-   {
-      return password_verify($passwd, $hash);
-   }
+    /**
+     * verify password method
+     *
+     * @param string $passwd user password
+     * @param string $hash old password hashed generally from db
+     * @return bool
+     */
+    public function verifyPasswd($passwd, $hash)
+    {
+        return password_verify($passwd, $hash);
+    }
 }

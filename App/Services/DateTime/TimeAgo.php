@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,86 +23,88 @@
  *
  * INFO :
  *  TimeAgo service class
- * 
+ *
  */
 
-namespace Timino\App\Services\DateTime;
+namespace App\Services\DateTime;
 
 class TimeAgo
 {
-   /**
-    * elapced time methos
-    *
-    * @param string $datetime TIMESTAMP string
-    * @param boolean $full show full elapced time years months hours minutes seconds
-    * @return string
-    */
-   public function english($datetime, $full = false) {
+    /**
+     * elapsed time method
+     *
+     * @param string $datetime TIMESTAMP string
+     * @param boolean $full show full elapsed time years months hours minutes seconds
+     * @return string
+     */
+    public function english($datetime, $full = false)
+    {
 
-      $now = new \DateTime;
-      $ago = new \DateTime($datetime);
-      $diff = $now->diff($ago);
-  
-      $diff->w = floor($diff->d / 7);
-      $diff->d -= $diff->w * 7;
-  
-      $string = array(
-          'y' => 'year',
-          'm' => 'month',
-          'w' => 'week',
-          'd' => 'day',
-          'h' => 'hour',
-          'i' => 'minute',
-          's' => 'second',
-      );
-      foreach ($string as $k => &$v) {
-          if ($diff->$k) {
-              $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-          } else {
-              unset($string[$k]);
-          }
-      }
-  
-      if (!$full) $string = array_slice($string, 0, 1);
-      return $string ? implode(', ', $string) . ' ago' : 'just now';
-  }
+        $now = new \DateTime;
+        $ago = new \DateTime($datetime);
+        $diff = $now->diff($ago);
 
-   /**
-    * elapced time methos
-    *
-    * @param string $datetime TIMESTAMP string
-    * @param boolean $full show full elapced time years months hours minutes seconds
-    * @return string
-    */
-   public function arabic($datetime, $full = false) {
+        $diff->w = floor($diff->d / 7);
+        $diff->d -= $diff->w * 7;
 
-      $now = new \DateTime;
-      $ago = new \DateTime($datetime);
-      $diff = $now->diff($ago);
-  
-      $diff->w = floor($diff->d / 7);
-      $diff->d -= $diff->w * 7;
-  
-      $string = array(
-          'y' => 'سنة',
-          'm' => 'شهر',
-          'w' => 'اسبوع',
-          'd' => 'يوم',
-          'h' => 'ساعة',
-          'i' => 'دقيقة',
-          's' => 'ثانية',
-      );
-      
-      foreach ($string as $k => &$v) {
-          if ($diff->$k) {
-              $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? ' ' : '');
-          } else {
-              unset($string[$k]);
-          }
-      }
-  
-      if (!$full) $string = array_slice($string, 0, 1);
-      return $string ? ' منذ ' . implode(', ', $string) : ' الان ';
-  }
+        $string = array(
+            'y' => 'year',
+            'm' => 'month',
+            'w' => 'week',
+            'd' => 'day',
+            'h' => 'hour',
+            'i' => 'minute',
+            's' => 'second',
+        );
+        foreach ($string as $k => &$v) {
+            if ($diff->$k) {
+                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+            } else {
+                unset($string[$k]);
+            }
+        }
+
+        if (!$full) $string = array_slice($string, 0, 1);
+        return $string ? implode(', ', $string) . ' ago' : 'just now';
+    }
+
+    /**
+     * elapsed time method
+     *
+     * @param string $datetime TIMESTAMP string
+     * @param boolean $full show full elapsed time years months hours minutes seconds
+     * @return string
+     */
+    public function arabic($datetime, $full = false)
+    {
+
+        $now = new \DateTime;
+        $ago = new \DateTime($datetime);
+        $diff = $now->diff($ago);
+
+        $diff->w = floor($diff->d / 7);
+        $diff->d -= $diff->w * 7;
+
+        $string = array(
+            'y' => 'سنة',
+            'm' => 'شهر',
+            'w' => 'اسبوع',
+            'd' => 'يوم',
+            'h' => 'ساعة',
+            'i' => 'دقيقة',
+            's' => 'ثانية',
+        );
+
+        foreach ($string as $k => &$v) {
+            if ($diff->$k) {
+                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? ' ' : '');
+            } else {
+                unset($string[$k]);
+            }
+        }
+
+        if (!$full) $string = array_slice($string, 0, 1);
+        return $string ? ' منذ ' . implode(', ', $string) : ' الان ';
+    }
 
 }

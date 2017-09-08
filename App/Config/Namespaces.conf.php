@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Tinimo - PHP MVC framework
  *
  * @package     Tinimo
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,12 +23,12 @@
  *
  * INFO :
  * namespaces Configuration file
- * 
+ *
  */
 
 return [
 
-   "CONTROLLERS" => BNS . "Controllers\\",
-   "MODELS"      => BNS . "Models\\",
+    "CONTROLLERS" => BNS . "Controllers\\",
+    "MODELS" => BNS . "Models\\",
 
 ];

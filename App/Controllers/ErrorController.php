@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,17 +23,17 @@
  *
  * INFO :
  * Error controller class
- *  
+ *
  */
 
-namespace Timino\App\Controllers;
+namespace App\Controllers;
 
-use Timino\App\Core\Controller;
+use App\Core\Controller;
 
 class ErrorController extends Controller
 {
-   public function manage()
-   {
-      echo $this->errorAction();
-   }
+    public function manage()
+    {
+        echo $this->errorAction();
+    }
 }

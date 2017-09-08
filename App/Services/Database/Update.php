@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,156 +23,151 @@
  *
  * INFO :
  * Database update class
- * 
+ *
  */
-namespace Timino\App\Services\Database;
+
+namespace App\Services\Database;
 
 class Update
 {
-   /**
-   * Database connection instance
-   * @var resource
-   */
-   private $db;
-    
-   public function __construct()
-   {
-      $this->db = (Connection::instantiate())->con();
-   }
+    /**
+     * Database connection instance
+     * @var resource
+     */
+    private $db;
+
+    public function __construct()
+    {
+        $this->db = (Connection::instantiate())->con();
+    }
 
 
-   /**
-    * database update method
-    *
-    * @param string $tbl
-    * @param array $data data to be updated     
-    * @param string $cond 
-    * @return bool
-    *
-    * usage example
-    * echo update("users",[
-    *  "Name"  => "Lakehal",
-    *  "Email" => "lotfio@ouedkniss.com"
-    *  ],[
-    *     "ID      |  = " => "20 | and", // use pipes on condition
-    *     "Passwd  |  = " => "1321321",
-    *  ]); 
-    */
-   public function set($tbl, $data, $conditions)
-   {
+    /**
+     * database update method
+     *
+     * @param string $tbl
+     * @param array $data data to be updated
+     * @param string $cond
+     * @return bool
+     *
+     * usage example
+     * echo update("users",[
+     *  "Name"  => "Lakehal",
+     *  "Email" => "lotfio@ouedkniss.com"
+     *  ],[
+     *     "ID      |  = " => "20 | and", // use pipes on condition
+     *     "Passwd  |  = " => "1321321",
+     *  ]);
+     */
+    public function set($tbl, $data, $conditions)
+    {
 
-      $sql = "UPDATE `$tbl` SET ";
+        $sql = "UPDATE `$tbl` SET ";
 
-      $keys          = array_keys($data);
-      $values        = array_values($data);
-      $placeholders  = array_map(function($elem){ return ":" . $elem .rand() ; },$keys);
+        $keys = array_keys($data);
+        $values = array_values($data);
+        $placeholders = array_map(function ($elem) {
+            return ":" . $elem . rand();
+        }, $keys);
 
 
-      if(is_array($data))
-      {
-         if(count($data) > 1) // array of elements
-         {
-            for($i = 0; $i < count($keys) - 1; $i++)
+        if (is_array($data)) {
+            if (count($data) > 1) // array of elements
             {
-               $sql .= $keys[$i] . " = " . $placeholders[$i] . ", ";
+                for ($i = 0; $i < count($keys) - 1; $i++) {
+                    $sql .= $keys[$i] . " = " . $placeholders[$i] . ", ";
+                }
+
+                $sql .= $keys[count($keys) - 1] . " = " . $placeholders[count($placeholders) - 1];
+
+
+                $bind = array_combine($placeholders, $values);
+
+
+            } else { // only one
+
+                $sql .= $keys[0] . " = " . $placeholders[0];
+
+                $bind = array_combine($placeholders, $values);
+
             }
+        }
 
-            $sql .= $keys[count($keys) - 1] . " = " . $placeholders[count($placeholders) - 1];
+        /**
+         * hundling conditions
+         */
+        if (is_array($conditions)) {
+            $sql .= " WHERE ";
 
-            
-            $bind = array_combine($placeholders, $values);  
-
-
-         }else{ // only one
-
-            $sql .= $keys[0] . " = " . $placeholders[0];
-
-            $bind = array_combine($placeholders, $values); 
-
-         }
-      }
-
-      /**
-       * hundling conditions
-       */
-      if(is_array($conditions))
-      {
-         $sql .= " WHERE ";
-
-         if(count($conditions) > 1) // array of elements
-         {
-            $conKeys = array_keys($conditions);
-            $convals = array_values($conditions);
-
-            foreach($conKeys as $key)
+            if (count($conditions) > 1) // array of elements
             {
-               $k[] = explode("|", $key);
-            }
-            foreach($convals as $val)
-            {
-               $v[] = explode("|", $val);
-            }
+                $conKeys = array_keys($conditions);
+                $convals = array_values($conditions);
 
-            for($i = 0; $i < count($conKeys); $i++)
-            {
-               $ky[] = trim($k[$i][0]);
-               $vl[] = trim($v[$i][0]);
-            }
+                foreach ($conKeys as $key) {
+                    $k[] = explode("|", $key);
+                }
+                foreach ($convals as $val) {
+                    $v[] = explode("|", $val);
+                }
 
-            $nph = array_map(function($elm){ return ":" . $elm . rand(); }, $ky);
+                for ($i = 0; $i < count($conKeys); $i++) {
+                    $ky[] = trim($k[$i][0]);
+                    $vl[] = trim($v[$i][0]);
+                }
 
-            for($i = 0; $i < count($conKeys) -1 ; $i++)
-            {
-               $sql .= trim($k[$i][0])  . " " . trim($k[$i][1]) . " " . trim($nph[$i]) . " " . trim($v[$i][1]) ." " ;
-            }
+                $nph = array_map(function ($elm) {
+                    return ":" . $elm . rand();
+                }, $ky);
 
-            $sql .= trim($k[count($k) -1 ][0]) . " " . trim($k[count($k) -1 ][1]) . " " . trim($nph[count($nph) -1]);
+                for ($i = 0; $i < count($conKeys) - 1; $i++) {
+                    $sql .= trim($k[$i][0]) . " " . trim($k[$i][1]) . " " . trim($nph[$i]) . " " . trim($v[$i][1]) . " ";
+                }
 
-            $binds = array_combine($nph, $vl);
+                $sql .= trim($k[count($k) - 1][0]) . " " . trim($k[count($k) - 1][1]) . " " . trim($nph[count($nph) - 1]);
 
-         
-         }else{ // only one element
-
-            $conKeys = array_keys($conditions);
-            $convals = array_values($conditions);
-
-            foreach($conKeys as $key)
-            {
-               $k[] = explode("|", $key);
-            }
-            foreach($convals as $val)
-            {
-               $v[] = explode("|", $val);
-            }
-
-            for($i = 0; $i < count($conKeys); $i++)
-            {
-               $ky[] = trim($k[$i][0]);
-               $vl[] = trim($v[$i][0]);
-            }
-
-            $nph = array_map(function($elm){ return ":" . $elm; }, $ky);
+                $binds = array_combine($nph, $vl);
 
 
+            } else { // only one element
 
-            $sql .= trim($k[0][0])  . " " . trim($k[0][1]) . " " . trim($nph[0]);
+                $conKeys = array_keys($conditions);
+                $convals = array_values($conditions);
 
-            $binds = array_combine($nph, $vl);
+                foreach ($conKeys as $key) {
+                    $k[] = explode("|", $key);
+                }
+                foreach ($convals as $val) {
+                    $v[] = explode("|", $val);
+                }
+
+                for ($i = 0; $i < count($conKeys); $i++) {
+                    $ky[] = trim($k[$i][0]);
+                    $vl[] = trim($v[$i][0]);
+                }
+
+                $nph = array_map(function ($elm) {
+                    return ":" . $elm;
+                }, $ky);
 
 
+                $sql .= trim($k[0][0]) . " " . trim($k[0][1]) . " " . trim($nph[0]);
 
-         }  // one element
-      }
+                $binds = array_combine($nph, $vl);
 
-      $bounds = $bind + $binds;
 
-      $stmt = $this->db->prepare($sql);
+            }  // one element
+        }
 
-      $stmt->execute($bounds);
+        $bounds = $bind + $binds;
 
-      return $stmt->rowCount() > 0 ? true : false;
+        $stmt = $this->db->prepare($sql);
 
-   }
+        $stmt->execute($bounds);
+
+        return $stmt->rowCount() > 0 ? true : false;
+
+    }
 
 
 }

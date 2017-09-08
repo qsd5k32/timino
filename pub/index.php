@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,13 +24,15 @@
  * INFO :
  * Index page
  * application launcher
- * 
+ *
  */
 
 require_once "../vendor/autoload.php";
 
 
-use Timino\App\Core\{Request, App};
+use App\Core\{
+    Request, App
+};
 
 $request = new Request;
 

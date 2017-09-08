@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,12 +23,12 @@
  *
  * INFO :
  * Loader class
- * 
+ *
  */
 
-namespace Timino\App\Core;
+namespace App\Core;
 
-use Timino\App\Services\Template\ErrorTemplator;
+use App\Services\Template\ErrorTemplator;
 
 class Loader
 {

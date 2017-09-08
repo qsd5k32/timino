@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,9 +23,10 @@
  *
  * INFO :
  * Record class
- * 
+ *
  */
-namespace Timino\App\Services\Database;
+
+namespace App\Services\Database;
 
 class Record
 {
@@ -35,12 +36,12 @@ class Record
     public $delete;
 
 
-  public function __construct()
-  {
-     $this->select = new Select;
-     $this->insert = new Insert;
-     $this->update = new Update;
-     $this->delete = new Delete;
-  }
-   
+    public function __construct()
+    {
+        $this->select = new Select;
+        $this->insert = new Insert;
+        $this->update = new Update;
+        $this->delete = new Delete;
+    }
+
 }

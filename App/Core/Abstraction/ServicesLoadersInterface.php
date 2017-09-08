@@ -26,10 +26,11 @@
  *
  */
 
-namespace Timino\App\Core\Abstraction;
+namespace App\Core\Abstraction;
 
 interface ServicesLoadersInterface
 {
     public function register();
+
     public function get($serviceName);
 }

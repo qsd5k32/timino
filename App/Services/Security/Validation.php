@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,60 +23,60 @@
  *
  * INFO :
  *  Validation service class
- * 
+ *
  */
 
-namespace Timino\App\Services\Security;
+namespace App\Services\Security;
 
 use Timino\App\Core\Linker;
 
 class Validation
 {
-   /**
-    * email validation method
-    *
-    * @param string $email
-    * @param integer $minLength minimum email length by default 6 a@a.com
-    * @return string|bool
-    */
-   public function email($email, $minLength = 6)
-   {
-      return (preg_match(Linker::regex("EMAIL"), $email)) && (strlen($email)  >= $minLength) ? $email : 0;
-   }
+    /**
+     * email validation method
+     *
+     * @param string $email
+     * @param integer $minLength minimum email length by default 6 a@a.com
+     * @return string|bool
+     */
+    public function email($email, $minLength = 6)
+    {
+        return (preg_match(Linker::regex("EMAIL"), $email)) && (strlen($email) >= $minLength) ? $email : 0;
+    }
 
-   /**
-    * string validation method
-    *
-    * @param string $string
-    * @param int $minLength
-    * @return string|bool
-    */
-   public function string($string, $minLength = 3)
-   {
-      return (!preg_match(Linker::regex("STRING"), $string)) && (strlen($string)  >= $minLength) ? $string : 0;
-   }
+    /**
+     * string validation method
+     *
+     * @param string $string
+     * @param int $minLength
+     * @return string|bool
+     */
+    public function string($string, $minLength = 3)
+    {
+        return (!preg_match(Linker::regex("STRING"), $string)) && (strlen($string) >= $minLength) ? $string : 0;
+    }
 
-   /**
-    * arabic string validation method
-    *
-    * @param string $string
-    * @param integer $minLength
-    * @return string|bool
-    */
-   public function arabicString($string, $minLength = 3)
-   {
-      return (!preg_match(Linker::regex("ARABIC_STRING"), $string)) && (strlen($string)  >= $minLength) ? $string : 0;
-   }
+    /**
+     * arabic string validation method
+     *
+     * @param string $string
+     * @param integer $minLength
+     * @return string|bool
+     */
+    public function arabicString($string, $minLength = 3)
+    {
+        return (!preg_match(Linker::regex("ARABIC_STRING"), $string)) && (strlen($string) >= $minLength) ? $string : 0;
+    }
 
-   /**
-    * french string validation method
-    *
-    * @param string $string
-    * @param integer $minLength
-    * @return string|bool
-    */
-   public function frenchString($string, $minLength = 3)
-   {
-      return (!preg_match(Linker::regex("FRENCH_STRING"), $string)) && (strlen($string)  >= $minLength) ? $string : 0;
-   }
+    /**
+     * french string validation method
+     *
+     * @param string $string
+     * @param integer $minLength
+     * @return string|bool
+     */
+    public function frenchString($string, $minLength = 3)
+    {
+        return (!preg_match(Linker::regex("FRENCH_STRING"), $string)) && (strlen($string) >= $minLength) ? $string : 0;
+    }
 }

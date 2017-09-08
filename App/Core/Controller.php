@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,48 +23,48 @@
  *
  * INFO :
  * Base controller class
- *  
+ *
  */
 
-namespace Timino\App\Core;
+namespace App\Core;
 
-use Timino\App\Core\Abstraction\ServicesLoadersInterface;
-use Timino\App\Services\Template\ErrorTemplator;
+use App\Core\Abstraction\ServicesLoadersInterface;
+use App\Services\Template\ErrorTemplator;
 
 abstract class Controller
-{     
-      /**
-       * model and views loader
-       * @var object
-       */
-      public $load;
+{
+    /**
+     * model and views loader
+     * @var object
+     */
+    public $load;
 
-      // services goes down here
+    // services goes down here
 
-      public function __construct(ServicesLoadersInterface $service,Loader $loader)
-      {
-         $this->load = $loader;
-      }
+    public function __construct(ServicesLoadersInterface $service, Loader $loader)
+    {
+        $this->load = $loader;
+    }
 
-      /**
-       * Default Manage Method
-       *
-       * @return void
-       */
-      public function manage()
-      {     
-            $method = Linker::route('DEFAULT_ACTION'); // default action
-            $controller = static::class;
-            die(ErrorTemplator::exceptionError("Error <b>$controller Controller</b> needs a <b>$method</b> Method"));
-      }
+    /**
+     * Default Manage Method
+     *
+     * @return void
+     */
+    public function manage()
+    {
+        $method = Linker::route('DEFAULT_ACTION'); // default action
+        $controller = static::class;
+        die(ErrorTemplator::exceptionError("Error <b>$controller Controller</b> needs a <b>$method</b> Method"));
+    }
 
-      /**
-       * Default Error Action
-       *
-       * @return void
-       */
-      public function errorAction()
-      {
-             $this->load->view("error", ["manage"], "404");
-      }
+    /**
+     * Default Error Action
+     *
+     * @return void
+     */
+    public function errorAction()
+    {
+        $this->load->view("error", ["manage"], "404");
+    }
 }

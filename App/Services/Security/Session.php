@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,91 +23,92 @@
  *
  * INFO :
  *  Session class
- * 
+ *
  */
 
-namespace Timino\App\Services\Security;
+namespace App\Services\Security;
 
 class Session
 {
-   /**
-    * start session method
-    *
-    * @return void
-    */
-   public function init()
-   {
-      if(!isset($_SESSION)) session_start();
-   }
+    /**
+     * start session method
+     *
+     * @return void
+     */
+    public function init()
+    {
+        if (!isset($_SESSION)) session_start();
+    }
 
-   /**
-    * change session id
-    *
-    * @return void
-    */
-   public function regenerate()
-   {
-      session_regenerate_id();
-   }
+    /**
+     * change session id
+     *
+     * @return void
+     */
+    public function regenerate()
+    {
+        session_regenerate_id();
+    }
 
-   /**
-    * set session method
-    *
-    * @param string $name session name
-    * @param string $val  session value
-    * @return void
-    */
-   public function set($name, $val)
-   {
-      $_SESSION[$name] = $val;
-   }
+    /**
+     * set session method
+     *
+     * @param string $name session name
+     * @param string $val session value
+     * @return void
+     */
+    public function set($name, $val)
+    {
+        $_SESSION[$name] = $val;
+    }
 
-   /**
-    * get session method
-    *
-    * @param string $name session name
-    * @return mixed
-    */
-   public function get($name)
-   {
-      return (isset($_SESSION[$name])) ? $_SESSION[$name] : false;
-   }
+    /**
+     * get session method
+     *
+     * @param string $name session name
+     * @return mixed
+     */
+    public function get($name)
+    {
+        return (isset($_SESSION[$name])) ? $_SESSION[$name] : false;
+    }
 
     /**
      * @param string $name session name
      * @param string $val session value
      */
     public function serialize($name, $val)
-   {
-       $_SESSION[$name] = \serialize($val);
-   }
+    {
+        $_SESSION[$name] = \serialize($val);
+    }
 
     /**
      * @param  string $name session name
      * @return bool|mixed
      */
     public function unserialize($name)
-   {
-       return isset($_SESSION[$name]) ? \unserialize($_SESSION[$name]) : false;
-   }
-   /**
-    * unset session method
-    *
-    * @param string $name session name
-    * @return void
-    */
-   public function remove($name)
-   {
-      if(isset($_SESSION[$name]))  unset($_SESSION[$name]);
-   }
+    {
+        return isset($_SESSION[$name]) ? \unserialize($_SESSION[$name]) : false;
+    }
 
-   /**
-    * destroy the whole session method
-    *
-    * @return void
-    */
-   public function destroy()
-   {
-      session_destroy();
-   }
+    /**
+     * unset session method
+     *
+     * @param string $name session name
+     * @return void
+     */
+    public function remove($name)
+    {
+        if (isset($_SESSION[$name])) unset($_SESSION[$name]);
+    }
+
+    /**
+     * destroy the whole session method
+     *
+     * @return void
+     */
+    public function destroy()
+    {
+        session_destroy();
+    }
 }

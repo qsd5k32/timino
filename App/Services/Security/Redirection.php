@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Timino - PHP MVC framework
  *
  * @package     Timino
@@ -8,7 +8,7 @@
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
- * 
+ *
  * Copyright (C) 2018
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,10 +23,10 @@
  *
  * INFO :
  *  Redirection service class
- * 
+ *
  */
 
-namespace Timino\App\Services\Security;
+namespace App\Services\Security;
 
 class Redirection
 {
@@ -35,7 +35,7 @@ class Redirection
      */
     public function to($path)
     {
-        header("location:".$path);
+        header("location:" . $path);
     }
 
     /**
@@ -44,6 +44,6 @@ class Redirection
      */
     public function toWithDelay($path, $delay = 1)
     {
-        header( "Refresh:".$delay."; url=".$path, true, 303);
+        header("Refresh:" . $delay . "; url=" . $path, true, 303);
     }
 }
