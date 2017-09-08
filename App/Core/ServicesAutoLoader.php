@@ -69,14 +69,13 @@ class ServicesAutoLoader implements ServicesLoadersInterface
     {
         // remove php extension
         $services = array_map(function ($elem) {
-            return preg_replace("/\.php$/", NULL, $elem);
+            $elem = substr($elem, strpos($elem, "App"));
+            return rtrim($elem, ".php");
         }, $this->scan());
 
         // explode services to an array and remove base directories /var/www
         for ($i = 0; $i < sizeof($services); $i++) {
             $explodeServices[] = explode("/", $services[$i]);
-            // unset var & www
-            unset($explodeServices[$i][0], $explodeServices[$i][1], $explodeServices[$i][2]);
         }
 
         // set each service with name and
