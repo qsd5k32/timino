@@ -26,7 +26,7 @@ commented code
 ### Instalation :
 - Via composer :
 ```
-composer require timino/timino
+composer create-project timino/timino projectName
 ```
 - Manually:
 - Clone from github via SSH or HTTPS
@@ -37,38 +37,9 @@ HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
 ```
 - Or download it directly from github as a compressed file
 
-### Configuration :
+ Configuration :
+ ================
 
-- After downloading the package with composer you will get something structured like this
-```
- Your project
- └── vendor
-     ├── composer
-     └── timino
-         └── timino // move all this folder content to Your base project
-             ├── App
-             │ 
-             └── pub
- ```
- - Move App and pub and composer.json from timino to your base folder your project folder
- 
- - *It should look like this* :
- ```
- Your project 
- ├── App
- │   
- ├── pub
- │ --- composer.json 
- │ --- composer.lock
- └── vendor
- ```
- - now run 
-
- ```
- composer dump-autoload 
- ```
-  - to generate the autoloading files .
-  
   ### Web server configuration 
   #### Apache
   * Apache rewrite module must be activated
