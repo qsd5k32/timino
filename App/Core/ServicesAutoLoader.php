@@ -30,6 +30,7 @@ namespace App\Core;
 
 use App\Core\Abstraction\ServicesLoadersInterface;
 use App\Services\Template\ErrorTemplator;
+use App\Support\Dir;
 
 class ServicesAutoLoader implements ServicesLoadersInterface
 {
@@ -48,59 +49,6 @@ class ServicesAutoLoader implements ServicesLoadersInterface
     }
 
     /**
-     * @return array scan services directory
-     */
-    private function scan()
-    {
-        $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(APP . "Services" . DS));
-
-        $files = array();
-        foreach ($rii as $file)
-            if (!$file->isDir())
-                $files[] = $file->getPathname();
-        return $files;
-    }
-
-    /**
-     * generate services method
-     * @return array service name => service class
-     */
-    private function generate()
-    {
-        // remove php extension
-        $services = array_map(function ($elem) {
-            $elem = substr($elem, strpos($elem, "App"));
-            return rtrim($elem, ".php");
-        }, $this->scan());
-
-        // explode services to an array and remove base directories /var/www
-        for ($i = 0; $i < sizeof($services); $i++) {
-            $explodeServices[] = explode("/", $services[$i]);
-        }
-
-        // set each service with name and
-        // replace directory separator with namespace separator
-        foreach ($explodeServices as $service) {
-            // make first service letter upper case
-            $ucfirstServices = array_map(function ($elem) {
-                return ucfirst($elem);
-            }, array_values($service));
-
-            $servicesNames[] = $ucfirstServices[count($ucfirstServices) - 1];
-
-            $srv[] = implode("/", $ucfirstServices);
-            $servicesNamespaces = array_map(function ($elem) {
-                $elem = preg_replace("#\/#", "\\", $elem);
-                return "\\" . $elem;
-            }, $srv);
-        }
-
-        // each service with name as key and namespace as value
-        return array_combine($servicesNames, $servicesNamespaces);
-    }
-
-
-    /**
      * set()
      * register services
      * single tone with instantiate()
@@ -113,7 +61,7 @@ class ServicesAutoLoader implements ServicesLoadersInterface
          * set instantiate single tone with ::instantiate() and normal with new
          * and save services to $this->services array;
          */
-        foreach ($this->generate() as $srvName => $service) {
+        foreach (Dir::classNamesWithNamespaces(APP."Services/") as $srvName => $service) {
             try {
 
                 if (!class_exists($service)) throw new  \Exception("Error <b>$service</b> Service <b>class</b> doesn't exists !");
