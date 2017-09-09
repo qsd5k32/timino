@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Tinimo - PHP MVC framework
+ * Timino - PHP MVC framework
  *
- * @package     Tinimo
+ * @package     Timino
  * @author      Lotfio Lakehal <contact@lotfio-lakehal.com>
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
@@ -28,16 +28,16 @@
 
 return [
 
-    "DRIVER" => "mysql",
-    "HOST" => "127.0.0.1",
-    "NAME" => "Timino",
-    "USER" => "root",
-    "PASS" => "123456",
+    "DRIVER"    => "mysql",
+    "HOST"      => "127.0.0.1",
+    "NAME"      => "Timino",
+    "USER"      => "root",
+    "PASS"      => "123456",
 
     "OPTIONS" => [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-        PDO::ATTR_EMULATE_PREPARES => false,
+        PDO::ATTR_EMULATE_PREPARES   => false,
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
     ]
 

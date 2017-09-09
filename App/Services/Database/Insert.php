@@ -33,7 +33,7 @@ class Insert
 {
     /**
      * Database connection instance
-     * exemple :
+     * example :
      * into("users", [
      * "Name"   => "lotfio",
      * "Email"  => "lotfio@admin.com",

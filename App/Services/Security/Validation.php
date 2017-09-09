@@ -28,7 +28,7 @@
 
 namespace App\Services\Security;
 
-use Timino\App\Core\Linker;
+use App\Core\Linker;
 
 class Validation
 {

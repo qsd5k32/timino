@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Tinimo - PHP MVC framework
+ * Timino - PHP MVC framework
  *
- * @package     Tinimo
+ * @package     Timino
  * @author      Lotfio Lakehal <contact@lotfio-lakehal.com>
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
@@ -28,10 +28,10 @@
 
 return [
 
-    "HOST" => "smtp.gmail.com",
-    "USER" => "lotfiolakehal@gmail.com",
-    "PASS" => "*******",
-    "FROM" => "lotfio-lakehal@gmail.com",
+    "HOST"      => "smtp.gmail.com",
+    "USER"      => "lotfiolakehal@gmail.com",
+    "PASS"      => "*******",
+    "FROM"      => "lotfio-lakehal@gmail.com",
     "FROM_NAME" => "lotfio",
     "REPLAY_TO" => "noreplay",
 ];

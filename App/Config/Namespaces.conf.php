@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Tinimo - PHP MVC framework
+ * Timino - PHP MVC framework
  *
- * @package     Tinimo
+ * @package     Timino
  * @author      Lotfio Lakehal <contact@lotfio-lakehal.com>
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
@@ -29,6 +29,5 @@
 return [
 
     "CONTROLLERS" => BNS . "Controllers\\",
-    "MODELS" => BNS . "Models\\",
-
+    "MODELS"      => BNS . "Models\\",
 ];
