@@ -103,7 +103,8 @@ Usage :
 * configure your mailer credentials 
 
 ### 2- Create your first controller :
-* make sure it starts with a capital letter (stadlycaps)
+* Create Controller file ``Test.php`` inside Controllers Folder and create a class Test.
+* Make sure it starts with a capital letter both class and file (stadlycaps)
 
 ```php
 <?php
