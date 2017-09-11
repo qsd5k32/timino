@@ -34,32 +34,6 @@ class Index extends Model
 {
     public function test()
     {
-        // insert
-        // echo $this->record->insert->into("users",array(
-        //    "Name"   => "bilal",
-        //    "Email"  => "bilal@gmail.com",
-        //    "Passwd" => sha1("123456")
-        // ));
 
-        // $this->record->update->set("users", array(
-        //    "Email" => "bilal@000000000000"
-        // ), array(
-        //    "Email | = " => "bilal@gmail.com | and",
-        //    "Name  | = " => "timino"
-        // ));
-
-        // delete
-        // echo $this->record->delete->from("users",array(
-        //    "Email | = " => "lotfio@gmail.com | and",
-        //    "Name  | = " => "timino"
-        // ));
-
-        // select
-        //  $do = $this->record->select->from("users", array("Email"), array(
-        //     "Name | = " => "timino"
-
-        //  ), "ORDER BY ID ");
-
-        //  if($do) \print_r($do); else echo "cannot select data";
     }
 }

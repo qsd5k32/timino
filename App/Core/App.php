@@ -59,7 +59,7 @@ class App
 
     /**
      * App constructor.
-     * @param Request $request
+     * @param RequestInterface $request
      */
     public function __construct(RequestInterface $request)
     {
