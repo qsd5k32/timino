@@ -25,15 +25,18 @@ commented code
 
 ### Instalation :
 - Via composer :
+
 ```
 composer create-project timino/timino projectName
+
 ```
 - Manually:
 - Clone from github via SSH or HTTPS
- 
-```
+
+``` 
 SSH  : git clone git@github.com:lotfio-lakehal/timino.git
 HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
+
 ```
 - Or download it directly from github as a compressed file
 
@@ -44,7 +47,8 @@ HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
   #### Apache
   * Apache rewrite module must be activated
   * Your apache config file for this application should look something like this :
-  ```
+
+```
 <VirtualHost *:80>
     
     ServerAdmin  webmaster@localhost
@@ -62,12 +66,13 @@ HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
     
 
 </VirtualHost>
-  ```
+
+```
+
   #### Nginx 
   * If you are using nginx you config file should look like this
 ```
 server{
-    
     listen       80 default_server;
     server_name  yourproject.dev;
     error_log    /var/log/nginx/error.log;
@@ -91,7 +96,9 @@ server{
     }
 
 }
+
 ```
+
 Usage :
 =======
 ### 1-  configuration :
@@ -100,7 +107,8 @@ Usage :
 * configure your mailer credentials 
 
 ### 2- Create your first controller :
-* make sure it starts with a capital letter 
+* make sure it starts with a capital letter
+
 ```
 <?php
 
@@ -115,23 +123,31 @@ class Test extends Controller
       // echo "this is the default action you can change it from the routes.conf file but make sure you change the default method on the base controller App\Core\Controller to the same name";
     }
 }
+
 ```
+
 ### 3- load views :
 * Create a folder inside the views folder which should be named exactly as the controller name so lets create a Test folder inside views folder
 * make sure it starts with a capital letter 
+
 ````
-    public function manage()
-    {
-        $this->load->view("view folder", array("viewPageOne", "viewPageTo","and so one you can also use comma separated string instead of array"), "pageTitle");
-    }
+public function manage()
+  {
+    $this->load->view("view folder", array("viewPageOne", "viewPageTo","and so one you can also use comma separated string instead of array"), "pageTitle");
+  }
+    
 ````
+
 
 ### 4- load model data and pass it to the view :
 * create a model inside the models folder 
 * make sure it starts with a capital letter 
 
+
+
 ````
 <?php
+
 namespace App\Models;
 
 use App\Core\Model;
@@ -147,15 +163,17 @@ class Test extends Model
     }
 }
 ````
-* On your controller method load it like that :
-````
-    public function manage()
-    {
-        $data["user"] = $this->load->model("test")->testModelData();
-        
-        $this->load->view("view folder",[pages], "title", $data);
-    }
 
+* On your controller method load it like that :
+
+````
+  public function manage()
+  {
+     $data["user"] = $this->load->model("test")->testModelData();
+        
+     $this->load->view("view folder",[pages], "title", $data);
+  }
+  
 ````
 
 ### 5- use data inside the view :
@@ -166,8 +184,8 @@ class Test extends Model
 // Manage.php page inside Views\Test
 
 <?php
-
  var_dump($modelData); // here you will get an object of data returned from the model
+ 
 ````
 
 # Dealing with Database : 
