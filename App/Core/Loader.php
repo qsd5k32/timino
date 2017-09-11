@@ -59,13 +59,13 @@ class Loader
     /**
      * view method
      * load views with header and footer
-     * load views from _tmp directory dynamicaly
+     * load views from _tmp directory dynamically
      * load views from given folder
      *
      * @param string $folder
-     * @param array $files
+     * @param array  $files
      * @param string $pageTitle
-     * @param array $modelData
+     * @param array  $modelData
      * @return void
      */
     public function view($folder, $files, $pageTitle = NULL, $modelData = [])
@@ -146,6 +146,48 @@ class Loader
         }
 
         require_once Linker::route("VIEWS") . "_tmp" . DS . "Footer.php";
+    }
+
+
+    /**
+     * load naked view without header and footer
+     * @param       $folder
+     * @param       $files
+     * @param array $modelData
+     */
+    public function nakedView($folder, $files, $modelData = [])
+    {
+        $folder = ucfirst($folder);
+
+        if (is_string($files)) $files = explode(",", $files);
+
+        $files = array_map("ucfirst", $files);
+
+        $modelData = (object)$modelData;
+
+        // routes
+        $assets = (object)Linker::route("ASSETS");
+        $uploads = (object)Linker::route("UPLOADS");
+
+        try {
+
+            if (!is_dir(Linker::route("VIEWS") . $folder)) throw new \Exception("Requested Folder <b>$folder</b> does not exists on the Views Folder");
+
+            foreach ($files as $file) {
+
+                if (file_exists(Linker::route("VIEWS") . $folder . DS . $file . ".php")) {
+
+                    require Linker::route("VIEWS") . $folder . DS . $file . ".php";
+
+                } else {
+                    die(ErrorTemplator::exceptionError("file <b>$file.php</b> was not found on <b>$folder</b> views  folder "));
+                }
+
+            }
+        } catch (\Exception $e) {
+            die(ErrorTemplator::exceptionError($e->getMessage()));
+        }
+
     }
 
 }
