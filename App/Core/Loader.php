@@ -190,4 +190,55 @@ class Loader
 
     }
 
+    /**
+     * Render Templates with Twig Templating engine
+     * @param       $folder
+     * @param       $files
+     * @param null  $pageTitle
+     * @param array $modelData
+     */
+    public function twigView($folder, $files, $pageTitle = NULL, $modelData = [])
+    {
+        try {
+
+            $folder = ucfirst($folder);
+
+            if (is_string($files)) $files = explode(",", $files);
+
+            $files = array_map("ucfirst", $files);
+
+
+            $tmp    = Linker::route("VIEWS") . "_tmp" . DS;
+            $folder = Linker::route("VIEWS") . $folder . DS;
+
+            // set twig loader and environment
+            $loader = new \Twig_Loader_Filesystem(array($tmp, $folder));
+            $twig = new \Twig_Environment($loader, array("debug" => true));
+            $twig->addExtension(new \Twig_Extension_Debug());
+
+            // needed data to be passed to the view
+            $twig->addGlobal("assets", (object)Linker::route("ASSETS"));
+            $twig->addGlobal("uploads", (object)Linker::route("UPLOADS"));
+            $twig->addGlobal("pageTitle", $pageTitle);
+            $twig->addGlobal("modelData", (object)$modelData);
+
+
+            echo $twig->render("Header.twig");
+
+            foreach ($files as $file) {
+
+                if($file == "Header" || $file == "Footer") throw new \Twig_Error_Loader("<b>$file </b> already exists please use different name !");
+                echo $twig->render($file . ".twig");
+            }
+
+
+            echo $twig->render("Footer.twig");
+
+
+        } catch (\Twig_Error_Loader $e) {
+            die(ErrorTemplator::exceptionError($e->getMessage()));
+        }
+
+    }
+
 }
