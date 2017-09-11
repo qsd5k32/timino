@@ -25,10 +25,7 @@
  * Main Configuration file
  *
  */
-session_start([
-    "name" => "Timino"
-]);
-
+session_start(["name" => "Timino"]);
 
 defined("DS") || define("DS", DIRECTORY_SEPARATOR);
 
@@ -38,7 +35,9 @@ defined("APP") || define('APP', ROOT . "App" . DS);
 
 defined("PUB") || define('PUB', ROOT . "pub" . DS);
 
-defined("URL") || define('URL', htmlspecialchars($_SERVER["REQUEST_SCHEME"], ENT_QUOTES, "UTF-8") . "://" . htmlspecialchars($_SERVER["HTTP_HOST"], ENT_QUOTES, "UTF-8") . DS);
+defined("URL") || define('URL',
+    htmlspecialchars($_SERVER["REQUEST_SCHEME"], ENT_QUOTES, "UTF-8") . "://" .
+    htmlspecialchars($_SERVER["HTTP_HOST"], ENT_QUOTES, "UTF-8") . DS);
 
 defined("CONFIG") || define("CONFIG", APP . "Config" . DS);
 

@@ -27,13 +27,29 @@
  *
  */
 
-require_once "../vendor/autoload.php";
+/*
+ * ------------------------------------
+ *  base config file
+ * ------------------------------------
+ */
+require_once "../App/Config/base.php";
 
+/*
+ * ------------------------------------
+ *  psr-4 Autoloader
+ * ------------------------------------
+ */
+require_once "../vendor/autoload.php";
 
 use App\Core\{
     Request, App
 };
 
+/*
+ * ------------------------------------
+ *  Start Application
+ * ------------------------------------
+ */
 $request = new Request;
 
 new App($request);
