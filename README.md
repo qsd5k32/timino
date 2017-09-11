@@ -28,7 +28,6 @@ commented code
 
 ```
 composer create-project timino/timino projectName
-
 ```
 - Manually:
 - Clone from github via SSH or HTTPS
@@ -36,7 +35,6 @@ composer create-project timino/timino projectName
 ``` 
 SSH  : git clone git@github.com:lotfio-lakehal/timino.git
 HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
-
 ```
 - Or download it directly from github as a compressed file
 
@@ -48,7 +46,7 @@ HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
   * Apache rewrite module must be activated
   * Your apache config file for this application should look something like this :
 
-```
+```apache
 <VirtualHost *:80>
     
     ServerAdmin  webmaster@localhost
@@ -66,12 +64,11 @@ HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
     
 
 </VirtualHost>
-
 ```
 
   #### Nginx 
   * If you are using nginx you config file should look like this
-```
+```nginx
 server{
     listen       80 default_server;
     server_name  yourproject.dev;
@@ -96,7 +93,6 @@ server{
     }
 
 }
-
 ```
 
 Usage :
@@ -109,7 +105,7 @@ Usage :
 ### 2- Create your first controller :
 * make sure it starts with a capital letter
 
-```
+```php
 <?php
 
 namespace App\Controllers;
@@ -123,19 +119,17 @@ class Test extends Controller
       // echo "this is the default action you can change it from the routes.conf file but make sure you change the default method on the base controller App\Core\Controller to the same name";
     }
 }
-
 ```
 
 ### 3- load views :
 * Create a folder inside the views folder which should be named exactly as the controller name so lets create a Test folder inside views folder
 * make sure it starts with a capital letter 
 
-````
+````php
 public function manage()
   {
     $this->load->view("view folder", array("viewPageOne", "viewPageTo","and so one you can also use comma separated string instead of array"), "pageTitle");
   }
-    
 ````
 
 
@@ -145,7 +139,7 @@ public function manage()
 
 
 
-````
+````php
 <?php
 
 namespace App\Models;
@@ -166,26 +160,25 @@ class Test extends Model
 
 * On your controller method load it like that :
 
-````
+````php
   public function manage()
   {
      $data["user"] = $this->load->model("test")->testModelData();
         
      $this->load->view("view folder",[pages], "title", $data);
   }
-  
 ````
 
 ### 5- use data inside the view :
 * In your Test view folder ``Views/Test`` create your Manage.php file this is the file that matches you default method name manage method and of course each view will take the name of the method.
 * Data passed to the view is stored in ``$modelData`` variable which is casted to object type so ``$modelData`` to show your data and deal with it like an object
 
-````
+````php
 // Manage.php page inside Views\Test
 
 <?php
  var_dump($modelData); // here you will get an object of data returned from the model
- 
+
 ````
 
 # Dealing with Database : 
