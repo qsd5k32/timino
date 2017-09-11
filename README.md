@@ -103,7 +103,7 @@ Usage :
 * configure your mailer credentials 
 
 ### 2- Create your first controller :
-* make sure it starts with a capital letter
+* make sure it starts with a capital letter (stadlycaps)
 
 ```php
 <?php
@@ -135,7 +135,7 @@ public function manage()
 
 ### 4- load model data and pass it to the view :
 * create a model inside the models folder 
-* make sure it starts with a capital letter 
+* make sure it starts with a capital letter (stadlycaps)
 
 
 
@@ -171,7 +171,7 @@ class Test extends Model
 
 ### 5- use data inside the view :
 * In your Test view folder ``Views/Test`` create your Manage.php file this is the file that matches you default method name manage method and of course each view will take the name of the method.
-* Data passed to the view is stored in ``$modelData`` variable which is casted to object type so ``$modelData`` to show your data and deal with it like an object
+* Data passed to the view is stored in ``$modelData`` variable which is casted to object type so debug the variable and see the result :
 
 ````php
 // Manage.php page inside Views\Test
@@ -186,7 +186,94 @@ class Test extends Model
 
 ### 1-  Insert :
 * insert data into the database 
+```php
+<?php
+namespace App\Models;
+
+use App\Core\Model;
+
+class Test extends Model
+{
+    public function insertNewUser()
+    {
+      $do = $this->record->insert->into("users", array(
+          "Name"   => "lotfio",
+          "Email"  => "lotfio@gmail.com",
+          "Passwd" => SHA1('mypass')
+      ));
+      
+      var_dump($do); // bool true | false
+     }
+}
+```
 
 ### 2-  Select :
+* Select data from database 
+```php
+<?php
+namespace App\Models;
+
+use App\Core\Model;
+
+class Test extends Model
+{
+    public function selectFromUsers()
+    {
+      $do = $this->record->select->from("users", "selection array or coma separated string", array("Name | = " => "lotfio"), "LIMIT 1");
+      
+      var_dump($do); // mixed object | false
+      
+      /* conditions can be passed as an array
+       WHERE  array("
+        
+        "Name   |  = "  => "name  | and",
+        "Email  | != "  => "hh@kk | or",
+        "and so on"       
+          
+      "); */
+     }
+}
+```
 ### 3-  Update :
+* Update data into database 
+```php
+<?php
+namespace App\Models;
+
+use App\Core\Model;
+
+class Test extends Model
+{
+    public function updateUser()
+    {
+       $this->record->update->set("users", array( // values
+          "Name" => "John"
+      ), array( // conditions
+          
+          "Email   | = " => "bilal@gmail.com | and",
+          "Passwd  | != " => SHA1("123")
+       ));
+       
+     }
+}
+```
 ### 4-  Delete :
+* Delete data from database 
+```php
+<?php
+namespace App\Models;
+
+use App\Core\Model;
+
+class Test extends Model
+{
+    public function DeleteUser()
+    {
+         echo $this->record->delete->from("users",array( // conditions
+            "Email | != " => "lotfio@gmail.com | and",
+            "Name  |  = " => "timino"
+          ));
+
+     }
+}
+```
