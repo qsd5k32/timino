@@ -46,15 +46,18 @@ class Dir
         return $files;
     }
 
+
     /**
-     * className => classNamespace
-     * @return array service name => service class
+     * get classes and there namespaces as an array
+     * @param $path directory to scan
+     * @param $fromPath namespace start path
+     * @return array class name => class namespace
      */
-    public static function classNamesWithNamespaces($path)
+    public static function getClassesWithNamespaces($path, $fromPath)
     {
         // remove php extension and subdirectories
-        $files = array_map(function ($elem) {
-            $elem = substr($elem, strpos($elem, "App"));
+        $files = array_map(function ($elem) use($fromPath) {
+            $elem = substr($elem, strpos($elem, $fromPath));
             return rtrim($elem, ".php");
         }, self::scan($path));
 
@@ -77,6 +80,23 @@ class Dir
 
         }
 
+        //self::getConfigurationFiles();
+
+      //  die;
+
         return array_combine($classNames, $classNamespaces);
     }
+
+
+   /* public static function getConfigurationFiles()
+    {
+        $files = self::scan("../App/Config/");
+        foreach ($files as $file)
+        {
+            $onlyFiles[] =  explode("/", $file)[3];
+        }
+
+        echo "<pre>";
+        print_r($onlyFiles);
+    }*/
 }

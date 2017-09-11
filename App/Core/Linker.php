@@ -32,11 +32,6 @@ use App\Services\Template\ErrorTemplator;
 
 class Linker
 {
-    /**
-     * config file suffix
-     * @var string
-     */
-    const SUFFIX = ".conf.php";
 
     /**
      * routes method for all application links and paths
@@ -45,7 +40,7 @@ class Linker
      */
     public static function route($key)
     {
-        $routes = CONFIG . "Routes" . self::SUFFIX;
+        $routes = CONFIG . "routes.php";
 
         try {
 
@@ -84,7 +79,7 @@ class Linker
      */
     public static function namespace($key)
     {
-        $namespaces = CONFIG . "Namespaces" . self::SUFFIX;
+        $namespaces = CONFIG . "namespaces.php";
 
         try {
             if (!file_exists($namespaces)) throw new \Exception("Error $namespaces file was not found");
@@ -108,7 +103,7 @@ class Linker
      */
     public static function database($key)
     {
-        $file = CONFIG . "Database" . self::SUFFIX;
+        $file = CONFIG . "database.php";
 
         try {
             if (!file_exists($file)) throw new \Exception("Error $file file was not found");
@@ -132,7 +127,7 @@ class Linker
      */
     public static function regex($key)
     {
-        $file = CONFIG . "Regex" . self::SUFFIX;
+        $file = CONFIG . "regex.php";
 
         try {
             if (!file_exists($file)) throw new \Exception("Error $file file was not found");
@@ -156,7 +151,7 @@ class Linker
      */
     public static function mail($key)
     {
-        $file = CONFIG . "Mail" . self::SUFFIX;
+        $file = CONFIG . "mail.php";
 
         try {
             if (!file_exists($file)) throw new \Exception("Error $file file was not found");

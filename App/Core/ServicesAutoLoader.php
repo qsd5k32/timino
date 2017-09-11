@@ -61,7 +61,7 @@ class ServicesAutoLoader implements ServicesLoadersInterface
          * set instantiate single tone with ::instantiate() and normal with new
          * and save services to $this->services array;
          */
-        foreach (Dir::classNamesWithNamespaces(APP."Services/") as $srvName => $service) {
+        foreach (Dir::getClassesWithNamespaces(APP."Services/", "App") as $srvName => $service) {
             try {
 
                 if (!class_exists($service)) throw new  \Exception("Error <b>$service</b> Service <b>class</b> doesn't exists !");
