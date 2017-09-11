@@ -37,11 +37,10 @@ class Dir
      */
     public static function scan($path)
     {
-        $dirs  = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
+        $dirs = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
         $files = array();
-        foreach ($dirs as $dir)
-        {
-            if(!$dir->isDir())  $files[] = $dir->getPathName();
+        foreach ($dirs as $dir) {
+            if (!$dir->isDir()) $files[] = $dir->getPathName();
         }
         return $files;
     }
@@ -49,14 +48,14 @@ class Dir
 
     /**
      * get classes and there namespaces as an array
-     * @param $path directory to scan
+     * @param $path     directory to scan
      * @param $fromPath namespace start path
      * @return array class name => class namespace
      */
     public static function getClassesWithNamespaces($path, $fromPath)
     {
         // remove php extension and subdirectories
-        $files = array_map(function ($elem) use($fromPath) {
+        $files = array_map(function ($elem) use ($fromPath) {
             $elem = substr($elem, strpos($elem, $fromPath));
             return rtrim($elem, ".php");
         }, self::scan($path));
@@ -80,23 +79,8 @@ class Dir
 
         }
 
-        //self::getConfigurationFiles();
-
-      //  die;
 
         return array_combine($classNames, $classNamespaces);
     }
 
-
-   /* public static function getConfigurationFiles()
-    {
-        $files = self::scan("../App/Config/");
-        foreach ($files as $file)
-        {
-            $onlyFiles[] =  explode("/", $file)[3];
-        }
-
-        echo "<pre>";
-        print_r($onlyFiles);
-    }*/
 }
