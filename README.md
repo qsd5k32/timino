@@ -128,20 +128,28 @@ class Test extends Controller
 
 ### 3- load views :
 * Create a folder inside the views folder which should be named exactly as the controller name so lets create a Test folder inside views folder
-* make sure it starts with a capital letter 
+* make sure it starts with a capital letter (and the class name is stadlyCaps)
+* `view()` method loads an array or coma separated string of views from the `Views/yourviewFolder` and automaticaly  loads the header and the footer from the `Views/_tmp` folder. Besides you can load views dynamically in every call just by puting them inside `_tmp` folder exactly like the header ond the footer and make sure to call them on the view :
+
 
 ````php
 public function manage()
   {
-    $this->load->view("view folder", array("viewPageOne", "viewPageTo","and so one you can also use comma separated string instead of array"), "pageTitle");
+    $this->load->view("views folder", array("viewPageOne", "viewPageTo"), "pageTitle");
   }
 ````
-
+* You can also load a naked view without header and footer like this :
+```php
+public function manage()
+{
+  $this->load->nakedView("views folder", array("viewPageOne", "viewPageTo"));
+  // here you can pass your title to the view alongside with the data like this $data['title'] = "my title";
+}
+```
 
 ### 4- load model data and pass it to the view :
 * create a model inside the models folder 
-* make sure it starts with a capital letter (stadlycaps)
-
+* make sure it starts with a capital letter (and the class name is stadlyCaps)
 
 
 ````php
