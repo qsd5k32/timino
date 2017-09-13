@@ -1,12 +1,3 @@
-``` 
- ______                                      
-/\__  _\__              __                   
-\/_/\ \/\_\    ___ ___ /\_\    ___     ___   
-   \ \ \/\ \ /' __` __`\/\ \ /' _ `\  / __`\ 
-    \ \ \ \ \/\ \/\ \/\ \ \ \/\ \/\ \/\ \_\ \
-     \ \_\ \_\ \_\ \_\ \_\ \_\ \_\ \_\ \____/
-      \/_/\/_/\/_/\/_/\/_/\/_/\/_/\/_/\/___/
-```
 # Timino PHP S.O.L.I.D MVC framework 
 ![logo](http://www.simpleimageresizer.com/_uploads/photos/9f3d6cd8/logo_60.png)
 # Note : This is version 1.0.0 alpha
