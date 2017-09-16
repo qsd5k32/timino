@@ -1,22 +1,22 @@
-# Timino PHP S.O.L.I.D MVC framework 
-![logo](http://www.simpleimageresizer.com/_uploads/photos/9f3d6cd8/logo_60.png)
+# Timino, Simple lightweight and S.O.L.I.D PHP MVC framework 
+![logo](https://user-images.githubusercontent.com/18489496/30515021-af6f16a6-9b18-11e7-8555-00ea2407ffc9.png)
+
 # Note : This is version 1.0.0 alpha
 ![Licence](https://img.shields.io/badge/Licence-MIT-orange.svg)
 ![PHP7](https://img.shields.io/badge/php-7-blue.svg)
 ![version Alpha](https://img.shields.io/badge/Alpha-V1.0.0-yellow.svg)
 ### Introduction :
-Timino is a simple and lightweight PHP MVC framework practical and easy to understand and suitable for small projects, Timino is not very complicated so you dont need to be an advanced php developer just some solid basic knowledge and you are ready to go 
-. Timino is simple framework you don't need to learn a very complicated documentation Besides it is customizable so you can customize and add different functionality and services
+Timino is a simple, lightweight and S.O.L.I.D PHP MVC framework. Timino is a practical, easy to understand and suitable for small projects, Timino is not very complicated so you don't need to be an advanced PHP developer just some solid basic knowledge and you are ready to go.
+. In addition you don't need to learn a very complicated documentation Besides it is customizable so you can customize and add different functionality and services.
 
 ### Features : 
 - Simple and easy to understand 
 - Clean and documented code 
-- Tries to follows SOLID principles
+- Tries to follows S.O.L.I.D principles
 - Uses PHP >= 7 
 - Psr-4 autoloading 
 - Tries to follow PSR coding guidelines
-- Uses PDO for any database requests, comes with an additional PDO debug tool to emulate your SQL statements
-commented code
+- Uses PDO for any database requests.
 - Uses only native PHP code, so people don't have to learn a framework
 - Uses Services to perform different tasks 
 - Ability to create own services
@@ -27,7 +27,7 @@ commented code
 - mod_rewrite activated (Apache module of course)
 - basic knowledge of Composer for sure
 
-### Instalation :
+### Installation :
 - Via composer :
 
 ```
@@ -71,7 +71,7 @@ HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
 ```
 
   #### Nginx 
-  * If you are using nginx you config file should look like this
+  * If you are using nginx your config file should look like this :
 ```nginx
 server{
     listen       80 default_server;
@@ -132,18 +132,26 @@ class Test extends Controller
 * `view()` method loads an array or coma separated string of views from the `Views/yourviewFolder` and automaticaly  loads the header and the footer from the `Views/_tmp` folder. Besides you can load views dynamically in every call just by puting them inside `_tmp` folder exactly like the header ond the footer and make sure to call them on the view :
 
 
-````php
+```php
 public function manage()
   {
     $this->load->view("views folder", array("viewPageOne", "viewPageTo"), "pageTitle");
   }
-````
+```
 * You can also load a naked view without header and footer like this :
 ```php
 public function manage()
 {
   $this->load->nakedView("views folder", array("viewPageOne", "viewPageTo"));
   // here you can pass your title to the view alongside with the data like this $data['title'] = "my title";
+}
+```
+
+* You can also Use twig templating engine just install it via composer and load views like that :
+```php
+public function manage()
+{
+  $this->load->twigView("views folder", array("viewPageOne", "viewPageTo"));
 }
 ```
 
