@@ -20,7 +20,7 @@
     },
 
     "require-dev": {
-        "timinocli/timinocli": "^0.1"
+        "timinocli/timinocli": "^0"
     },
 
     "autoload":{
