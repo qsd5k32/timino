@@ -45,15 +45,15 @@ abstract class Model
 
     public function __construct(ServicesLoadersInterface $service)
     {
-        $this->record = $service->get("Record");
-        $this->form = $service->get("Form");
-        $this->mail = $service->get("Mailer");
-        $this->auth = $service->get("Authentication");
-        $this->cookie = $service->get("Cookie");
-        $this->session = $service->get("Session");
-        $this->token = $service->get("Token");
+        $this->record   = $service->get("Record");
+        $this->form     = $service->get("Form");
+        $this->mail     = $service->get("Mailer");
+        $this->auth     = $service->get("Authentication");
+        $this->cookie   = $service->get("Cookie");
+        $this->session  = $service->get("Session");
+        $this->token    = $service->get("Token");
         $this->validate = $service->get("Validation");
         $this->redirect = $service->get("redirection");
-        $this->upload = $service->get("Upload");
+        $this->upload   = $service->get("Upload");
     }
 }
