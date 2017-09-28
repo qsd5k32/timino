@@ -32,21 +32,67 @@ use App\Services\Template\ErrorTemplator;
 
 class Linker
 {
+    /**
+     * @var array available routes method
+     */
+    private static $routes = array(
+        "route",
+        "namespace",
+        "database",
+        "regex",
+        "mail"
+    );
 
     /**
-     * routes method for all application links and paths
-     * @param string $key
-     * @return string path to
+     * @param $method
+     * @param $arguments
+     * @return mixed
      */
-    public static function route($key)
+    public static function __callStatic($method, $arguments)
     {
-        $routes = CONFIG . "routes.php";
+        try {
+            if (!in_array($method, self::$routes)) throw new \Exception("Error Method $method was not found !");
+
+            return self::link($method, $arguments[0]);
+
+        } catch (\Exception $e) {
+            die(ErrorTemplator::exceptionError($e->getMessage()));
+        }
+    }
+
+    /**
+     * @param $method
+     * @param $key
+     * @return mixed
+     */
+    public static function link($method, $key)
+    {
+        $file = CONFIG;
+
+        switch ($method) {
+            case "route" :
+                $file .= "routes.php";
+                break;
+            case "namespace" :
+                $file .= "namespaces.php";
+                break;
+            case "database" :
+                $file .= "database.php";
+                break;
+            case "regex" :
+                $file .= "regex.php";
+                break;
+            case "mail" :
+                $file .= "mail.php";
+                break;
+        }
 
         try {
 
-            if (!file_exists($routes)) throw new \Exception("Error $routes file was not found");
+            if (!file_exists($file)) throw new \Exception("Error $file file was not found");
 
-            $routes = require $routes;
+            $routes = require $file;
+
 
             // if dot access notation
             if (preg_match("#\.+#", $key)) {
@@ -56,14 +102,14 @@ class Linker
 
                 foreach ($keys as $key) {
 
-                    if (!isset($temp[$key])) throw new \Exception("Error $key key was not found");
+                    if (!isset($temp[$key])) throw new \Exception("Error $key key was not found on $file");
 
-                    $temp =& $temp[$key];
+                    $temp = &$temp[$key];
                 }
                 return $temp;
             }
 
-            if (!isset($routes[$key])) throw new \Exception("Error $key key was not found");
+            if (!isset($routes[$key])) throw new \Exception("Error $key key was not found on $file");
 
         } catch (\Exception $e) {
             die(ErrorTemplator::exceptionError($e->getMessage()));
@@ -71,100 +117,4 @@ class Linker
 
         return $routes[$key];
     }
-
-    /**
-     * routes method for all application links and paths
-     * @param string $key
-     * @return string path to
-     */
-    public static function namespace($key)
-    {
-        $namespaces = CONFIG . "namespaces.php";
-
-        try {
-            if (!file_exists($namespaces)) throw new \Exception("Error $namespaces file was not found");
-
-            $namespaces = require $namespaces;
-
-            if (!isset($namespaces[$key])) throw new \Exception("Error $key key was not found");
-
-        } catch (\Exception $e) {
-            die(ErrorTemplator::exceptionError($e->getMessage()));
-        }
-
-        return $namespaces[$key];
-    }
-
-    /**
-     * load database configuration
-     *
-     * @param [type] $key
-     * @return void
-     */
-    public static function database($key)
-    {
-        $file = CONFIG . "database.php";
-
-        try {
-            if (!file_exists($file)) throw new \Exception("Error $file file was not found");
-
-            $file = require $file;
-
-            if (!isset($file[$key])) throw new \Exception("Error $key key was not found");
-
-        } catch (\Exception $e) {
-            die(ErrorTemplator::exceptionError($e->getMessage()));
-        }
-
-        return $file[$key];
-    }
-
-    /**
-     * regular expression linker metod
-     *
-     * @param string $key regex name
-     * @return string regex pattern
-     */
-    public static function regex($key)
-    {
-        $file = CONFIG . "regex.php";
-
-        try {
-            if (!file_exists($file)) throw new \Exception("Error $file file was not found");
-
-            $file = require $file;
-
-            if (!isset($file[$key])) throw new \Exception("Error $key key was not found");
-
-        } catch (\Exception $e) {
-            die(ErrorTemplator::exceptionError($e->getMessage()));
-        }
-
-        return $file[$key];
-    }
-
-    /**
-     * email config linker metod
-     *
-     * @param string $key name
-     * @return string value
-     */
-    public static function mail($key)
-    {
-        $file = CONFIG . "mail.php";
-
-        try {
-            if (!file_exists($file)) throw new \Exception("Error $file file was not found");
-
-            $file = require $file;
-
-            if (!isset($file[$key])) throw new \Exception("Error $key key was not found");
-
-        } catch (\Exception $e) {
-            die(ErrorTemplator::exceptionError($e->getMessage()));
-        }
-
-        return $file[$key];
-    }
-
 }
