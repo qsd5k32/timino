@@ -80,7 +80,7 @@ class App
         try {
 
             $controller = Linker::namespace("CONTROLLERS") . ucfirst($this->controller);
-            if (!class_exists($controller)) throw new \Exception("Error controller <b>$controller</b> Doesn't exists");
+            if (!class_exists($controller)) throw new \Exception("error controller <b>$controller</b> Doesn't exists");
 
             $this->controller = new $controller(new ServicesAutoLoader, new Loader);
 

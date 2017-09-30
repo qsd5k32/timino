@@ -51,7 +51,7 @@ class Linker
     public static function __callStatic($method, $arguments)
     {
         try {
-            if (!in_array($method, self::$routes)) throw new \Exception("Error Method $method was not found !");
+            if (!in_array($method, self::$routes)) throw new \Exception("error Method $method was not found !");
 
             return self::link($method, $arguments[0]);
 
@@ -89,7 +89,7 @@ class Linker
 
         try {
 
-            if (!file_exists($file)) throw new \Exception("Error $file file was not found");
+            if (!file_exists($file)) throw new \Exception("error $file file was not found");
 
             $routes = require $file;
 
@@ -102,14 +102,14 @@ class Linker
 
                 foreach ($keys as $key) {
 
-                    if (!isset($temp[$key])) throw new \Exception("Error $key key was not found on $file");
+                    if (!isset($temp[$key])) throw new \Exception("error $key key was not found on $file");
 
                     $temp = &$temp[$key];
                 }
                 return $temp;
             }
 
-            if (!isset($routes[$key])) throw new \Exception("Error $key key was not found on $file");
+            if (!isset($routes[$key])) throw new \Exception("error $key key was not found on $file");
 
         } catch (\Exception $e) {
             die(ErrorTemplator::exceptionError($e->getMessage()));

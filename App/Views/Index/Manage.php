@@ -14,7 +14,7 @@
 
             <div class="col-md-12">
                   <div class="footer center-txt">
-                        Timino 2018 &copy;
+                       <?=$lang->set('SLOGAN')?>
                   </div>
             </div>      
 

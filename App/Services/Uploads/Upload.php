@@ -108,13 +108,13 @@ class Upload
         // image extension
         $this->ext = array_values(array_slice($name, -1))[0];
         if (!in_array($this->ext, $this->extensions)) {
-            $this->uploadErrors[] = "Error File type not allowed";
+            $this->uploadErrors[] = "error File type not allowed";
         }
         if ($this->size > 800000) {
             $this->uploadErrors[] = "Image File is too large ";
         }
         if ($this->errors > 0) {
-            $this->uploadErrors[] = "Error uploading File";
+            $this->uploadErrors[] = "error uploading File";
         }
         $this->image = $this->name . "." . $this->ext;
     }
@@ -134,13 +134,13 @@ class Upload
                 $this->ext[$i] = array_values(array_slice($name, -1))[0];
 
                 if (!in_array($this->ext[$i], $this->extensions)) {
-                    $this->uploadErrors[] = "Error File type not allowed";
+                    $this->uploadErrors[] = "error File type not allowed";
                 }
                 if ($this->size[$i] > 50000000) {
                     $this->uploadErrors[] = "Image File is too large";
                 }
                 if ($this->errors[$i] > 0) {
-                    $this->uploadErrors[] = "Error uploading File";
+                    $this->uploadErrors[] = "error uploading File";
                 }
                 $this->image[$i] = $this->name[$i] . "." . $this->ext[$i];
 
