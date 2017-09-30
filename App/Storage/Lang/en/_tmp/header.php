@@ -21,22 +21,10 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * INFO :
- * Index controller class
+ * language file
  *
  */
 
-namespace App\Controllers;
-
-use App\Core\Controller;
-
-class Index extends Controller
-{
-
-    public function manage($name = NULL, $email = NULL, $pass = NULL)
-    {
-        $this->load->model("index")->test();
-        $this->load->view("index", array("manage"));
-    }
-
-}
+return [
+    "DEFAULT_TITLE" => "Default Title",
+];

@@ -29,6 +29,7 @@
 namespace App\Core;
 
 use App\Services\Template\ErrorTemplator;
+use App\Support\Language;
 
 class Loader
 {
@@ -46,7 +47,7 @@ class Loader
 
         try {
 
-            if (!class_exists($model)) throw new \Exception("Error <b> $model Model </b> was not found !");
+            if (!class_exists($model)) throw new \Exception("error <b> $model Model </b> was not found !");
 
             return new $model(new ServicesAutoLoader());
 
@@ -78,8 +79,9 @@ class Loader
 
         $modelData = (object)$modelData;
 
-        $assets = (object)Linker::route("ASSETS");
+        $assets  = (object)Linker::route("ASSETS");
         $uploads = (object)Linker::route("UPLOADS");
+        $lang    = new Language();
 
         try {
 
@@ -168,6 +170,7 @@ class Loader
         // routes
         $assets = (object)Linker::route("ASSETS");
         $uploads = (object)Linker::route("UPLOADS");
+        $lang    = new Language();
 
         try {
 
@@ -221,6 +224,7 @@ class Loader
             $twig->addGlobal("uploads", (object)Linker::route("UPLOADS"));
             $twig->addGlobal("pageTitle", $pageTitle);
             $twig->addGlobal("modelData", (object)$modelData);
+            $twig->addGlobal("lang",  new Language());
 
 
             echo $twig->render("Header.twig");
@@ -240,5 +244,4 @@ class Loader
         }
 
     }
-
 }

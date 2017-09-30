@@ -67,5 +67,5 @@ return [
     ],
 
     // libs mail routes
-    "EMAIL" => APP . "Libs" . DS . "Mail" . DS,
+    "EMAIL" => APP . "Storage" . DS . "Mail" . DS,
 ];

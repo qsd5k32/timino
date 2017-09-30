@@ -64,7 +64,7 @@ class ServicesAutoLoader implements ServicesLoadersInterface
         foreach (Dir::getClassesWithNamespaces(APP."Services/", "App") as $srvName => $service) {
             try {
 
-                if (!class_exists($service)) throw new  \Exception("Error <b>$service</b> Service <b>class</b> doesn't exists !");
+                if (!class_exists($service)) throw new  \Exception("error <b>$service</b> Service <b>class</b> doesn't exists !");
 
                 $class = new \ReflectionClass($service);
 
@@ -95,7 +95,7 @@ class ServicesAutoLoader implements ServicesLoadersInterface
     {
         try {
             $serviceName = ucfirst($serviceName);
-            if (!isset($this->services[$serviceName])) throw new \Exception("Error service <b>$serviceName</b> Doesn't exists !");
+            if (!isset($this->services[$serviceName])) throw new \Exception("error service <b>$serviceName</b> Doesn't exists !");
             return $this->services[$serviceName];
         } catch (\Exception $e) {
 

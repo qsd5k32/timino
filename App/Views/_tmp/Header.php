@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title><?= (isset($pageTitle)) ? "Timino | " . $pageTitle : "Timino | Default page" ;?></title>
+    <title><?= (isset($pageTitle)) ? "Timino | " . $lang->set($pageTitle) : "Timino | ".$lang->set('DEFAULT_TITLE') ;?></title>
 
     <!-- Bootstrap -->
     <link href="<?=$assets->CSS.'timino.min.css'?>" rel="stylesheet">

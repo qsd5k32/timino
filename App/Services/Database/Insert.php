@@ -58,7 +58,7 @@ class Insert
     public function into($table, $data)
     {
 
-        if (!is_array($data)) die("Error : second parameter <b>$data</b> must be an array of keys and values");
+        if (!is_array($data)) die("error : second parameter <b>$data</b> must be an array of keys and values");
 
         $keys = array_keys($data);
         $values = array_values($data);

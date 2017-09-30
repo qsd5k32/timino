@@ -4,7 +4,7 @@
 
             <div class="col-md-6 center-txt">
 
-                  <h1 class="center-txt">Timino PHP MVC v1.0 alpha</h1>
+                  <h1 class="center-txt">Timino PHP MVC v1.0.0 alpha</h1>
                   <img src="<?=$uploads->IMG . 'logo.png'?>" alt="logo" title="Timino" class="logo">
                   <div class="mg-top-50"></div>
       
@@ -14,7 +14,7 @@
 
             <div class="col-md-12">
                   <div class="footer center-txt">
-                        Timino 2018 &copy;
+                       <?=$lang->set('SLOGAN')?>
                   </div>
             </div>      
 

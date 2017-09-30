@@ -55,11 +55,11 @@ abstract class Controller
     {
         $method = Linker::route('DEFAULT_ACTION'); // default action
         $controller = static::class;
-        die(ErrorTemplator::exceptionError("Error <b>$controller Controller</b> needs a <b>$method</b> Method"));
+        die(ErrorTemplator::exceptionError("error <b>$controller Controller</b> needs a <b>$method</b> Method"));
     }
 
     /**
-     * Default Error Action
+     * Default error Action
      *
      * @return void
      */
