@@ -1,7 +1,5 @@
 # Timino, Simple lightweight and S.O.L.I.D PHP MVC framework 
 ![logo](https://user-images.githubusercontent.com/18489496/30515021-af6f16a6-9b18-11e7-8555-00ea2407ffc9.png)
-
-# Note : This is version 1.0.0 alpha
 ![Licence](https://img.shields.io/badge/Licence-MIT-orange.svg)
 ![PHP7](https://img.shields.io/badge/php-7-blue.svg)
 ![version Alpha](https://img.shields.io/badge/Alpha-V1.0.0-yellow.svg)
@@ -86,7 +84,7 @@ server{
 
     location / {
         index index.php index.html index.htm;
-        try_files /$uri /$uri/ /index.php?uri=$uri&$query_string;
+        try_files /$uri /$uri/ /index.php?uri=$uri&$args;
     }
 
     location ~ \.(php)$ {
