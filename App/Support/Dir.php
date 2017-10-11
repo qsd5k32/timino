@@ -44,43 +44,4 @@ class Dir
         }
         return $files;
     }
-
-
-    /**
-     * get classes and there namespaces as an array
-     * @param $path     directory to scan
-     * @param $fromPath namespace start path
-     * @return array class name => class namespace
-     */
-    public static function getClassesWithNamespaces($path, $fromPath)
-    {
-        // remove php extension and subdirectories
-        $files = array_map(function ($elem) use ($fromPath) {
-            $elem = substr($elem, strpos($elem, $fromPath));
-            return rtrim($elem, ".php");
-        }, self::scan($path));
-
-        // explode class to an array
-        for ($i = 0; $i < sizeof($files); $i++) {
-            $explodeFiles[] = explode("/", $files[$i]);
-        }
-
-        // create classes namespaces
-        // set each class with class name and
-        // replace directory separator with namespace separator
-        foreach ($explodeFiles as $namespace) {
-            // make first service letter upper case
-            $ucfirstNamespace = array_map(function ($elem) {
-                return ucfirst($elem);
-            }, array_values($namespace));
-
-            $classNames[] = $ucfirstNamespace[count($ucfirstNamespace) - 1];
-            $classNamespaces[] = "\\" . implode("\\", $ucfirstNamespace);
-
-        }
-
-
-        return array_combine($classNames, $classNamespaces);
-    }
-
 }
