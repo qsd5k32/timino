@@ -29,8 +29,6 @@
 namespace App\Core;
 
 use App\Core\Abstraction\ServicesLoadersInterface;
-use App\Services\Template\ErrorTemplator;
-use App\Support\Dir;
 
 class ServicesAutoLoader implements ServicesLoadersInterface
 {
@@ -49,39 +47,36 @@ class ServicesAutoLoader implements ServicesLoadersInterface
     }
 
     /**
-     * set()
-     * register services
-     * single tone with instantiate()
-     * simple services with the new keyword
+     * register services method
+     * @throws \Exception
      */
     public function register()
     {
+        $file = APP . 'Config' . DS . 'services.php';
+
+        if (!file_exists($file)) throw new \Exception("Error file $file not found !");
+
+        $file = array_map(function($e){ return ucfirst($e);}, require $file);
+
         /**
          * check for single tone classes and normal classes with reflection class
          * set instantiate single tone with ::instantiate() and normal with new
          * and save services to $this->services array;
          */
-        foreach (Dir::getClassesWithNamespaces(APP."Services/", "App") as $srvName => $service) {
-            try {
+        foreach ($file as $srvName => $service) {
 
-                if (!class_exists($service)) throw new  \Exception("error <b>$service</b> Service <b>class</b> doesn't exists !");
+            if (!class_exists($service)) throw new  \Exception("error <b>$service</b> Service <b>class</b> doesn't exists !");
 
-                $class = new \ReflectionClass($service);
+            $class = new \ReflectionClass($service);
 
-                if ($class->hasMethod("instantiate")) {
-                    $this->services[$srvName] = (!isset($this->services[$srvName])) ? $this->services[$srvName] = $service::instantiate
-                    () : NULL;
+            if ($class->hasMethod("instantiate")) {
+                $this->services[$srvName] = (!isset($this->services[$srvName])) ? $this->services[$srvName] = $service::instantiate
+                () : NULL;
 
-                } else {
+            } else {
 
-                    $this->services[$srvName] = (!isset($this->services[$srvName])) ? $this->services[$srvName] = new $service() : NULL;
-                }
-
-
-            } catch (\Exception $e) {
-                die(ErrorTemplator::exceptionError($e->getMessage()));
+                $this->services[$srvName] = (!isset($this->services[$srvName])) ? $this->services[$srvName] = new $service() : NULL;
             }
-
         }
 
     }
@@ -90,16 +85,12 @@ class ServicesAutoLoader implements ServicesLoadersInterface
      * get services method
      * @param $serviceName
      * @return mixed
+     * @throws \Exception
      */
     public function get($serviceName)
     {
-        try {
             $serviceName = ucfirst($serviceName);
             if (!isset($this->services[$serviceName])) throw new \Exception("error service <b>$serviceName</b> Doesn't exists !");
             return $this->services[$serviceName];
-        } catch (\Exception $e) {
-
-            die(ErrorTemplator::exceptionError($e->getMessage()));
-        }
     }
 }
