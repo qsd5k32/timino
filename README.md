@@ -1,5 +1,5 @@
 # Timino, Simple lightweight and S.O.L.I.D PHP MVC framework 
-![logo](https://user-images.githubusercontent.com/18489496/30515021-af6f16a6-9b18-11e7-8555-00ea2407ffc9.png)
+![logo](https://user-images.githubusercontent.com/18489496/31467436-e0e2d408-aed1-11e7-95f5-07174228327a.png)
 #
 ![Licence](https://img.shields.io/badge/Licence-MIT-orange.svg)
 ![PHP7](https://img.shields.io/badge/php-7-blue.svg)
