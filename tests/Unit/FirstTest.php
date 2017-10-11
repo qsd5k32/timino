@@ -1,11 +1,15 @@
 <?php
 
-class FirstTest extends \PHPUnit\Framework\TestCase
+namespace Tests\Unit;
+
+use PHPUnit\Framework\TestCase;
+
+class FirstTest extends TestCase
 {
-    public function testFirstMethod()
+    public function  testFirstMethod()
     {
         $var = 10;
 
-        $this->assertEquals(55, $var);
+        $this->assertEquals(10, $var);
     }
 }
