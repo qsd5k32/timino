@@ -22,26 +22,19 @@
  * GNU General Public License for more details.
  *
  * INFO :
- * Directory support class
+ * Services config file
+ * all services to be loaded must be set here !
  *
  */
-
-namespace App\Support;
-
-class Dir
-{
-    /**
-     * scan directory method in a recursive way and return all files with absolute path
-     * @param $path
-     * @return array
-     */
-    public static function scan($path)
-    {
-        $dirs = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
-        $files = array();
-        foreach ($dirs as $dir) {
-            if (!$dir->isDir()) $files[] = $dir->getPathName();
-        }
-        return $files;
-    }
-}
+return[
+    "Mailer"         => App\Services\Custom\Mailer::class,
+    "Record"         => App\Services\Database\Record::class,
+    "Form"           => App\Services\Security\Form::class,
+    "Authentication" => App\Services\Security\Authentication::class,
+    "Cookie"         => App\Services\Security\Cookie::class,
+    "Session"        => App\Services\Security\Session::class,
+    "Redirection"    => App\Services\Security\Redirection::class,
+    "Token"          => App\Services\Security\Token::class,
+    "Validation"     => App\Services\Security\Validation::class,
+    "Upload"         => App\Services\Uploads\Upload::class,
+];
