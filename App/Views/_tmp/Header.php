@@ -7,8 +7,10 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title><?= (isset($pageTitle)) ? "Timino | " . $lang->set($pageTitle) : "Timino | ".$lang->set('DEFAULT_TITLE') ;?></title>
 
-    <!-- Bootstrap -->
-    <link href="<?=$assets->CSS.'timino.min.css'?>" rel="stylesheet">
+    <!-- spectre css -->
+    <link href="<?=$assets->CSS.'spectre.min.css'?>" rel="stylesheet">
+    <link href="<?=$assets->CSS.'spectre-exp.min.css'?>" rel="stylesheet">
+    <link href="<?=$assets->CSS.'spectre-icons.min.css'?>" rel="stylesheet">
     <link href="<?=$assets->CSS.'custom.css'?>" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
