@@ -39,11 +39,14 @@ abstract class Controller
      */
     public $load;
 
+    public $git;
+
     // services goes down here
 
     public function __construct(ServicesLoadersInterface $service, Loader $loader)
     {
         $this->load = $loader;
+        $this->git = $service->get('git');
     }
 
     /**
