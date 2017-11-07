@@ -29,7 +29,7 @@
 namespace App\Core;
 
 use App\Core\Abstraction\ServicesLoadersInterface;
-use App\Services\Template\ErrorTemplator;
+use Exception;
 
 abstract class Controller
 {
@@ -47,15 +47,13 @@ abstract class Controller
     }
 
     /**
-     * Default Manage Method
-     *
-     * @return void
+     * @throws Exception
      */
     public function manage()
     {
         $method = Linker::route('DEFAULT_ACTION'); // default action
         $controller = static::class;
-        die(ErrorTemplator::exceptionError("error <b>$controller Controller</b> needs a <b>$method</b> Method"));
+        throw new Exception("error $controller Controller needs a $method Method");
     }
 
     /**
