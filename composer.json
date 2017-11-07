@@ -16,7 +16,8 @@
     "minimum-stability": "alpha",
 
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.0",
+        "twig/twig": "^2.4"
     },
 
     "require-dev": {
