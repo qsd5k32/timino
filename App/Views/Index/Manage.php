@@ -2,7 +2,8 @@
      <div class="columns">
          <div class="column">
              <div class="col-12">
-                 <span class="label label-default label-rounded custom-label">Current branch : <span class="text-error">develop</span></span>
+                 <span class="label label-default label-rounded custom-label">Current branch : <span
+                             class="text-error"><?=$modelData->branch?></span></span>
              </div>
              <div class="mg-btm-1rem"></div>
          </div>
