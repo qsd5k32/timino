@@ -40,14 +40,18 @@ abstract class Controller
     public $load;
     public $git;
     public $token;
+    public $session;
+    public $redirect;
 
     // services goes down here
 
     public function __construct(ServicesLoadersInterface $service, Loader $loader)
     {
-        $this->load  = $loader;
-        $this->git   = $service->get('git');
-        $this->token = $service->get('token');
+        $this->load     = $loader;
+        $this->git      = $service->get('git');
+        $this->token    = $service->get('token');
+        $this->session  = $service->get('session');
+        $this->redirect = $service->get('redirection');
     }
 
     /**
