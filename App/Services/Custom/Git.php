@@ -30,11 +30,24 @@ namespace App\Services\Custom;
 
 class Git
 {
-    private $branch;
 
-    public function __construct()
+    public function getBranch()
     {
+        $headFile = ROOT . '.git' . DS . 'HEAD';
+        if(file_exists($headFile))
+        {
+           $line = isset(file($headFile)[0]) ? file($headFile)[0] : false;
+           if($line)
+           {
+               $branch = explode("/", $line);
+               $branch = $branch[count($branch) -1];
+               return $branch;
+           }
 
+           return 'Branch was not found';
+        }
+
+        return ".git dir or HEAD file doesn't exist !";
     }
 
 }
