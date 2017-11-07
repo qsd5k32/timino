@@ -29,7 +29,6 @@
 namespace App\Core;
 
 use App\Core\Abstraction\RequestInterface;
-use App\Services\Template\ErrorTemplator;
 
 class App
 {
@@ -60,6 +59,7 @@ class App
     /**
      * App constructor.
      * @param RequestInterface $request
+     * @throws \Exception
      */
     public function __construct(RequestInterface $request)
     {
@@ -77,16 +77,11 @@ class App
         /**
          * call controller
          */
-        try {
+        $controller = Linker::namespace("CONTROLLERS") . ucfirst($this->controller);
+        if (!class_exists($controller)) throw new \Exception("error controller $controller Doesn't exists");
 
-            $controller = Linker::namespace("CONTROLLERS") . ucfirst($this->controller);
-            if (!class_exists($controller)) throw new \Exception("error controller <b>$controller</b> Doesn't exists");
+        $this->controller = new $controller(new ServicesAutoLoader, new Loader);
 
-            $this->controller = new $controller(new ServicesAutoLoader, new Loader);
-
-        } catch (\Exception $e) {
-            die(ErrorTemplator::exceptionError($e->getMessage()));
-        }
 
         /**
          * check for requested method

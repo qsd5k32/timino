@@ -30,7 +30,6 @@ namespace App\Services\Database;
 
 
 use App\Core\Linker;
-use App\Services\Template\ErrorTemplator;
 
 class Connection
 {
@@ -42,16 +41,12 @@ class Connection
 
     private function __construct()
     {
-        try {
             $this->_con = new \PDO(
                 Linker::database('DRIVER') . ":host=" . Linker::database('HOST') . ";dbname=" . Linker::database('NAME'),
                 Linker::database('USER'),
                 Linker::database('PASS'),
                 Linker::database('OPTIONS')
             );
-        } catch (\PDOException $e) {
-            die(ErrorTemplator::exceptionError($e->getMessage()));
-        }
     }
 
     public static function instantiate()

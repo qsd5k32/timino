@@ -28,8 +28,6 @@
 
 namespace App\Support;
 
-use App\Services\Template\ErrorTemplator;
-
 class Language
 {
     /**
@@ -37,18 +35,20 @@ class Language
      */
     private function whatLanguage()
     {
-        if(isset($_SESSION['lang']))
-        {
-            switch ($_SESSION['lang'])
-            {
-                case 'fr' : return 'fr';
-                break;
-                case 'ar' : return 'ar';
-                break;
-                default   : return 'en';
-                break;
+        if (isset($_SESSION['lang'])) {
+            switch ($_SESSION['lang']) {
+                case 'fr' :
+                    return 'fr';
+                    break;
+                case 'ar' :
+                    return 'ar';
+                    break;
+                default   :
+                    return 'en';
+                    break;
             }
         }
+
         return 'en';
     }
 
@@ -57,7 +57,7 @@ class Language
      */
     private function getLanguage()
     {
-       return  Dir::scan(APP.'Storage/Lang/'.$this->whatLanguage());
+        return Dir::scan(APP . 'Storage/Lang/' . $this->whatLanguage());
     }
 
     /**
@@ -67,30 +67,25 @@ class Language
      */
     public function set($lang)
     {
-        try {
 
-            $arrayWords = array();
+        $arrayWords = array();
 
-            foreach ($this->getLanguage() as $language) {
-                $arrayWords[] = require $language;
-            }
+        foreach ($this->getLanguage() as $language) {
+            $arrayWords[] = require $language;
+        }
 
-            static $word = array();
+        static $word = array();
 
-            foreach ($arrayWords as $words) {
-                if (is_array($words)) {
-                    foreach ($words as $key => $val) {
-                        $word[$key] = $val;
-                    }
+        foreach ($arrayWords as $words) {
+            if (is_array($words)) {
+                foreach ($words as $key => $val) {
+                    $word[$key] = $val;
                 }
             }
-
-            if (!isset($word[$lang])) throw new \Exception("error word $lang Not found on the language array !");
-
-        }catch(\Exception $e)
-        {
-            die(ErrorTemplator::exceptionError($e->getMessage()));
         }
+
+        if (!isset($word[$lang])) throw new \Exception("error word $lang Not found on the language array !");
+
         return $word[$lang];
     }
 }

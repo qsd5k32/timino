@@ -28,16 +28,15 @@
 
 namespace App\Core;
 
-use App\Services\Template\ErrorTemplator;
 use App\Support\Language;
+use Exception;
 
 class Loader
 {
     /**
-     * load model method
-     *
-     * @param string $model
-     * @return void
+     * @param $model
+     * @return mixed
+     * @throws \Exception
      */
     public function model($model)
     {
@@ -45,15 +44,9 @@ class Loader
 
         $model = Linker::namespace("MODELS") . $model;
 
-        try {
+        if (!class_exists($model)) throw new \Exception("error $model Model was not found !");
 
-            if (!class_exists($model)) throw new \Exception("error <b> $model Model </b> was not found !");
-
-            return new $model(new ServicesAutoLoader());
-
-        } catch (\Exception $e) {
-            die(ErrorTemplator::exceptionError($e->getMessage()));
-        }
+        return new $model(new ServicesAutoLoader());
 
     }
 
@@ -63,13 +56,13 @@ class Loader
      * load views from _tmp directory dynamically
      * load views from given folder
      *
-     * @param string $folder
-     * @param array  $files
-     * @param string $pageTitle
-     * @param array  $modelData
-     * @return void
+     * @param       $folder
+     * @param       $files
+     * @param null  $pageTitle
+     * @param array $modelData
+     * @throws Exception
      */
-    public function view($folder, $files, $pageTitle = NULL, $modelData = [])
+    public function view($folder, $files, $pageTitle = null, $modelData = [])
     {
         $folder = ucfirst($folder);
 
@@ -79,45 +72,42 @@ class Loader
 
         $modelData = (object)$modelData;
 
-        $assets  = (object)Linker::route("ASSETS");
+        $assets = (object)Linker::route("ASSETS");
         $uploads = (object)Linker::route("UPLOADS");
-        $lang    = new Language();
+        $lang = new Language();
 
-        try {
 
-            if (!is_dir(Linker::route("VIEWS") . $folder)) throw new \Exception("Requested Folder <b>$folder</b> does not exists");
-            /**
-             * Merge the two directories as one array
-             * @var array
-             */
-            $availableFiles = array_merge(
-                scandir(Linker::route("VIEWS") . '_tmp'),
-                scandir(Linker::route("VIEWS") . $folder)
-            );
-            /**
-             * Remove Default header and footer
-             * remove hidden file . and default dirs
-             * @var array
-             */
-            $availableFiles = array_filter($availableFiles, function ($elem) {
-                return !preg_match("/(^\.{1,})|(Header)|(Footer)/", $elem);
-            });
-            /**
-             * Remove .php extention
-             * @var array
-             */
-            $availableFiles = array_map(function ($elem) {
-                return trim($elem, '.php');
-            }, $availableFiles);
+        if (!is_dir(Linker::route("VIEWS") . $folder))
+            throw new Exception("Requested Folder $folder does not exists");
+        /**
+         * Merge the two directories as one array
+         * @var array
+         */
+        $availableFiles = array_merge(
+            scandir(Linker::route("VIEWS") . '_tmp'),
+            scandir(Linker::route("VIEWS") . $folder)
+        );
+        /**
+         * Remove Default header and footer
+         * remove hidden file . and default dirs
+         * @var array
+         */
+        $availableFiles = array_filter($availableFiles, function ($elem) {
+            return !preg_match("/(^\.{1,})|(Header)|(Footer)/", $elem);
+        });
+        /**
+         * Remove .php extention
+         * @var array
+         */
+        $availableFiles = array_map(function ($elem) {
+            return trim($elem, '.php');
+        }, $availableFiles);
 
-            /**
-             * Sort and orgnise files in the array
-             */
-            sort($availableFiles);
+        /**
+         * Sort and orgnise files in the array
+         */
+        sort($availableFiles);
 
-        } catch (\Exception $e) {
-            die(ErrorTemplator::exceptionError($e->getMessage()));
-        }
 
         /**
          *
@@ -144,7 +134,7 @@ class Loader
 
         foreach ($notFound as $file) {
 
-            die(ErrorTemplator::exceptionError("file <b>$file.php</b> was not found on the views folder <b> $folder </b> "));
+            throw new Exception("file $file.php was not found on the views folder  $folder ");
         }
 
         require_once Linker::route("VIEWS") . "_tmp" . DS . "Footer.php";
@@ -153,9 +143,11 @@ class Loader
 
     /**
      * load naked view without header and footer
+     *
      * @param       $folder
      * @param       $files
      * @param array $modelData
+     * @throws Exception
      */
     public function nakedView($folder, $files, $modelData = [])
     {
@@ -170,78 +162,73 @@ class Loader
         // routes
         $assets = (object)Linker::route("ASSETS");
         $uploads = (object)Linker::route("UPLOADS");
-        $lang    = new Language();
+        $lang = new Language();
 
-        try {
 
-            if (!is_dir(Linker::route("VIEWS") . $folder)) throw new \Exception("Requested Folder <b>$folder</b> does not exists on the Views Folder");
+        if (!is_dir(Linker::route("VIEWS") . $folder))
+            throw new Exception("Requested Folder <b>$folder</b> does not exists on the Views Folder");
 
-            foreach ($files as $file) {
+        foreach ($files as $file) {
 
-                if (file_exists(Linker::route("VIEWS") . $folder . DS . $file . ".php")) {
+            if (file_exists(Linker::route("VIEWS") . $folder . DS . $file . ".php")) {
 
-                    require Linker::route("VIEWS") . $folder . DS . $file . ".php";
+                require Linker::route("VIEWS") . $folder . DS . $file . ".php";
 
-                } else {
-                    die(ErrorTemplator::exceptionError("file <b>$file.php</b> was not found on <b>$folder</b> views  folder "));
-                }
-
+            } else {
+                throw new Exception("file $file.php was not found on $folder views  folder ");
             }
-        } catch (\Exception $e) {
-            die(ErrorTemplator::exceptionError($e->getMessage()));
+
         }
 
     }
 
     /**
      * Render Templates with Twig Templating engine
+     *
      * @param       $folder
      * @param       $files
      * @param null  $pageTitle
      * @param array $modelData
      */
-    public function twigView($folder, $files, $pageTitle = NULL, $modelData = [])
+    public function twigView($folder, $files, $pageTitle = null, $modelData = [])
     {
-        try {
+        $folder = ucfirst($folder);
 
-            $folder = ucfirst($folder);
+        if (is_string($files)) $files = explode(",", $files);
 
-            if (is_string($files)) $files = explode(",", $files);
-
-            $files = array_map("ucfirst", $files);
+        $files = array_map("ucfirst", $files);
 
 
-            $tmp    = Linker::route("VIEWS") . "_tmp" . DS;
-            $folder = Linker::route("VIEWS") . $folder . DS;
+        $tmp = Linker::route("VIEWS") . "_tmp" . DS;
+        $folder = Linker::route("VIEWS") . $folder . DS;
 
-            // set twig loader and environment
-            $loader = new \Twig_Loader_Filesystem(array($tmp, $folder));
-            $twig = new \Twig_Environment($loader, array("debug" => true));
-            $twig->addExtension(new \Twig_Extension_Debug());
+        // set twig loader and environment
+        $loader = new \Twig_Loader_Filesystem(array($tmp, $folder));
+        $twig = new \Twig_Environment($loader, array("debug" => true));
+        $twig->addExtension(new \Twig_Extension_Debug());
 
-            // needed data to be passed to the view
-            $twig->addGlobal("assets", (object)Linker::route("ASSETS"));
-            $twig->addGlobal("uploads", (object)Linker::route("UPLOADS"));
-            $twig->addGlobal("pageTitle", $pageTitle);
-            $twig->addGlobal("modelData", (object)$modelData);
-            $twig->addGlobal("lang",  new Language());
-
-
-            echo $twig->render("Header.twig");
-
-            foreach ($files as $file) {
-
-                if($file == "Header" || $file == "Footer") throw new \Twig_Error_Loader("<b>$file </b> already exists please use different name !");
-                echo $twig->render($file . ".twig");
-            }
+        // needed data to be passed to the view
+        $twig->addGlobal("assets", (object)Linker::route("ASSETS"));
+        $twig->addGlobal("uploads", (object)Linker::route("UPLOADS"));
+        $twig->addGlobal("pageTitle", $pageTitle);
+        $twig->addGlobal("modelData", (object)$modelData);
+        $twig->addGlobal("lang", new Language());
 
 
-            echo $twig->render("Footer.twig");
+        echo $twig->render("Header.twig");
 
+        foreach ($files as $file) {
 
-        } catch (\Twig_Error_Loader $e) {
-            die(ErrorTemplator::exceptionError($e->getMessage()));
+            if ($file == "Header" || $file == "Footer")
+
+                //FIXME catch this exception
+                throw new \Twig_Error_Loader("$file already exists please use different name !");
+
+            echo $twig->render($file . ".twig");
         }
+
+
+        echo $twig->render("Footer.twig");
 
     }
 }

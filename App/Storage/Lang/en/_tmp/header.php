@@ -27,5 +27,6 @@
 
 return [
     "DEFAULT_TITLE" => "Default Title",
-    "404" => "404"
+    "404" => "404",
+    "500" => "500"
 ];

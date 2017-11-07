@@ -2,28 +2,28 @@ body{
    background: #fff;
    margin: 0;
 }
+/**
+** custom rules
+*/
+.mg-btm-1rem {margin-bottom: 1rem;}
+.mg-btm-4rem{ margin-bottom: 4rem;}
+.mg-top-2rem{ margin-top: 2rem;}
+.custom-label{
+    padding: 3px 30px !important;
+    margin: 5px 0;
+}
+
 .res-img{
    width: 100%;
    height: 100%;
 }
-.err-page{
-    padding: 50px 10px;
-    margin-top: 10px;
+
+.error-p{
+    padding: 20px;
+    color: #fff;
 }
-.err-btn{
-    background: linear-gradient(to bottom,#cc4747 0,#da7070 100%);
-    background: -webkit-linear-gradient(to bottom,#cc4747 0,#da7070 100%);
-    background: -moz-linear-gradient(to bottom,#cc4747 0,#da7070 100%);
-}
-.err-msg{
-    color: #888;
-}
-pre{
-    border: 0!important;
-    box-shadow: none!important;
-    border: 10px solid #f7f7f7!important;
-    margin: 0;
-}
+
+
 /** index page **/
 .index *{
     color: #999;

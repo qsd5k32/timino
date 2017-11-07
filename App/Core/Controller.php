@@ -29,7 +29,7 @@
 namespace App\Core;
 
 use App\Core\Abstraction\ServicesLoadersInterface;
-use App\Services\Template\ErrorTemplator;
+use Exception;
 
 abstract class Controller
 {
@@ -39,23 +39,24 @@ abstract class Controller
      */
     public $load;
 
+    public $git;
+
     // services goes down here
 
     public function __construct(ServicesLoadersInterface $service, Loader $loader)
     {
         $this->load = $loader;
+        $this->git = $service->get('git');
     }
 
     /**
-     * Default Manage Method
-     *
-     * @return void
+     * @throws Exception
      */
     public function manage()
     {
         $method = Linker::route('DEFAULT_ACTION'); // default action
         $controller = static::class;
-        die(ErrorTemplator::exceptionError("error <b>$controller Controller</b> needs a <b>$method</b> Method"));
+        throw new Exception("error $controller Controller needs a $method Method");
     }
 
     /**
@@ -65,6 +66,6 @@ abstract class Controller
      */
     public function errorAction()
     {
-        $this->load->view("error", ["manage"], "404");
+        $this->load->view("error", ["404"], "404");
     }
 }

@@ -28,8 +28,6 @@
 
 namespace App\Core;
 
-use App\Services\Template\ErrorTemplator;
-
 class Linker
 {
     /**
@@ -47,23 +45,20 @@ class Linker
      * @param $method
      * @param $arguments
      * @return mixed
+     * @throws \Exception
      */
     public static function __callStatic($method, $arguments)
     {
-        try {
-            if (!in_array($method, self::$routes)) throw new \Exception("error Method $method was not found !");
+        if (!in_array($method, self::$routes)) throw new \Exception("error Method $method was not found !");
 
-            return self::link($method, $arguments[0]);
-
-        } catch (\Exception $e) {
-            die(ErrorTemplator::exceptionError($e->getMessage()));
-        }
+        return self::link($method, $arguments[0]);
     }
 
     /**
      * @param $method
      * @param $key
      * @return mixed
+     * @throws \Exception
      */
     public static function link($method, $key)
     {
@@ -87,33 +82,28 @@ class Linker
                 break;
         }
 
-        try {
 
-            if (!file_exists($file)) throw new \Exception("error $file file was not found");
+        if (!file_exists($file)) throw new \Exception("error $file file was not found");
 
-            $routes = require $file;
+        $routes = require $file;
 
+        // if dot access notation
+        if (preg_match("#\.+#", $key)) {
+            $keys = explode(".", $key);
 
-            // if dot access notation
-            if (preg_match("#\.+#", $key)) {
-                $keys = explode(".", $key);
+            $temp = &$routes;
 
-                $temp = &$routes;
+            foreach ($keys as $key) {
 
-                foreach ($keys as $key) {
+                if (!isset($temp[$key])) throw new \Exception("error $key key was not found on $file");
 
-                    if (!isset($temp[$key])) throw new \Exception("error $key key was not found on $file");
-
-                    $temp = &$temp[$key];
-                }
-                return $temp;
+                $temp = &$temp[$key];
             }
 
-            if (!isset($routes[$key])) throw new \Exception("error $key key was not found on $file");
-
-        } catch (\Exception $e) {
-            die(ErrorTemplator::exceptionError($e->getMessage()));
+            return $temp;
         }
+
+        if (!isset($routes[$key])) throw new \Exception("error $key key was not found on $file");
 
         return $routes[$key];
     }

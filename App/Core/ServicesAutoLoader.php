@@ -29,6 +29,8 @@
 namespace App\Core;
 
 use App\Core\Abstraction\ServicesLoadersInterface;
+use Exception;
+use ReflectionClass;
 
 class ServicesAutoLoader implements ServicesLoadersInterface
 {
@@ -54,7 +56,7 @@ class ServicesAutoLoader implements ServicesLoadersInterface
     {
         $file = APP . 'Config' . DS . 'services.php';
 
-        if (!file_exists($file)) throw new \Exception("Error file $file not found !");
+        if (!file_exists($file)) throw new Exception("Error file $file not found !");
 
         $file = array_map(function($e){ return ucfirst($e);}, require $file);
 
@@ -65,9 +67,9 @@ class ServicesAutoLoader implements ServicesLoadersInterface
          */
         foreach ($file as $srvName => $service) {
 
-            if (!class_exists($service)) throw new  \Exception("error <b>$service</b> Service <b>class</b> doesn't exists !");
+            if (!class_exists($service)) throw new  Exception("error <b>$service</b> Service <b>class</b> doesn't exists !");
 
-            $class = new \ReflectionClass($service);
+            $class = new ReflectionClass($service);
 
             if ($class->hasMethod("instantiate")) {
                 $this->services[$srvName] = (!isset($this->services[$srvName])) ? $this->services[$srvName] = $service::instantiate
@@ -90,7 +92,7 @@ class ServicesAutoLoader implements ServicesLoadersInterface
     public function get($serviceName)
     {
             $serviceName = ucfirst($serviceName);
-            if (!isset($this->services[$serviceName])) throw new \Exception("error service <b>$serviceName</b> Doesn't exists !");
+            if (!isset($this->services[$serviceName])) throw new Exception("error service $serviceName Doesn't exists !");
             return $this->services[$serviceName];
     }
 }

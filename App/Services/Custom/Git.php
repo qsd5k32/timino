@@ -22,25 +22,32 @@
  * GNU General Public License for more details.
  *
  * INFO :
- *  error templator class
+ * Git service class
  *
  */
 
-namespace App\Services\Template;
+namespace App\Services\Custom;
 
-class ErrorTemplator
+class Git
 {
-    public static function exceptionError($err)
+
+    public function getBranch()
     {
-        $tmp = "<div style=';
-      color: #F44336;
-      padding: 30px;
-      background: #f7f7f7;
-      width: 70%;
-      margin: auto;
-      border: 1px dashed #cac6c6;'>";
-        $tmp .= $err;
-        $tmp .= "</div>";
-        return $tmp;
+        $headFile = ROOT . '.git' . DS . 'HEAD';
+        if(file_exists($headFile))
+        {
+           $line = isset(file($headFile)[0]) ? file($headFile)[0] : false;
+           if($line)
+           {
+               $branch = explode("/", $line);
+               $branch = $branch[count($branch) -1];
+               return $branch;
+           }
+
+           return 'Branch was not found';
+        }
+
+        return ".git dir or HEAD file doesn't exist !";
     }
+
 }

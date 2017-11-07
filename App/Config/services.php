@@ -28,6 +28,7 @@
  */
 return[
     "Mailer"         => App\Services\Custom\Mailer::class,
+    "Git"            => App\Services\Custom\Git::class,
     "Record"         => App\Services\Database\Record::class,
     "Form"           => App\Services\Security\Form::class,
     "Authentication" => App\Services\Security\Authentication::class,

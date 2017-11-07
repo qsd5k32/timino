@@ -36,7 +36,7 @@ class Index extends Controller
     public function manage($name = NULL, $email = NULL, $pass = NULL)
     {
         $this->load->model("index")->test();
-        $this->load->view("index", array("manage"));
+        $this->load->twigView("index", array("manage"), NULL, array("branch" => $this->git->getBranch()));
     }
 
 }

@@ -1,19 +1,25 @@
-<div class="container mg-top-30 index">
-      <div class="row no-gutters">
-            <div class="col-md-3"></div>
+<div class="container grid-xl">
+     <div class="columns">
+         <div class="column">
+             <div class="col-12">
+                 <span class="label label-default label-rounded custom-label">Current branch : <span
+                             class="text-error"><?=$modelData->branch?></span></span>
+             </div>
+             <div class="mg-btm-1rem"></div>
+         </div>
+     </div>
 
-            <div class="col-md-6 center-txt">
-
-                  <h1 class="center-txt">Timino PHP MVC v1.0.0 alpha</h1>
+      <div class="columns">
+            <div class="column col-6 col-sm-8 col-mx-auto text-center">
+                  <h1 class="mg-btm-1rem">Timino PHP MVC 1.0.2</h1>
                   <img src="<?=$uploads->IMG . 'logo.png'?>" alt="logo" title="Timino" class="logo">
                   <div class="mg-top-50"></div>
       
             </div>
 
-            <div class="col-md-3"></div>
-
-            <div class="col-md-12">
-                  <div class="footer center-txt">
+            <div class="column col-12 text-center">
+                <div class="mg-btm-4rem"></div>
+                  <div class="footer">
                        <?=$lang->set('SLOGAN')?>
                   </div>
             </div>      
