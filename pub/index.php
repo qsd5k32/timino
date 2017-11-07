@@ -41,9 +41,7 @@ require_once "../App/Config/base.php";
  */
 require_once "../vendor/autoload.php";
 
-use App\Core\{
-    Request, App
-};
+use App\Core\{ Request, App};
 
 /*
  * ------------------------------------
@@ -52,4 +50,12 @@ use App\Core\{
  */
 $request = new Request;
 
-new App($request);
+try{
+
+    $app = new App($request);
+
+}catch (Exception $e)
+{
+    $load = new \App\Core\Loader();
+    $load->view("Error", "500", "500", $e);
+}
