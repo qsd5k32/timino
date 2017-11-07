@@ -63,6 +63,6 @@ abstract class Controller
      */
     public function errorAction()
     {
-        $this->load->view("error", ["manage"], "404");
+        $this->load->view("error", ["404"], "404");
     }
 }

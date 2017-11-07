@@ -52,7 +52,7 @@ class App
      */
     public function setDefault()
     {
-        $this->controller = Linker::rout("DEFAULT_CONTROLLER");
+        $this->controller = Linker::route("DEFAULT_CONTROLLER");
         $this->action = Linker::route("DEFAULT_ACTION");
     }
 
