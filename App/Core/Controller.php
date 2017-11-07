@@ -38,15 +38,16 @@ abstract class Controller
      * @var object
      */
     public $load;
-
     public $git;
+    public $token;
 
     // services goes down here
 
     public function __construct(ServicesLoadersInterface $service, Loader $loader)
     {
-        $this->load = $loader;
-        $this->git = $service->get('git');
+        $this->load  = $loader;
+        $this->git   = $service->get('git');
+        $this->token = $service->get('token');
     }
 
     /**
