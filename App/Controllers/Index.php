@@ -33,10 +33,9 @@ use App\Core\Controller;
 class Index extends Controller
 {
 
-    public function manage($name = NULL, $email = NULL, $pass = NULL)
+    public function manage()
     {
-        $this->load->model("index")->test();
-        $this->load->twigView("index", array("manage"), NULL, array("branch" => $this->git->getBranch()));
+        $this->load->view("index", array("manage"), NULL, array("branch" => $this->git->getBranch()));
     }
 
 }

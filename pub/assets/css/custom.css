@@ -5,12 +5,26 @@ body{
 /**
 ** custom rules
 */
-.mg-btm-1rem {margin-bottom: 1rem;}
-.mg-btm-4rem{ margin-bottom: 4rem;}
-.mg-top-2rem{ margin-top: 2rem;}
 .custom-label{
     padding: 3px 30px !important;
     margin: 5px 0;
+}
+.mt-2{ margin-top: 2em;}
+.mt-4{ margin-top: 4rem;}
+.mt-5{ margin-top: 5rem;}
+
+.mb-2{ margin-bottom: 2rem;}
+.mb-4{ margin-bottom: 4rem;}
+.mb-5{ margin-bottom: 5rem;}
+
+
+a,a:active,a:visited,a:focus,a:hover{color: #888;text-decoration: none;}
+
+.links span a{
+    display: inline-block;
+    padding: 0 1.2rem;
+    border: 2px solid #f9f9f9;
+    margin: 5px;
 }
 
 .res-img{
@@ -30,4 +44,8 @@ body{
 }
 .logo{
     height: 200px;
+}
+
+.footer p{
+    color: #888;
 }
