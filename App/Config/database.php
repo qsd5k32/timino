@@ -30,7 +30,7 @@ return [
 
     "DRIVER"    => "mysql",
     "HOST"      => "127.0.0.1",
-    "NAME"      => "Timino",
+    "NAME"      => "timino",
     "USER"      => "root",
     "PASS"      => "123456",
 
