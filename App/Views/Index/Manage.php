@@ -3,7 +3,7 @@
         <div class="column">
             <div class="col-12">
                 <span class="label label-default custom-label hide-sm">Current branch : <span class="text-error"><?=$modelData->branch?></span></span>
-                <a href="/auth/login" class="label label-default custom-label float-right">Login | register</a>
+                <!--#link#-->
             </div>
             <div class="mb-2"></div>
         </div>
