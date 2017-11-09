@@ -3,7 +3,7 @@
     <div class="columns">
         <div class="column col-6 col-sm-8 col-mx-auto text-center mt-2 col-mr-auto">
 <!--            <img src="=$uploads->IMG . '404.png'<!--" class="res-img" alt="404">-->
-            <img src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAJ4AAAAJGNjZWRiYmVmLTYzNWMtNDdkZS1iMDMxLWNmNTc1OGYxYTY3Zg.png" class="res-img" alt="404">
+            <img src="<?=$uploads->IMG . '404.png'?>" class="res-img" alt="404">
         </div>
     </div>
 
