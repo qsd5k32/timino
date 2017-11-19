@@ -4,7 +4,7 @@
             <div class="col-12">
                 <span class="label float-left hide-sm"><b>Current branch</b> : <span><?=$modelData->branch?></span></span>
                 <span class="label float-right"><b>Version </b>: 1.0.0</span></span>
-                <!-- #link -->
+                <!--#link#-->
                 <div class="clear-fix"></div>
             </div>
             <div class="mb-2"></div>
