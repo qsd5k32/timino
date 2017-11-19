@@ -47,6 +47,11 @@ a,a:active,a:visited,a:focus,a:hover{color: #888;box-shadow: none;}
 .login-link{
     margin-right: 15px;
 }
+.error-p{
+    color: #fff;
+    padding: 20px 30px;
+    margin: 0;
+}
 /** index page **/
 .index *{
     color: #999;

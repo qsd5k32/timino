@@ -42,6 +42,7 @@ require_once "../App/Config/base.php";
 require_once "../vendor/autoload.php";
 
 use App\Core\{ Request, App};
+use App\Services\Custom\Git;
 
 /*
  * ------------------------------------
@@ -57,5 +58,6 @@ try{
 }catch (Exception $e)
 {
     $load = new \App\Core\Loader();
-    $load->view("Error", "500", "500", $e);
+    $branch = (new Git())->getBranch();
+    $load->view("Error", "500", "500", array("Exception" =>$e, "branch" => $branch));
 }
