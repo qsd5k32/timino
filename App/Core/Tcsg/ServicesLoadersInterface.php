@@ -26,11 +26,23 @@
  *
  */
 
-namespace App\Core\Abstraction;
+namespace App\Core\Tcsg;
 
 interface ServicesLoadersInterface
 {
+    /**
+     * Register method
+     * Register all services loaded from config
+     * use reflexion class to instanciate singletone or normal classes
+     * @return mixed
+     */
     public function register();
 
+    /**
+     * Get services method
+     * Return an object of the loaded service otherwise throw an Exception if not found
+     * @param $serviceName
+     * @return mixed
+     */
     public function get($serviceName);
 }

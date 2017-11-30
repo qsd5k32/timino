@@ -28,7 +28,7 @@
 
 namespace App\Core;
 
-use App\Core\Abstraction\ServicesLoadersInterface;
+use App\Core\Tcsg\ServicesLoadersInterface;
 
 abstract class Model
 {

@@ -28,7 +28,7 @@
 
 namespace App\Core;
 
-use App\Core\Abstraction\RequestInterface;
+use App\Core\Tcsg\RequestInterface;
 
 class Request implements RequestInterface
 {
