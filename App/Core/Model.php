@@ -32,28 +32,27 @@ use App\Core\Abstraction\ServicesLoadersInterface;
 
 abstract class Model
 {
-    protected $record;
-    protected $form;
-    protected $mail;
-    protected $auth;
-    protected $cookie;
-    protected $session;
-    protected $token;
-    protected $validate;
-    protected $redirect;
-    protected $upload;
+    /**
+     * @var ServicesLoadersInterface
+     */
+    protected $services;
 
-    public function __construct(ServicesLoadersInterface $service)
+    /**
+     * Model constructor.
+     * @param ServicesLoadersInterface $services
+     */
+    public function __construct(ServicesLoadersInterface $services)
     {
-        $this->record   = $service->get("Record");
-        $this->form     = $service->get("Form");
-        $this->mail     = $service->get("Mailer");
-        $this->auth     = $service->get("Authentication");
-        $this->cookie   = $service->get("Cookie");
-        $this->session  = $service->get("Session");
-        $this->token    = $service->get("Token");
-        $this->validate = $service->get("Validation");
-        $this->redirect = $service->get("redirection");
-        $this->upload   = $service->get("Upload");
+        $this->services = $services;
+    }
+
+    /**
+     * Load services on service call
+     * @param $service
+     * @return mixed
+     */
+    public function __get($service)
+    {
+        return $this->services->get($service);
     }
 }

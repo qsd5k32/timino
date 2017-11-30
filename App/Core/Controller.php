@@ -37,21 +37,32 @@ abstract class Controller
      * model and views loader
      * @var object
      */
-    public $load;
-    public $git;
-    public $token;
-    public $session;
-    public $redirect;
+    protected  $load;
+    /**
+     * services to be loaded
+     * @var ServicesLoadersInterface
+     */
+    protected  $services;
 
-    // services goes down here
-
-    public function __construct(ServicesLoadersInterface $service, Loader $loader)
+    /**
+     * Controller constructor.
+     * @param ServicesLoadersInterface $services
+     * @param Loader $loader
+     */
+    public function __construct(ServicesLoadersInterface $services, Loader $loader)
     {
+        $this->services = $services;
         $this->load     = $loader;
-        $this->git      = $service->get('git');
-        $this->token    = $service->get('token');
-        $this->session  = $service->get('session');
-        $this->redirect = $service->get('redirection');
+    }
+
+    /**
+     * load services on service call
+     * @param $service
+     * @return mixed
+     */
+    public function __get($service)
+    {
+        return $this->services->get($service);
     }
 
     /**
