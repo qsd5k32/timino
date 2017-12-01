@@ -33,28 +33,19 @@ use App\Core\Tcsg\RequestInterface;
 class App
 {
     /**
-     * @var default controller
+     * @var request object
      */
-    private $controller;
+    private $request;
 
     /**
-     * @var default action
+     * @var
      */
-    private $action;
+    private $defaultController;
 
     /**
-     * @var array params
+     * @var
      */
-    private $params;
-
-    /**
-     * set default controller and method function
-     */
-    public function setDefault()
-    {
-        $this->controller = Linker::route("DEFAULT_CONTROLLER");
-        $this->action = Linker::route("DEFAULT_ACTION");
-    }
+    private $defaultAction;
 
     /**
      * App constructor.
@@ -63,36 +54,44 @@ class App
      */
     public function __construct(RequestInterface $request)
     {
-        $this->setDefault();
-        $this->params = $request->params();
+        $this->request = $request;
 
+        $this->defaultController = Linker::route("DEFAULT_CONTROLLER");
+        $this->defaultAction     = Linker::route("DEFAULT_ACTION");
+
+    }
+
+    public function run()
+    {
         /**
          * check for Requested controller
          */
-        if ($request->controller()) {
-            $controller = Linker::namespace("CONTROLLERS") . ucfirst($request->controller());
-            $this->controller = (class_exists($controller)) ? $request->controller() : Linker::route("ERROR_CONTROLLER");
+        if ($this->request->controller()) {
+            $controller = Linker::namespace("CONTROLLERS") . ucfirst($this->request->controller());
+            $this->defaultController = (class_exists($controller))
+                ? $this->request->controller() : Linker::route("ERROR_CONTROLLER");
         }
 
         /**
          * call controller
          */
-        $controller = Linker::namespace("CONTROLLERS") . ucfirst($this->controller);
+        $controller = Linker::namespace("CONTROLLERS") . ucfirst($this->defaultController);
         if (!class_exists($controller)) throw new \Exception("error controller $controller Doesn't exists");
 
-        $this->controller = new $controller(new ServicesAutoLoader, new Loader);
+        $this->defaultController = new $controller(new ServicesAutoLoader, new Loader);
 
 
         /**
          * check for requested method
          */
-        if ($request->action()) {
-            $this->action = (method_exists($this->controller, $request->action())) ? $request->action() : Linker::route("ERROR_ACTION");
+        if ($this->request->action()) {
+            $this->defaultAction = (method_exists($this->defaultController, $this->request->action()))
+                ? $this->request->action() : Linker::route("ERROR_ACTION");
         }
 
         /**
          * call controller method with parameters
          */
-        call_user_func_array([$this->controller, $this->action,], $this->params);
+        call_user_func_array([$this->defaultController, $this->defaultAction,], $this->request->params());
     }
 }

@@ -55,6 +55,8 @@ try{
 
     $app = new App($request);
 
+    $app->run();
+
 }catch (Exception $e)
 {
     $load = new \App\Core\Loader();
