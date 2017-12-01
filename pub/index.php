@@ -58,6 +58,8 @@ try{
 }catch (Exception $e)
 {
     $load = new \App\Core\Loader();
-    $branch = (new Git())->getBranch();
-    $load->view("Error", "500", "500", array("Exception" =>$e, "branch" => $branch));
+
+    $load->view("Error", "500", "500", array(
+        "Exception" =>$e, "branch" =>  (new Git())->getBranch()
+    ));
 }
