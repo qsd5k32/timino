@@ -17,12 +17,12 @@
 
     "require": {
         "php": ">=7.0",
-        "twig/twig": "^2.4"
+        "twig/twig": "^2.4",
+        "timinocli/timinocli": ">=0.2.0"
     },
 
     "require-dev": {
-        "phpunit/phpunit":">=6.3.0",
-        "timinocli/timinocli": ">=0.2.0"
+        "phpunit/phpunit":">=6.3.0"
     },
 
     "autoload":{
