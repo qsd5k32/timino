@@ -31,12 +31,6 @@ namespace App\Core\Tcsg;
 interface RequestInterface
 {
     /**
-     * Requested uri
-     * @return mixed
-     */
-    public function uri();
-
-    /**
      * The requested controller
      * @return mixed
      */
