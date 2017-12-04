@@ -33,14 +33,19 @@ use App\Core\Tcsg\RequestInterface;
 class Request implements RequestInterface
 {
     /**
-     * requested uri
-     * @return array|void
+     * @var array default uri
      */
-    public function uri()
+    public $uri = array();
+
+    /**
+     * Request constructor.
+     * initialize $uri
+     */
+    public function __construct()
     {
         if (isset($_GET['uri'])) {
             $uri = preg_replace(Linker::regex("URI"), NULL, trim($_GET['uri'], "/"));
-            return array_values(array_filter(explode("/", $uri)));
+            $this->uri = array_values(array_filter(explode("/", $uri)));
         }
     }
 
@@ -50,7 +55,7 @@ class Request implements RequestInterface
      */
     public function controller()
     {
-        return $this->uri()[0] ?? NULL;
+        return $this->uri[0] ?? NULL;
     }
 
     /**
@@ -59,7 +64,7 @@ class Request implements RequestInterface
      */
     public function action()
     {
-        return $this->uri()[1] ?? NULL;
+        return $this->uri[1] ?? NULL;
     }
 
     /**
@@ -68,8 +73,8 @@ class Request implements RequestInterface
      */
     public function params()
     {
-        if (count($this->uri()) > 2) {
-            $uri = $this->uri();
+        if (count($this->uri) > 2) {
+            $uri = $this->uri;
             unset($uri[0], $uri[1]);
             return array_values($uri);
         }
