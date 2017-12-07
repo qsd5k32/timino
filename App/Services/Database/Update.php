@@ -36,9 +36,9 @@ class Update
      */
     private $db;
 
-    public function __construct()
+    public function __construct(Connection $db)
     {
-        $this->db = (Connection::instantiate())->con();
+        $this->db = $db->con();
     }
 
 
