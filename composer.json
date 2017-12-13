@@ -1,5 +1,5 @@
 {
-    "name": "timino/timino",
+    "name": "lotfio-lakehal/timino",
     "type": "framework",
     "description": "Timino is a simple, lightweight and S.O.L.I.D PHP MVC framework",
     "keywords": ["timino","tim", "php","php mvc", "php simple framework", "php solid", "php lightweight mvc"],
