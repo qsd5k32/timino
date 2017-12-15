@@ -2,7 +2,7 @@
 
     <div class="columns">
         <div class="column col-8 col-mx-auto text-center mt-2 col-mr-auto">
-            <img src="<?=$uploads->IMG . '404.png'?>" class="res-img" alt="404">
+            <img src="<?=$this->uploads->IMG . '404.png'?>" class="res-img" alt="404">
         </div>
 
         <div class="column col-8  col-mx-auto text-center mt-2 col-mr-auto">

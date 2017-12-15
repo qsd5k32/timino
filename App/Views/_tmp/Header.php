@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title><?= (isset($pageTitle)) ? "Timino | " . $lang->set($pageTitle) : "Timino | ".$lang->set('DEFAULT_TITLE') ;?></title>
+    <title><?= (isset($this->pageTitle)) ? "Timino | " . $this->lang->set($pageTitle) : "Timino | ".$this->lang->set('DEFAULT_TITLE') ;?></title>
 
     <!-- spectre css -->
-    <link href="<?=$assets->CSS.'spectre.min.css'?>" rel="stylesheet">
-    <link href="<?=$assets->CSS.'spectre-exp.min.css'?>" rel="stylesheet">
-    <link href="<?=$assets->CSS.'spectre-icons.min.css'?>" rel="stylesheet">
-    <link href="<?=$assets->CSS.'custom.css'?>" rel="stylesheet">
+    <link href="<?=$this->assets->CSS.'spectre.min.css'?>" rel="stylesheet">
+    <link href="<?=$this->assets->CSS.'spectre-exp.min.css'?>" rel="stylesheet">
+    <link href="<?=$this->assets->CSS.'spectre-icons.min.css'?>" rel="stylesheet">
+    <link href="<?=$this->assets->CSS.'custom.css'?>" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,6 +20,6 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <link rel="icon" type="image/png" href="<?=$uploads->IMG . 'logo.png'?>">
+    <link rel="icon" type="image/png" href="<?=$this->uploads->IMG . 'logo.png'?>">
   </head>
   <body>

@@ -2,7 +2,7 @@
     <div class="columns mt-1">
         <div class="column">
             <div class="col-12">
-                <span class="label float-left hide-sm"><b>Current branch</b> : <span><?=$modelData->branch?></span></span>
+                <span class="label float-left hide-sm"><b>Current branch</b> : <span><?=$this->modelData->branch?></span></span>
                 <span class="label float-right"><b>Version </b>: 1.0.0</span></span>
                 <!--#link#-->
                 <div class="clear-fix"></div>
@@ -15,7 +15,7 @@
         <div class="column col-6 col-sm-8 col-mx-auto text-center">
             <h1>Timino PHP MVC</h1>
             <p>Default View no templating engine.</p>
-            <img src="<?=$uploads->IMG . 'logo.png'?>" alt="logo" title="Timino" class="logo mt-2">
+            <img src="<?=$this->uploads->IMG . 'logo.png'?>" alt="logo" title="Timino" class="logo mt-2">
         </div>
 
         <div class="column col-12 mt-4 text-center links">
@@ -30,7 +30,7 @@
         <div class="column col-12 text-center">
             <div class="mt-4"></div>
             <div class="footer">
-                <p><?=$lang->set('SLOGAN')?></p>
+                <p><?=$this->lang->set('SLOGAN')?></p>
             </div>
         </div>
     </div>
