@@ -29,9 +29,9 @@
 return [
 
     "DEFAULT_CONTROLLER"    => "Index",
-    "ERROR_CONTROLLER"      => "ErrorController",
+    "ERROR_CONTROLLER"      => "Error",
     "DEFAULT_ACTION"        => "manage",
-    "ERROR_ACTION"          => "errorAction",
+    "ERROR_ACTION"          => "notFoundMethod",
 
     // app folders routes
     "CORE"          => APP . "Core" . DS,

@@ -30,10 +30,10 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 
-class ErrorController extends Controller
+class Error extends Controller
 {
     public function manage()
     {
-        echo $this->errorAction();
+        echo $this->notFoundMethod();
     }
 }

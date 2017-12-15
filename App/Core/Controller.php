@@ -80,7 +80,7 @@ abstract class Controller
      *
      * @return void
      */
-    public function errorAction()
+    public function notFoundMethod()
     {
         $this->load->view("error", ["404"], "404");
     }
