@@ -70,7 +70,7 @@ abstract class Controller
      */
     public function manage()
     {
-        $method = Linker::path('DEFAULT_ACTION'); // default action
+        $method = Linker::conf('DEFAULT_ACTION'); // default action
         $controller = static::class;
         throw new Exception("error $controller Controller needs a $method Method");
     }

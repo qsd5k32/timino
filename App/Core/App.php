@@ -56,8 +56,8 @@ class App
     {
         $this->request = $request;
 
-        $this->defaultController = Linker::path("DEFAULT_CONTROLLER");
-        $this->defaultAction     = Linker::path("DEFAULT_ACTION");
+        $this->defaultController = Linker::conf("DEFAULT_CONTROLLER");
+        $this->defaultAction     = Linker::conf("DEFAULT_ACTION");
 
     }
 
@@ -69,7 +69,7 @@ class App
         if ($this->request->controller()) {
             $controller = Linker::namespace("CONTROLLERS") . ucfirst($this->request->controller());
             $this->defaultController = (class_exists($controller))
-                ? $this->request->controller() : Linker::path("ERROR_CONTROLLER");
+                ? $this->request->controller() : Linker::conf("ERROR_CONTROLLER");
         }
 
         /**
@@ -86,7 +86,7 @@ class App
          */
         if ($this->request->action()) {
             $this->defaultAction = (method_exists($this->defaultController, $this->request->action()))
-                ? $this->request->action() : Linker::path("ERROR_ACTION");
+                ? $this->request->action() : Linker::conf("ERROR_ACTION");
         }
 
         /**

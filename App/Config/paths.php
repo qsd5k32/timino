@@ -28,11 +28,6 @@
 
 return [
 
-    "DEFAULT_CONTROLLER"    => "Index",
-    "ERROR_CONTROLLER"      => "Error",
-    "DEFAULT_ACTION"        => "manage",
-    "ERROR_ACTION"          => "notFoundMethod",
-
     // app folders routes
     "CORE"          => APP . "Core" . DS,
     "CONTROLLERS"   => APP . "Controllers" . DS,
