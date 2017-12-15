@@ -11,16 +11,18 @@ Timino is a simple, lightweight and S.O.L.I.D PHP MVC framework. Timino is a pra
 . In addition you don't need to learn a very complicated documentation Besides it is customizable so you can customize and add different functionality and services.
 
 ### Features : 
-- Simple and easy to understand 
-- Clean and documented code 
-- Tries to follows S.O.L.I.D principles
-- Uses PHP >= 7 
-- Psr-4 autoloading 
-- Tries to follow PSR coding guidelines
+- Simple and easy to understand. 
+- Clean and documented code.
+- Tries to follows S.O.L.I.D principles.
+- Uses PHP >= 7. 
+- Psr-4 autoloading. 
+- Tries to follow PSR coding guidelines.
+- Timino cli for easy development.
 - Uses PDO for any database requests.
-- Uses only native PHP code, so people don't have to learn a framework
-- Uses Services to perform different tasks 
-- Ability to create own services
+- Uses only native PHP code, so people don't have to learn a framework.
+- Uses Services to perform different tasks. 
+- Ability to create own services.
+- Ability to extends php packages such as (twig, whoops, ...).
 
 ### Requirements :
 - PHP 7.0 or newer version
@@ -32,13 +34,12 @@ Timino is a simple, lightweight and S.O.L.I.D PHP MVC framework. Timino is a pra
 - Via composer :
 
 ```
-composer create-project timino/timino projectName
+composer create-project lotfio-lakehal/timino projectName
 ```
 - Manually:
-- Clone from github via SSH or HTTPS
+- Clone from github
 
-``` 
-SSH  : git clone git@github.com:lotfio-lakehal/timino.git
+```
 HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
 ```
 - Or download it directly from github as a compressed file
@@ -87,7 +88,7 @@ server{
 
     location / {
         index index.php index.html index.htm;
-        try_files /$uri /$uri/ /index.php?uri=$uri&$args;
+        try_files /$uri /$uri/ /index.php?uri=$uri&$query_string;
     }
 
     location ~ \.(php)$ {
@@ -122,7 +123,7 @@ class Test extends Controller
 {
     public function manage()
     {
-      // echo "this is the default action you can change it from the routes.conf file but make sure you change the default method on the base controller App\Core\Controller to the same name";
+      // echo "this is the default action you can change it from the conf.php file but make sure you change the default method on the base controller App\Core\Controller to the same name";
     }
 }
 ```
@@ -136,7 +137,7 @@ class Test extends Controller
 ```php
 public function manage()
   {
-    $this->load->view("views folder", array("viewPageOne", "viewPageTo"), "pageTitle");
+    $this->load->view("views folder", array("viewPageOne", "viewPageTwo"), "pageTitle");
   }
 ```
 * You can also load a naked view without header and footer like this :
