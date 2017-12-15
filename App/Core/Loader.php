@@ -72,20 +72,20 @@ class Loader
 
         $modelData = (object)$modelData;
 
-        $assets = (object)Linker::route("ASSETS");
-        $uploads = (object)Linker::route("UPLOADS");
+        $assets = (object)Linker::path("ASSETS");
+        $uploads = (object)Linker::path("UPLOADS");
         $lang = new Language();
 
 
-        if (!is_dir(Linker::route("VIEWS") . $folder))
+        if (!is_dir(Linker::path("VIEWS") . $folder))
             throw new Exception("Requested Folder $folder does not exists");
         /**
          * Merge the two directories as one array
          * @var array
          */
         $availableFiles = array_merge(
-            scandir(Linker::route("VIEWS") . '_tmp'),
-            scandir(Linker::route("VIEWS") . $folder)
+            scandir(Linker::path("VIEWS") . '_tmp'),
+            scandir(Linker::path("VIEWS") . $folder)
         );
         /**
          * Remove Default header and footer
@@ -112,7 +112,7 @@ class Loader
         /**
          *
          */
-        require_once Linker::route("VIEWS") . "_tmp" . DS . "Header.php";
+        require_once Linker::path("VIEWS") . "_tmp" . DS . "Header.php";
         /**
          * if requested files exists on the given folder require them
          *  else require them from _tmp directory (default dir)
@@ -121,10 +121,10 @@ class Loader
         foreach ($files as $file) {
 
             if (in_array($file, $availableFiles)) {
-                if (file_exists(Linker::route("VIEWS") . $folder . DS . $file . ".php")) {
-                    require Linker::route("VIEWS") . $folder . DS . $file . ".php";
+                if (file_exists(Linker::path("VIEWS") . $folder . DS . $file . ".php")) {
+                    require Linker::path("VIEWS") . $folder . DS . $file . ".php";
                 } else {
-                    require Linker::route("VIEWS") . "_tmp" . DS . $file . ".php";
+                    require Linker::path("VIEWS") . "_tmp" . DS . $file . ".php";
                 }
 
             }
@@ -137,7 +137,7 @@ class Loader
             throw new Exception("file $file.php was not found on the views folder  $folder ");
         }
 
-        require_once Linker::route("VIEWS") . "_tmp" . DS . "Footer.php";
+        require_once Linker::path("VIEWS") . "_tmp" . DS . "Footer.php";
     }
 
 
@@ -160,19 +160,19 @@ class Loader
         $modelData = (object)$modelData;
 
         // routes
-        $assets = (object)Linker::route("ASSETS");
-        $uploads = (object)Linker::route("UPLOADS");
+        $assets = (object)Linker::path("ASSETS");
+        $uploads = (object)Linker::path("UPLOADS");
         $lang = new Language();
 
 
-        if (!is_dir(Linker::route("VIEWS") . $folder))
+        if (!is_dir(Linker::path("VIEWS") . $folder))
             throw new Exception("Requested Folder <b>$folder</b> does not exists on the Views Folder");
 
         foreach ($files as $file) {
 
-            if (file_exists(Linker::route("VIEWS") . $folder . DS . $file . ".php")) {
+            if (file_exists(Linker::path("VIEWS") . $folder . DS . $file . ".php")) {
 
-                require Linker::route("VIEWS") . $folder . DS . $file . ".php";
+                require Linker::path("VIEWS") . $folder . DS . $file . ".php";
 
             } else {
                 throw new Exception("file $file.php was not found on $folder views  folder ");
@@ -199,8 +199,8 @@ class Loader
         $files = array_map("ucfirst", $files);
 
 
-        $tmp = Linker::route("VIEWS") . "_tmp" . DS;
-        $folder = Linker::route("VIEWS") . $folder . DS;
+        $tmp = Linker::path("VIEWS") . "_tmp" . DS;
+        $folder = Linker::path("VIEWS") . $folder . DS;
 
         // set twig loader and environment
         $loader = new \Twig_Loader_Filesystem(array($tmp, $folder));
@@ -208,8 +208,8 @@ class Loader
         $twig->addExtension(new \Twig_Extension_Debug());
 
         // needed data to be passed to the view
-        $twig->addGlobal("assets", (object)Linker::route("ASSETS"));
-        $twig->addGlobal("uploads", (object)Linker::route("UPLOADS"));
+        $twig->addGlobal("assets", (object)Linker::path("ASSETS"));
+        $twig->addGlobal("uploads", (object)Linker::path("UPLOADS"));
         $twig->addGlobal("pageTitle", $pageTitle);
         $twig->addGlobal("modelData", (object)$modelData);
         $twig->addGlobal("lang", new Language());
