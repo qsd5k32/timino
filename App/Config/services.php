@@ -34,8 +34,8 @@ return[
     "Authentication" => App\Services\Security\Authentication::class,
     "Cookie"         => App\Services\Security\Cookie::class,
     "Session"        => App\Services\Security\Session::class,
-    "Redirection"    => App\Services\Security\Redirection::class,
+    "Redirect"       => App\Services\Security\Redirection::class,
     "Token"          => App\Services\Security\Token::class,
-    "Validation"     => App\Services\Security\Validation::class,
+    "Validate"       => App\Services\Security\Validation::class,
     "Upload"         => App\Services\Uploads\Upload::class,
 ];
