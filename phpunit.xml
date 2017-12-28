@@ -14,10 +14,4 @@
             <directory>./tests/Unit</directory>
         </testsuite>
     </testsuites>
-    <php>
-        <const name="DS" value="DIRECTORY_SEPARATOR"/>
-        <const name="URI" value="#[^\d\w\/\.\@\-]#"/>
-        <get name="uri" value="bar/aaa/1"/>
-    </php>
-
 </phpunit>
