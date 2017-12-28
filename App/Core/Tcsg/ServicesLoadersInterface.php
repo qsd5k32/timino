@@ -22,37 +22,27 @@
  * GNU General Public License for more details.
  *
  * INFO :
- * Base Model class
+ * ServicesLoaders Interface
  *
  */
 
-namespace App\Core;
+namespace App\Core\Tcsg;
 
-use App\Core\Tcsg\ServicesLoadersInterface;
-
-abstract class Model
+interface ServicesLoadersInterface
 {
     /**
-     * @var ServicesLoadersInterface
-     */
-    protected $services;
-
-    /**
-     * Model constructor.
-     * @param ServicesLoadersInterface $services
-     */
-    public function __construct(ServicesLoadersInterface $services)
-    {
-        $this->services = $services;
-    }
-
-    /**
-     * Load services on service call
-     * @param $service
+     * Register method
+     * Register all services loaded from config
+     * use reflexion class to instanciate singletone or normal classes
      * @return mixed
      */
-    public function __get($service)
-    {
-        return $this->services->get($service);
-    }
+    public function register();
+
+    /**
+     * Get services method
+     * Return an object of the loaded service otherwise throw an Exception if not found
+     * @param $serviceName
+     * @return mixed
+     */
+    public function get($serviceName);
 }

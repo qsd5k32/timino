@@ -22,18 +22,14 @@
  * GNU General Public License for more details.
  *
  * INFO :
- * error controller class
+ * general Configuration file (general rules)
  *
  */
 
-namespace App\Controllers;
+return [
 
-use App\Core\Controller;
-
-class ErrorController extends Controller
-{
-    public function manage()
-    {
-        echo $this->errorAction();
-    }
-}
+    "DEFAULT_CONTROLLER"    => "Index",
+    "ERROR_CONTROLLER"      => "Error",
+    "DEFAULT_ACTION"        => "manage",
+    "ERROR_ACTION"          => "notFoundMethod"
+];

@@ -22,16 +22,11 @@
  * GNU General Public License for more details.
  *
  * INFO :
- * Routes Configuration file
+ * paths Configuration file
  *
  */
 
 return [
-
-    "DEFAULT_CONTROLLER"    => "Index",
-    "ERROR_CONTROLLER"      => "ErrorController",
-    "DEFAULT_ACTION"        => "manage",
-    "ERROR_ACTION"          => "errorAction",
 
     // app folders routes
     "CORE"          => APP . "Core" . DS,

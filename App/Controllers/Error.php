@@ -22,15 +22,18 @@
  * GNU General Public License for more details.
  *
  * INFO :
- * ServicesLoaders Interface
+ * error controller class
  *
  */
 
-namespace App\Core\Abstraction;
+namespace App\Controllers;
 
-interface ServicesLoadersInterface
+use App\Core\Controller;
+
+class Error extends Controller
 {
-    public function register();
-
-    public function get($serviceName);
+    public function manage()
+    {
+        echo $this->notFoundMethod();
+    }
 }

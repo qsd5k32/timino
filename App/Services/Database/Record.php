@@ -30,18 +30,14 @@ namespace App\Services\Database;
 
 class Record
 {
-    public $select;
-    public $insert;
-    public $update;
-    public $delete;
 
-
-    public function __construct()
+    public function __get($record)
     {
-        $this->select = new Select;
-        $this->insert = new Insert;
-        $this->update = new Update;
-        $this->delete = new Delete;
+        $record = "App\Services\Database\\". ucfirst($record);
+
+        if(!class_exists($record)) throw new \Exception("Error Query Service $record not found", 1);
+        
+        return new $record(Connection::instantiate());
     }
 
 }

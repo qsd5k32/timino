@@ -1,5 +1,5 @@
 {
-    "name": "timino/timino",
+    "name": "lotfio-lakehal/timino",
     "type": "framework",
     "description": "Timino is a simple, lightweight and S.O.L.I.D PHP MVC framework",
     "keywords": ["timino","tim", "php","php mvc", "php simple framework", "php solid", "php lightweight mvc"],
@@ -16,12 +16,13 @@
     "minimum-stability": "alpha",
 
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.0",
+        "twig/twig": "^2.4",
+        "timinocli/timinocli": "dev-develop"
     },
 
     "require-dev": {
-        "phpunit/phpunit":">=6.3.0",
-        "timinocli/timinocli": ">=0.2.0"
+        "phpunit/phpunit":">=6.3.0"
     },
 
     "autoload":{

@@ -28,7 +28,7 @@
 
 namespace App\Core;
 
-use App\Core\Abstraction\ServicesLoadersInterface;
+use App\Core\Tcsg\ServicesLoadersInterface;
 use Exception;
 use ReflectionClass;
 
@@ -91,8 +91,8 @@ class ServicesAutoLoader implements ServicesLoadersInterface
      */
     public function get($serviceName)
     {
-            $serviceName = ucfirst($serviceName);
-            if (!isset($this->services[$serviceName])) throw new Exception("error service $serviceName Doesn't exists !");
-            return $this->services[$serviceName];
+        $serviceName = ucfirst($serviceName);
+        if (!isset($this->services[$serviceName])) throw new Exception("error service $serviceName Doesn't exists !");
+        return $this->services[$serviceName];
     }
 }

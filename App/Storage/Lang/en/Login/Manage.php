@@ -21,38 +21,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * INFO :
- * Base Model class
+ * language file
  *
  */
+return[
 
-namespace App\Core;
+    "LOGIN" => "Login"
 
-use App\Core\Tcsg\ServicesLoadersInterface;
-
-abstract class Model
-{
-    /**
-     * @var ServicesLoadersInterface
-     */
-    protected $services;
-
-    /**
-     * Model constructor.
-     * @param ServicesLoadersInterface $services
-     */
-    public function __construct(ServicesLoadersInterface $services)
-    {
-        $this->services = $services;
-    }
-
-    /**
-     * Load services on service call
-     * @param $service
-     * @return mixed
-     */
-    public function __get($service)
-    {
-        return $this->services->get($service);
-    }
-}
+];

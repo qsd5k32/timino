@@ -28,7 +28,7 @@
 
 namespace App\Core;
 
-use App\Core\Abstraction\ServicesLoadersInterface;
+use App\Core\Tcsg\ServicesLoadersInterface;
 use Exception;
 
 abstract class Controller
@@ -37,16 +37,32 @@ abstract class Controller
      * model and views loader
      * @var object
      */
-    public $load;
+    protected  $load;
+    /**
+     * services to be loaded
+     * @var ServicesLoadersInterface
+     */
+    protected  $services;
 
-    public $git;
-
-    // services goes down here
-
-    public function __construct(ServicesLoadersInterface $service, Loader $loader)
+    /**
+     * Controller constructor.
+     * @param ServicesLoadersInterface $services
+     * @param Loader $loader
+     */
+    public function __construct(ServicesLoadersInterface $services, Loader $loader)
     {
-        $this->load = $loader;
-        $this->git = $service->get('git');
+        $this->services = $services;
+        $this->load     = $loader;
+    }
+
+    /**
+     * load services on service call
+     * @param $service
+     * @return mixed
+     */
+    public function __get($service)
+    {
+        return $this->services->get($service);
     }
 
     /**
@@ -54,7 +70,7 @@ abstract class Controller
      */
     public function manage()
     {
-        $method = Linker::route('DEFAULT_ACTION'); // default action
+        $method = Linker::conf('DEFAULT_ACTION'); // default action
         $controller = static::class;
         throw new Exception("error $controller Controller needs a $method Method");
     }
@@ -64,7 +80,7 @@ abstract class Controller
      *
      * @return void
      */
-    public function errorAction()
+    public function notFoundMethod()
     {
         $this->load->view("error", ["404"], "404");
     }

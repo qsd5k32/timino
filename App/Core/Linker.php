@@ -34,7 +34,8 @@ class Linker
      * @var array available routes method
      */
     private static $routes = array(
-        "route",
+        "conf",
+        "path",
         "namespace",
         "database",
         "regex",
@@ -65,21 +66,12 @@ class Linker
         $file = CONFIG;
 
         switch ($method) {
-            case "route" :
-                $file .= "routes.php";
-                break;
-            case "namespace" :
-                $file .= "namespaces.php";
-                break;
-            case "database" :
-                $file .= "database.php";
-                break;
-            case "regex" :
-                $file .= "regex.php";
-                break;
-            case "mail" :
-                $file .= "mail.php";
-                break;
+            case "conf"     : $file .= "conf.php";       break;            
+            case "path"     : $file .= "paths.php";      break;
+            case "namespace": $file .= "namespaces.php"; break;
+            case "database" : $file .= "database.php";   break;
+            case "regex"    : $file .= "regex.php";      break;
+            case "mail"     : $file .= "mail.php";       break;
         }
 
 
