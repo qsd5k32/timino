@@ -38,7 +38,7 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`ID`, `Email`, `Passwd`, `Gender`) VALUES
-(1, 'lotfio@gomail.com', '$2y$12$El.rNE8CxZ.Oihg.mmfTVuM7YfNJmCpn6ouu1hkB4a4SyIc7jJcnO', 'M'),
+(1, 'lotfio@gmail.com', '$2y$12$El.rNE8CxZ.Oihg.mmfTVuM7YfNJmCpn6ouu1hkB4a4SyIc7jJcnO', 'M'),
 (2, 'admin@gmail.com', '$2y$12$ocTTbaMtuZBxjJfcFZRju.bzmuswd8ozzFsJ/vAu2PTqxyWQzRvAW', 'M'),
 (3, 'blak_star2@hotmail.fr', '$2y$12$4cCr2olmwhJeaJtihN4qi.JGOXLBxhB7KbcxUAWzyXJFwfANlPvIe', 'M'),
 (4, 'lina@gmail.com', '$2y$12$wKj4sis4Oic.84oXP2dcz.S2xonf2PTEYh83UVmmp7TjbJ8CB/ysK', 'F');
