@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "433f496d543ef7d38ca31f7ab3fc5d4d",
+    "content-hash": "bee219e4f7b906ce4f4a87a303e2f4ca",
     "packages": [
         {
             "name": "symfony/polyfill-mbstring",
@@ -67,16 +67,16 @@
         },
         {
             "name": "timinocli/timinocli",
-            "version": "0.3.0",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lotfio-lakehal/timinocli.git",
-                "reference": "4fa800e8a680d6f270815a640b237ea83aa82fa2"
+                "reference": "22b05ae683421efb95cbdb57b52a108437df8936"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lotfio-lakehal/timinocli/zipball/4fa800e8a680d6f270815a640b237ea83aa82fa2",
-                "reference": "4fa800e8a680d6f270815a640b237ea83aa82fa2",
+                "url": "https://api.github.com/repos/lotfio-lakehal/timinocli/zipball/22b05ae683421efb95cbdb57b52a108437df8936",
+                "reference": "22b05ae683421efb95cbdb57b52a108437df8936",
                 "shasum": ""
             },
             "type": "tool",
@@ -96,7 +96,7 @@
                 }
             ],
             "description": "timinocli is a command line tool for timino php mvc framework",
-            "time": "2017-11-08T20:12:09+00:00"
+            "time": "2017-11-30T13:39:11+00:00"
         },
         {
             "name": "twig/twig",
@@ -1626,7 +1626,9 @@
     ],
     "aliases": [],
     "minimum-stability": "alpha",
-    "stability-flags": [],
+    "stability-flags": {
+        "timinocli/timinocli": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

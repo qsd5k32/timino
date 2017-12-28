@@ -18,7 +18,7 @@
     "require": {
         "php": ">=7.0",
         "twig/twig": "^2.4",
-        "timinocli/timinocli": ">=0.2.0"
+        "timinocli/timinocli": "dev-develop"
     },
 
     "require-dev": {
