@@ -15,8 +15,7 @@
 
     "require": {
         "php": ">=7.0",
-        "twig/twig": "^2.4",
-        "timinocli/timinocli": "^0.3.1"
+        "lotfio-lakehal/timinocli": "^0.3.1"
     },
 
     "require-dev": {
