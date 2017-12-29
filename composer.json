@@ -12,13 +12,10 @@
             "role": "Developer"
         }
     ],
-    
-    "minimum-stability": "alpha",
 
     "require": {
         "php": ">=7.0",
-        "twig/twig": "^2.4",
-        "timinocli/timinocli": "dev-develop"
+        "lotfio-lakehal/timinocli": "^0.3.1"
     },
 
     "require-dev": {
