@@ -2,4 +2,4 @@
 
 <?php
 
-require_once './vendor/timinocli/timinocli/run/index.php';
+require_once 'vendor/lotfio-lakehal/timinocli/run/index.php';
