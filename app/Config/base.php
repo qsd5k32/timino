@@ -31,7 +31,7 @@ defined("DS") || define("DS", DIRECTORY_SEPARATOR);
 
 defined("ROOT") || define('ROOT', dirname(dirname(__DIR__)) . DS);
 
-defined("APP") || define('APP', ROOT . "App" . DS);
+defined("APP") || define('APP', ROOT . "app" . DS);
 
 defined("PUB") || define('PUB', ROOT . "pub" . DS);
 
