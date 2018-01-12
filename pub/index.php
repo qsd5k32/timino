@@ -32,7 +32,7 @@
  *  base config file
  * ------------------------------------
  */
-require_once "../App/Config/base.php";
+require_once "../app/Config/base.php";
 
 /*
  * ------------------------------------
