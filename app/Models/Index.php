@@ -1,10 +1,9 @@
 <?php
-
 /**
  * Timino - PHP MVC framework
  *
  * @package     Timino
- * @author      Lotfio Lakehal <contact@lotfio-lakehal.com>
+ * @author      Lotfio Lakehal <lotfiolakehal@gmail.com>
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
@@ -21,19 +20,16 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * INFO :
- * Index Model class
- *
  */
 
 namespace App\Models;
 
-use App\Core\Model;
+use Omnicient\Core\Model;
 
 class Index extends Model
 {
     public function test()
     {
-
+        //$this->record->select->from("users", '*');
     }
 }

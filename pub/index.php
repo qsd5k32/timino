@@ -1,10 +1,9 @@
 <?php
-
 /**
  * Timino - PHP MVC framework
  *
  * @package     Timino
- * @author      Lotfio Lakehal <contact@lotfio-lakehal.com>
+ * @author      Lotfio Lakehal <lotfiolakehal@gmail.com>
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
@@ -21,10 +20,6 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * INFO :
- * Index page
- * application launcher
- *
  */
 
 /*
@@ -34,7 +29,7 @@
  */
 require_once "../vendor/autoload.php";
 
-use App\Core\{ Request, App};
+use Omnicient\Core\{ Request, App};
 use App\Services\Custom\Git;
 
 /*
@@ -52,7 +47,7 @@ try{
 
 }catch (Exception $e)
 {
-    $load = new \App\Core\Loader();
+    $load = new Omnicient\Core\Loader();
 
     $load->view("Error", "500", "500", array(
         "Exception" =>$e, "branch" =>  (new Git())->getBranch()

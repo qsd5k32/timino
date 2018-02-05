@@ -1,10 +1,9 @@
 <?php
-
 /**
  * Timino - PHP MVC framework
  *
  * @package     Timino
- * @author      Lotfio Lakehal <contact@lotfio-lakehal.com>
+ * @author      Lotfio Lakehal <lotfiolakehal@gmail.com>
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
@@ -21,14 +20,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * INFO :
- * error controller class
- *
  */
 
 namespace App\Controllers;
 
-use App\Core\Controller;
+use Omnicient\Core\Controller;
 
 class Error extends Controller
 {
