@@ -31,7 +31,6 @@ class Index extends Controller
 
     public function manage()
     {
-        //$model = $this->load->model('index')->test();
         $this->load->view("index", array("manage"), NULL, array("branch" => $this->git->getBranch()));
     }
 

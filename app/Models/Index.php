@@ -30,6 +30,6 @@ class Index extends Model
 {
     public function test()
     {
-        //$this->record->select->from("users", '*');
+        //return $this->record->select->from("Users", '*');
     }
 }
