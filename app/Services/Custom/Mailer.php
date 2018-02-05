@@ -30,7 +30,7 @@ namespace App\Services\Custom;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use App\Core\Linker;
+use Omnicient\Core\Linker;
 
 class Mailer
 {

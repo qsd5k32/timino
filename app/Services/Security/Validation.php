@@ -28,7 +28,7 @@
 
 namespace App\Services\Security;
 
-use App\Core\Linker;
+use Omnicient\Core\Linker;
 
 class Validation
 {

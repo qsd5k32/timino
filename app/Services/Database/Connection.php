@@ -29,7 +29,7 @@
 namespace App\Services\Database;
 
 
-use App\Core\Linker;
+use Omnicient\Core\Linker;
 
 class Connection
 {
