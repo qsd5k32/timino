@@ -15,7 +15,8 @@
 
     "require": {
         "php": ">=7.0",
-        "timino/omnicient" : "dev-develop"
+        "timino/omnicient" : "dev-develop",
+        "jenssegers/blade": "^1.1"
     },
 
     "require-dev": {

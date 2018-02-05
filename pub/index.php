@@ -39,17 +39,7 @@ use App\Services\Custom\Git;
  */
 $request = new Request;
 
-try{
+$app = new App($request);
 
-    $app = new App($request);
+$app->run();
 
-    $app->run();
-
-}catch (Exception $e)
-{
-    $load = new Omnicient\Core\Loader();
-
-    $load->view("Error", "500", "500", array(
-        "Exception" =>$e, "branch" =>  (new Git())->getBranch()
-    ));
-}
