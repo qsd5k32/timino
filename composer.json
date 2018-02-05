@@ -15,9 +15,7 @@
 
     "require": {
         "php": ">=7.0",
-        "lotfio-lakehal/console": "^0.3.2",
-        "timino/omnicient" : "dev-develop",
-        "timino/ouch"      : "dev-develop"
+        "timino/omnicient" : "dev-develop"
     },
 
     "require-dev": {
@@ -40,6 +38,10 @@
         {
             "type": "path",
             "url" : "/var/www/timino/packages/timino-omnicient"
+        },
+        {
+            "type": "path",
+            "url" : "/var/www/timino/packages/timino-console"
         },
         {
             "type": "path",
