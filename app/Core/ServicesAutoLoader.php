@@ -54,7 +54,7 @@ class ServicesAutoLoader implements ServicesLoadersInterface
      */
     public function register()
     {
-        $file = APP . 'Config' . DS . 'services.php';
+        $file = CONFIG . 'services.php';
 
         if (!file_exists($file)) throw new Exception("Error file $file not found !");
 
