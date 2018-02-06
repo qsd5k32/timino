@@ -28,11 +28,18 @@ use Omnicient\App\Controller;
 
 class Index extends Controller
 {
-
+    /**
+     * manage method
+     * default method to be called when controller requested
+     * this method can be changed from config files
+     * if you change this method make sure to update it in the base controller
+     * @return void
+     */
     public function manage()
     {
+        //$all_records = model($this->class)->all();
+
         return view("index.manage", array("names"=>array("1", "2", "6", "9")));
         //return $this->load->view("index.manage", array("branch" => $this->git->getBranch()));
     }
-
 }

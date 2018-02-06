@@ -28,8 +28,13 @@ use Omnicient\App\Model;
 
 class Index extends Model
 {
-    public function test()
+    /**
+     * get all records from db
+     *
+     * @return void
+     */
+    public function all()
     {
-        //return $this->record->select->from("Users", '*');
+        return _select("*","Users");
     }
 }
