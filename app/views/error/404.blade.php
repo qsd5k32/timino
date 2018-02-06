@@ -1,8 +1,13 @@
+@extends('_tmp.main')
+
+@section('title') Timino | Error 404 @endsection
+
+@section('content')
 <div class="container grid-xl">
 
     <div class="columns">
         <div class="column col-8 col-mx-auto text-center mt-2 col-mr-auto">
-            <img src="<?=$this->uploads->IMG . '404.png'?>" class="res-img" alt="404">
+            <img src="{{ uploads('img/404.png') }}?>" class="res-img" alt="404">
         </div>
 
         <div class="column col-8  col-mx-auto text-center mt-2 col-mr-auto">
@@ -25,3 +30,4 @@
     </div>
 
 </div>
+@endsection

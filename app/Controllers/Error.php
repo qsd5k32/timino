@@ -28,8 +28,15 @@ use Omnicient\App\Controller;
 
 class Error extends Controller
 {
+    /**
+     * manage method
+     * default method to be called when controller requested
+     * this method can be changed from config files
+     * if you change this method make sure to update it in the base controller
+     * @return void
+     */
     public function manage()
     {
-        echo $this->notFoundMethod();
+        return $this->notFoundMethod();
     }
 }

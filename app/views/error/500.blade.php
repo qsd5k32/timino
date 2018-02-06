@@ -1,9 +1,15 @@
+@extends('_tmp.main')
+
+@section('title') Timino | Error 505 @endsection
+
+@section('content')
+
 <div class="container grid-xl">
     <div class="columns">
         <div class="column">
             <div class="col-12">
-                <span class="label float-left hide-sm"><b>Current branch</b> : <span><?=$this->modelData->branch?></span></span>
-                <span class="label float-right"><b>Version </b>: 1.0.1</span></span>
+                <span class="label float-left hide-sm"><b>Current branch</b> : <span>Omnicient</span></span>
+                <span class="label float-right"><b>Version </b>: 2.0.0</span></span>
                 <!--#link#-->
                 <div class="clear-fix"></div>
             </div>
@@ -27,9 +33,9 @@
                 </p>
             </div>
             <div class="code">
-                <pre>
-                <code><?php print_r($this->modelData->Exception->getTrace())?></code>
+                <!-- Error Code goes here -->
             </div>
         </div>
     </div>
 </div>
+@endsection
