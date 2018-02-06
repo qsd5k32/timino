@@ -27,15 +27,14 @@
  *
  */
 return[
-    "Mailer"         => App\Services\Custom\Mailer::class,
-    "Git"            => App\Services\Custom\Git::class,
-    "Record"         => App\Services\Database\Record::class,
-    "Form"           => App\Services\Security\Form::class,
-    "Authentication" => App\Services\Security\Authentication::class,
-    "Cookie"         => App\Services\Security\Cookie::class,
-    "Session"        => App\Services\Security\Session::class,
-    "Redirect"       => App\Services\Security\Redirection::class,
-    "Token"          => App\Services\Security\Token::class,
-    "Validate"       => App\Services\Security\Validation::class,
-    "Upload"         => App\Services\Uploads\Upload::class,
+    "Mailer"         => Omnicient\Services\Custom\Mailer::class,
+    "Git"            => Omnicient\Services\Custom\Git::class,
+    "Form"           => Omnicient\Services\Security\Form::class,
+    "Authentication" => Omnicient\Services\Security\Authentication::class,
+    "Cookie"         => Omnicient\Services\Security\Cookie::class,
+    "Session"        => Omnicient\Services\Security\Session::class,
+    "Redirect"       => Omnicient\Services\Security\Redirection::class,
+    "Token"          => Omnicient\Services\Security\Token::class,
+    "Validate"       => Omnicient\Services\Security\Validation::class,
+    "Upload"         => Omnicient\Services\Uploads\Upload::class,
 ];
