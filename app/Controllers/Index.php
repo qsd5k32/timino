@@ -24,7 +24,7 @@
 
 namespace App\Controllers;
 
-use Omnicient\Core\Controller;
+use Omnicient\App\Controller;
 
 class Index extends Controller
 {

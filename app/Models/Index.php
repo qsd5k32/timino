@@ -24,7 +24,7 @@
 
 namespace App\Models;
 
-use Omnicient\Core\Model;
+use Omnicient\App\Model;
 
 class Index extends Model
 {
