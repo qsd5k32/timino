@@ -29,17 +29,19 @@
  */
 require_once "../vendor/autoload.php";
 
-use Omnicient\Core\{ Request, App};
-use App\Services\Custom\Git;
+use Omnicient\Http\Request;
+use Omnicient\Http\Response;
+use Omnicient\Core\ServicesAutoLoader;
+use Omnicient\Core\Loader;
+use Omnicient\Core\App;
 
-/*
- * ------------------------------------
- *  Start Application
- * ------------------------------------
- */
-$request = new Request;
 
-$app = new App($request);
+$app = new App(
+    new Request,
+    new Response,
+    new ServicesAutoLoader,
+    new Loader
+);
 
 $app->run();
 
