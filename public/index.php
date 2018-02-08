@@ -31,7 +31,7 @@ require_once "../vendor/autoload.php";
 
 use Omnicient\Http\Request;
 use Omnicient\Http\Response;
-use Omnicient\Core\ServicesAutoLoader;
+use Omnicient\Core\ServicesLocator;
 use Omnicient\Core\Loader;
 use Omnicient\Core\App;
 
@@ -39,7 +39,7 @@ use Omnicient\Core\App;
 $app = new App(
     new Request,
     new Response,
-    new ServicesAutoLoader,
+    new ServicesLocator,
     new Loader
 );
 
