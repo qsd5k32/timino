@@ -29,14 +29,14 @@
  */
 require_once "../vendor/autoload.php";
 
-use Omnicient\Http\Request;
-use Omnicient\Http\Response;
-use Omnicient\Core\ServicesLocator;
-use Omnicient\Core\Loader;
-use Omnicient\Core\App;
 
+$ouch = new Ouch\Core\Reporter;
+$ouch->enable();
 
-$app = new App(
+use Omnicient\Http\{Request,Response,};
+use Omnicient\Core\{Loader, ServicesLocator, App};
+
+$app = new Omnicient\Core\App(
     new Request,
     new Response,
     new ServicesLocator,
