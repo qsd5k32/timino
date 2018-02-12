@@ -29,12 +29,10 @@
 return [
 
     // app folders routes
-    "CORE"          => APP  . "Core" . DS,
     "CONTROLLERS"   => APP  . "Controllers" . DS,
     "MODELS"        => APP  . "Models" . DS,
-    "SERVICES"      => APP  . "Services" . DS,
     "VIEWS"         => APP  . "views" . DS,
-    "CACHE"         => ROOT . "cache" . DS,
+    "CACHE"         => ROOT . "storage" . DS . 'cache',
 
     // public folders routes for php check and validation
     "PHP_PUBLIC" => [
@@ -63,5 +61,5 @@ return [
     ],
 
     // libs mail routes
-    "EMAIL" => APP . "Storage" . DS . "Mail" . DS,
+    "EMAIL" => APP . "storage" . DS . "Mail" . DS,
 ];
