@@ -43,7 +43,7 @@ class Index extends Controller
         //$all_records = $this->load->model($this->class)->all();
 
 
-        return _view("index.manage", array("names"=>array("1", "2", "6", "9")));
+        return _view("index.manage");
 
     }
 }
