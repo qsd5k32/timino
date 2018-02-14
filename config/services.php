@@ -27,9 +27,11 @@
  *
  */
 return[
+
     "Loader"         => Omnicient\Core\Loader::class,
     "Mailer"         => Omnicient\Services\Custom\Mailer::class,
     "Git"            => Omnicient\Services\Custom\Git::class,
+    "Record"         => Omnicient\Database\Record::class,
     "Form"           => Omnicient\Services\Security\Form::class,
     "Authentication" => Omnicient\Services\Security\Authentication::class,
     "Cookie"         => Omnicient\Services\Security\Cookie::class,
