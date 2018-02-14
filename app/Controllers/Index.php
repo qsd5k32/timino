@@ -37,9 +37,13 @@ class Index extends Controller
      */
     public function manage()
     {
-        //$all_records = model($this->class)->all();
 
-        return view("index.manage", array("names"=>array("1", "2", "6", "9")));
-        //return $this->load->view("index.manage", array("branch" => $this->git->getBranch()));
+        //$all_records = _model($this->class)->all();
+        //$all_records = _service("loader")->model($this->class)->all();
+        //$all_records = $this->load->model($this->class)->all();
+
+
+        return _view("index.manage", array("names"=>array("1", "2", "6", "9")));
+
     }
 }

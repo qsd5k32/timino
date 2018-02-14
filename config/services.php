@@ -27,6 +27,7 @@
  *
  */
 return[
+    "Loader"         => Omnicient\Core\Loader::class,
     "Mailer"         => Omnicient\Services\Custom\Mailer::class,
     "Git"            => Omnicient\Services\Custom\Git::class,
     "Form"           => Omnicient\Services\Security\Form::class,
