@@ -29,7 +29,7 @@
 return [
 
     // dispatcher uri validation
-    "URI" => "#[^\d\w\/\.\@\-]#",
+    "URI" => "#[^\d\w\/\.\@\-\?\=\&]#",
 
     // validation service
     "EMAIL" => "#^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5})$#",
