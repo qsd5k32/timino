@@ -21,15 +21,32 @@
  * GNU General Public License for more details.
  *
  */
+require '../vendor/autoload.php';
 
 /**
- * bootstrap file
+ * set ouch errorHandler
+ * 
+ * @var Ouch
  */
-require_once "../app/bootstrap.php";
-
+$ouch = new Ouch\Core\Reporter;
 
 /**
- * start application
+ * enable Ouch Error Reporting
+ * 
  */
-$app->run();
+$ouch->enable();
+
+
+use Omnicient\Http\{Request,Response};
+use Omnicient\Core\{Loader, ServicesLocator, App};
+
+/**
+ *  instanciate application and inject dependencies
+ */
+$app = new Omnicient\Core\App(
+    new Request,
+    new Response,
+    new ServicesLocator,
+    new Loader
+);
 
