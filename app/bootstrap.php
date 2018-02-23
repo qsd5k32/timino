@@ -23,22 +23,26 @@
  */
 require '../vendor/autoload.php';
 
-/**
- * set ouch errorHandler
- * 
- * @var Ouch
- */
-$ouch = new Ouch\Core\Reporter;
+
+use Ouch\Core\Reporter;
+use Omnicient\Http\{Request,Response};
+use Omnicient\Core\{Config, Loader, ServicesLocator, App};
+
 
 /**
  * enable Ouch Error Reporting
  * 
  */
-$ouch->enable();
+
+(new Reporter)->enable();
 
 
-use Omnicient\Http\{Request,Response};
-use Omnicient\Core\{Loader, ServicesLocator, App};
+/**
+ * settup config directory
+ */
+
+Config::setConfigDir('../config/');
+
 
 /**
  *  instanciate application and inject dependencies
@@ -49,4 +53,3 @@ $app = new Omnicient\Core\App(
     new ServicesLocator,
     new Loader
 );
-
