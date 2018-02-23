@@ -36,23 +36,20 @@ use Omnicient\Core\{Config, Loader, ServicesLocator, App};
 
 (new Reporter)->enable();
 
-
 /**
- * settup config directory
+ * setup config directory
  */
 
 Config::setConfigDir('../config/');
 
-
 /**
- *  instanciate application and inject dependencies
+ *  instantiate application and inject dependencies
  */
-$app = new Omnicient\Core\App(
+$app = new App(
     new Request,
     new Response,
     new ServicesLocator,
     new Loader
 );
-
 
 return $app;
