@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Timino - PHP MVC framework
  *
@@ -29,13 +28,14 @@
 return [
 
     // application dir
-    "ROOT_DIR"              => "../",
-    "APP_DIR"               => "../app",
-    "VIEWS_DIR"             => "../app/views",
-    "CACHE_DIR"             => "../storage/cache",
-    "CONFIG_DIR"            => "../config",
-    "PUBLIC_DIR"            => '../public',
-    "SUPPORT_DIR"           => "../support",
+    "ROOT_DIR"              => realpath(".."),
+    "APP_DIR"               => realpath("../app"),
+    "VIEWS_DIR"             => realpath("../app/views"),
+    "CACHE_DIR"             => realpath("../storage/cache"),
+    "CONFIG_DIR"            => realpath("../config"),
+    "PUBLIC_DIR"            => realpath("../public"),
+    "SUPPORT_DIR"           => realpath("../support"),
+    "STORAGE_DIR"           => realpath("../storage"),
 
     // controllers
     "DEFAULT_CONTROLLER"    => "Index",
