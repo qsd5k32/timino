@@ -53,3 +53,6 @@ $app = new Omnicient\Core\App(
     new ServicesLocator,
     new Loader
 );
+
+
+return $app;
