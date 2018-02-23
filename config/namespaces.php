@@ -28,6 +28,6 @@
 
 return [
 
-    "CONTROLLERS" => BNS . "Controllers\\",
-    "MODELS"      => BNS . "Models\\",
+    "CONTROLLERS" => "App\\Controllers\\",
+    "MODELS"      => "App\\Models\\",
 ];

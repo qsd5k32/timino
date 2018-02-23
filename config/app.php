@@ -28,6 +28,16 @@
 
 return [
 
+    // application dir
+    "ROOT_DIR"              => "../",
+    "APP_DIR"               => "../app",
+    "VIEWS_DIR"             => "../app/views",
+    "CACHE_DIR"             => "../storage/cache",
+    "CONFIG_DIR"            => "../config",
+    "PUBLIC_DIR"            => '../public',
+    "SUPPORT_DIR"           => "../support",
+
+    // controllers
     "DEFAULT_CONTROLLER"    => "Index",
     "ERROR_CONTROLLER"      => "Error",
     "DEFAULT_ACTION"        => "manage",
