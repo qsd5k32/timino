@@ -39,8 +39,7 @@ class Index extends Controller
     {
 
         //$all_records = _model($this->class)->all();
-        //$all_records = _service("loader")->model($this->class)->all();
-        //$all_records = $this->load->model($this->class)->all();
+        //$all_records = _srv("loader")->model($this->class)->all();
 
         return _view("index.manage");
     }

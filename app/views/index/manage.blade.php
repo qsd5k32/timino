@@ -6,6 +6,6 @@
 
     <h1>From Index</h1>
 
-    <!-- {{ _service('info')->version() }} -->
+    <!-- {{ _srv('info')->version() }} -->
 
 @endsection
