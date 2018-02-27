@@ -25,7 +25,8 @@
  * Services config file
  * all services to be loaded must be set here !
  *
- * service name should start with an upper case letter
+ * Any class can be loaded as a service here 
+ * Service name should start with an upper case letter
  *
  */
 return[
@@ -42,4 +43,5 @@ return[
     "Token"          => Omnicient\Services\Security\Token::class,
     "Validate"       => Omnicient\Services\Security\Validation::class,
     "Upload"         => Omnicient\Services\Uploads\Upload::class,
+    "Kernel"         => App\Boot\Kernel::class
 ];
