@@ -22,26 +22,14 @@
  *
  */
 
-namespace App\Controllers;
+/**
+ * bootstrap file
+ */
+require_once "../app/bootstrap.php";
 
-use Omnicient\App\Controller;
 
-class Index extends Controller
-{
-    /**
-     * manage method
-     * default method to be called when controller requested
-     * this method can be changed from config files
-     * if you change this method make sure to update it in the base controller
-     * @return void
-     */
-    public function manage()
-    {
+/**
+ * start application
+ */
+$app->run();
 
-        //$all_records = _model($this->class)->all();
-        //$all_records = _service("loader")->model($this->class)->all();
-        //$all_records = $this->load->model($this->class)->all();
-
-        return _view("index.manage");
-    }
-}

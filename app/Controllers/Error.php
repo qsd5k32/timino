@@ -1,10 +1,9 @@
 <?php
-
 /**
  * Timino - PHP MVC framework
  *
  * @package     Timino
- * @author      Lotfio Lakehal <contact@lotfio-lakehal.com>
+ * @author      Lotfio Lakehal <lotfiolakehal@gmail.com>
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
@@ -21,19 +20,23 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * INFO :
- * error controller class
- *
  */
 
 namespace App\Controllers;
 
-use App\Core\Controller;
+use Omnicient\App\Controller;
 
 class Error extends Controller
 {
+    /**
+     * manage method
+     * default method to be called when controller requested
+     * this method can be changed from config files
+     * if you change this method make sure to update it in the base controller
+     * @return void
+     */
     public function manage()
     {
-        echo $this->notFoundMethod();
+        return $this->notFoundMethod();
     }
 }

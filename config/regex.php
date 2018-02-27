@@ -1,9 +1,10 @@
 <?php
+
 /**
  * Timino - PHP MVC framework
  *
  * @package     Timino
- * @author      Lotfio Lakehal <lotfiolakehal@gmail.com>
+ * @author      Lotfio Lakehal <contact@lotfio-lakehal.com>
  * @copyright   2017 Lotfio Lakehal
  * @license     MIT
  * @link        https://github.com/lotfio-lakehal/timino
@@ -20,28 +21,23 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
+ * INFO :
+ * Regular Expressions Configuration file
+ *
  */
 
-namespace App\Controllers;
+return [
 
-use Omnicient\App\Controller;
+    // dispatcher uri validation
+    "URI" => "#[^\d\w\/\.\@\-\?\=\&]#",
 
-class Index extends Controller
-{
-    /**
-     * manage method
-     * default method to be called when controller requested
-     * this method can be changed from config files
-     * if you change this method make sure to update it in the base controller
-     * @return void
-     */
-    public function manage()
-    {
+    // validation service
+    "EMAIL" => "#^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5})$#",
 
-        //$all_records = _model($this->class)->all();
-        //$all_records = _service("loader")->model($this->class)->all();
-        //$all_records = $this->load->model($this->class)->all();
+    "STRING" => "#[^\w\d\-\.\s+\@]#",
 
-        return _view("index.manage");
-    }
-}
+    "ARABIC_STRING" => "#[^\w\d\-\.\s+\p{Arabic}\@]#u",
+
+    "FRENCH_STRING" => "#[^\w\d\-\.\s+À-ÿ]#",
+
+];

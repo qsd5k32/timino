@@ -1,11 +1,12 @@
 # Timino, Simple lightweight and S.O.L.I.D PHP MVC framework 
 ![logo](https://user-images.githubusercontent.com/18489496/31467436-e0e2d408-aed1-11e7-95f5-07174228327a.png)
 #
-![Licence](https://img.shields.io/badge/Licence-MIT-orange.svg)
-![PHP7](https://img.shields.io/badge/php-7-blue.svg)
-![version Alpha](https://img.shields.io/badge/Alpha-1.0.0-yellow.svg)
-![coverage](https://img.shields.io/badge/coverage-12-green.svg)
-![downloads](https://img.shields.io/badge/downloads-50-red.svg)
+![Licence](https://img.shields.io/badge/Licence-MIT-f1c40f.svg)
+![PHP7](https://img.shields.io/badge/PHP-7-3498db.svg)
+![version](https://img.shields.io/badge/version-1.0.0-27ae60.svg)
+![build](https://img.shields.io/badge/build-passing-8e44ad.svg)
+![coverage](https://img.shields.io/badge/coverage-15%25-95a5a6.svg)
+![downloads](https://img.shields.io/badge/downloads-100-c0392b.svg)
 ### Introduction :
 Timino is a simple, lightweight and S.O.L.I.D PHP MVC framework. Timino is a practical, easy to understand and suitable for small projects, Timino is not very complicated so you don't need to be an advanced PHP developer just some solid basic knowledge and you are ready to go.
 . In addition you don't need to learn a very complicated documentation Besides it is customizable so you can customize and add different functionality and services.
@@ -17,12 +18,12 @@ Timino is a simple, lightweight and S.O.L.I.D PHP MVC framework. Timino is a pra
 - Uses PHP >= 7. 
 - Psr-4 autoloading. 
 - Tries to follow PSR coding guidelines.
-- Timino cli for easy development.
+- Timino cli (console) for easy development.
 - Uses PDO for any database requests.
-- Uses only native PHP code, so people don't have to learn a framework.
+- simple crud system (_select, _update, _delete, _insert)
 - Uses Services to perform different tasks. 
 - Ability to create own services.
-- Ability to extends php packages such as (twig, whoops, ...).
+- Ability to extends any PHP package with composer.
 
 ### Requirements :
 - PHP 7.0 or newer version
@@ -36,13 +37,6 @@ Timino is a simple, lightweight and S.O.L.I.D PHP MVC framework. Timino is a pra
 ```
 composer create-project lotfio-lakehal/timino projectName
 ```
-- Manually:
-- Clone from github
-
-```
-HTTPS : git clone https://github.com/lotfio-lakehal/timino.git
-```
-- Or download it directly from github as a compressed file
 
  Configuration :
  ================
@@ -98,205 +92,5 @@ server{
         include fastcgi_params;
     }
 
-}
-```
-
-Usage :
-=======
-### 1-  configuration :
-* all configuration files are inside the config folder Database, Mailer, Routes, and Regular Expressions :
-* Configure your database credentials 
-* configure your mailer credentials 
-
-### 2- Create your first controller :
-* Create Controller file ``Test.php`` inside Controllers Folder and create a class Test.
-* Make sure it starts with a capital letter both class and file (stadlycaps)
-
-```php
-<?php
-
-namespace App\Controllers;
-
-use App\Core\Controller;
-
-class Test extends Controller
-{
-    public function manage()
-    {
-      // echo "this is the default action you can change it from the conf.php file but make sure you change the default method on the base controller App\Core\Controller to the same name";
-    }
-}
-```
-
-### 3- load views :
-* Create a folder inside the views folder which should be named exactly as the controller name so lets create a Test folder inside views folder
-* make sure it starts with a capital letter (and the class name is stadlyCaps)
-* `view()` method loads an array or coma separated string of views from the `Views/yourviewFolder` and automaticaly  loads the header and the footer from the `Views/_tmp` folder. Besides you can load views dynamically in every call just by puting them inside `_tmp` folder exactly like the header ond the footer and make sure to call them on the view :
-
-
-```php
-public function manage()
-  {
-    $this->load->view("views folder", array("viewPageOne", "viewPageTwo"), "pageTitle");
-  }
-```
-* You can also load a naked view without header and footer like this :
-```php
-public function manage()
-{
-  $this->load->nakedView("views folder", array("viewPageOne", "viewPageTo"));
-  // here you can pass your title to the view alongside with the data like this $data['title'] = "my title";
-}
-```
-
-* You can also Use twig templating engine just install it via composer and load views like that :
-```php
-public function manage()
-{
-  $this->load->twigView("views folder", array("viewPageOne", "viewPageTo"));
-}
-```
-
-### 4- load model data and pass it to the view :
-* create a model inside the models folder 
-* make sure it starts with a capital letter (and the class name is stadlyCaps)
-
-
-````php
-<?php
-
-namespace App\Models;
-
-use App\Core\Model;
-
-class Test extends Model
-{
-    public function testModelData()
-    {
-      return array(
-                    "name" => "lotfio"
-                     "age" => "24years"
-                    );
-    }
-}
-````
-
-* On your controller method load it like that :
-
-````php
-  public function manage()
-  {
-     $data["user"] = $this->load->model("test")->testModelData();
-        
-     $this->load->view("view folder",[pages], "title", $data);
-  }
-````
-
-### 5- use data inside the view :
-* In your Test view folder ``Views/Test`` create your Manage.php file this is the file that matches you default method name manage method and of course each view will take the name of the method.
-* Data passed to the view is stored in ``$modelData`` variable which is casted to object type so debug the variable and see the result :
-
-````php
-// Manage.php page inside Views\Test
-
-<?php
- var_dump($modelData); // here you will get an object of data returned from the model
-
-````
-
-# Dealing with Database : 
-* Timino helps you to query the database in a very simple an efficient way using the active record pattern service:
-
-### 1-  Insert :
-* insert data into the database 
-```php
-<?php
-namespace App\Models;
-
-use App\Core\Model;
-
-class Test extends Model
-{
-    public function insertNewUser()
-    {
-      $do = $this->record->insert->into("users", array(
-          "Name"   => "lotfio",
-          "Email"  => "lotfio@gmail.com",
-          "Passwd" => SHA1('mypass')
-      ));
-      
-      var_dump($do); // bool true | false
-     }
-}
-```
-
-### 2-  Select :
-* Select data from database 
-```php
-<?php
-namespace App\Models;
-
-use App\Core\Model;
-
-class Test extends Model
-{
-    public function selectFromUsers()
-    {
-      $do = $this->record->select->from("users", "selection array or coma separated string", array("Name | = " => "lotfio"), "LIMIT 1");
-      
-      var_dump($do); // mixed object | false
-      
-      /* conditions can be passed as an array
-       WHERE  array("
-        
-        "Name   |  = "  => "name  | and",
-        "Email  | != "  => "hh@kk | or",
-        "and so on"       
-          
-      "); */
-     }
-}
-```
-### 3-  Update :
-* Update data into database 
-```php
-<?php
-namespace App\Models;
-
-use App\Core\Model;
-
-class Test extends Model
-{
-    public function updateUser()
-    {
-       $this->record->update->set("users", array( // values
-          "Name" => "John"
-      ), array( // conditions
-          
-          "Email   | = " => "bilal@gmail.com | and",
-          "Passwd  | != " => SHA1("123")
-       ));
-       
-     }
-}
-```
-### 4-  Delete :
-* Delete data from database 
-```php
-<?php
-namespace App\Models;
-
-use App\Core\Model;
-
-class Test extends Model
-{
-    public function DeleteUser()
-    {
-         echo $this->record->delete->from("users",array( // conditions
-            "Email | != " => "lotfio@gmail.com | and",
-            "Name  |  = " => "timino"
-          ));
-
-     }
 }
 ```

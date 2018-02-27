@@ -21,27 +21,35 @@
  * GNU General Public License for more details.
  *
  */
+require '../vendor/autoload.php';
 
-namespace App\Controllers;
 
-use Omnicient\App\Controller;
+use Ouch\Core\Reporter;
+use Omnicient\Http\{Request,Response};
+use Omnicient\Core\{Config, Loader, ServicesLocator, App};
 
-class Index extends Controller
-{
-    /**
-     * manage method
-     * default method to be called when controller requested
-     * this method can be changed from config files
-     * if you change this method make sure to update it in the base controller
-     * @return void
-     */
-    public function manage()
-    {
 
-        //$all_records = _model($this->class)->all();
-        //$all_records = _service("loader")->model($this->class)->all();
-        //$all_records = $this->load->model($this->class)->all();
+/**
+ * enable Ouch Error Reporting
+ * 
+ */
 
-        return _view("index.manage");
-    }
-}
+(new Reporter)->enable();
+
+/**
+ * setup config directory
+ */
+
+Config::setConfigDir('../config/');
+
+/**
+ *  instantiate application and inject dependencies
+ */
+$app = new App(
+    new Request,
+    new Response,
+    new ServicesLocator,
+    new Loader
+);
+
+return $app;

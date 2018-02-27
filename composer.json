@@ -15,7 +15,8 @@
 
     "require": {
         "php": ">=7.0",
-        "lotfio-lakehal/console": "^0.3.2"
+        "jenssegers/blade": "^1.1",
+        "timino/omnicient": "dev-develop"
     },
 
     "require-dev": {
@@ -24,12 +25,29 @@
 
     "autoload":{
         "psr-4": {
-            "App\\" : "app/"
+            "App\\"  : "app/",
+            "Support\\": "support/"
         }
     },
     "autoload-dev":{
         "psr-4": {
             "Tests\\":"tests/"
         }
-    }
+    },
+
+    "repositories" : [
+
+        {
+            "type": "path",
+            "url" : "/var/www/timino/packages/timino-omnicient"
+        },
+        {
+            "type": "path",
+            "url" : "/var/www/timino/packages/timino-console"
+        },
+        {
+            "type": "path",
+            "url" : "/var/www/timino/packages/timino-ouch"
+        }
+    ]
 }
