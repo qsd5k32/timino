@@ -29,6 +29,6 @@ class Info
 {
     public function version()
     {
-        return "2.0.0";
+        return "1.0.0";
     }
 }

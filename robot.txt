@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /App/
-Disallow: /tests/
-Disallow: /vendor/
