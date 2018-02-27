@@ -25,6 +25,8 @@
  * Services config file
  * all services to be loaded must be set here !
  *
+ * service name should start with an upper case letter
+ *
  */
 return[
     "Info"           => Support\Info::class,
