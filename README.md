@@ -14,13 +14,14 @@ Timino is a simple, lightweight and S.O.L.I.D PHP MVC framework. Timino is a pra
 ### Features : 
 - Simple and easy to understand. 
 - Clean and documented code.
+- No complicated routing
 - Tries to follows S.O.L.I.D principles.
 - Uses PHP >= 7. 
 - Psr-4 autoloading. 
 - Tries to follow PSR coding guidelines.
 - Timino cli (console) for easy development.
 - Uses PDO for any database requests.
-- simple crud system (_select, _update, _delete, _insert)
+- Simple crud system (_select, _update, _delete, _insert)
 - Uses Services to perform different tasks. 
 - Ability to create own services.
 - Ability to extends any PHP package with composer.
@@ -94,3 +95,40 @@ server{
 
 }
 ```
+Create Your First Controller:
+=============================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Contributing
+
+Thank you for considering to contribute to Timino. All the contribution guidelines are mentioned [here](CONTRIBUTING.md).
+
+## Support the development
+
+**Do you like this project? Support it by:**
+
+- Donate   : paypal.
+- Share it : facebook, twitter, on your website.
+- 
+
+## License
+
+Timino is an open-source software licensed under the [MIT license](LICENSE.md).
