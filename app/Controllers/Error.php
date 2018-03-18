@@ -24,7 +24,7 @@
 
 namespace App\Controllers;
 
-use Omnicient\App\Controller;
+use Omnicient\Application\Controller;
 
 class Error extends Controller
 {

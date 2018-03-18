@@ -26,7 +26,7 @@ require '../vendor/autoload.php';
 
 use Ouch\Core\Reporter;
 use Omnicient\Http\{Request,Response};
-use Omnicient\Core\{Config, Loader, ServicesLocator, App};
+use Omnicient\Primary\{Config, Loader, ServicesLocator, App};
 
 
 /**

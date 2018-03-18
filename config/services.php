@@ -31,7 +31,7 @@
  */
 return[
     "Info"           => Support\Info::class,
-    "Loader"         => Omnicient\Core\Loader::class,
+    "Loader"         => Omnicient\Primary\Loader::class,
     "Mailer"         => Omnicient\Services\Custom\Mailer::class,
     "Git"            => Omnicient\Services\Custom\Git::class,
     "Record"         => Omnicient\Database\Record::class,
